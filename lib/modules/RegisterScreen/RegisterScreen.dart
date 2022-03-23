@@ -1,5 +1,6 @@
 
 import 'package:finalproject/layout/cubit/Covid_19App/covid_19_app_cubit.dart';
+import 'package:finalproject/modules/LoginScreen/Login_Screen.dart';
 import 'package:finalproject/shared/component.dart';
 import 'package:finalproject/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
@@ -276,6 +277,65 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                               ).then((value) {
                                     print('Successfully $value');
+                                Dialog(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25.0),
+          ),
+          child: Stack(
+            overflow: Overflow.visible,
+            alignment: Alignment.topCenter,
+            children: [
+              Container(
+                height: 280,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 50, 10, 10),
+                  child: Column(
+                    children: [
+                      const Text(
+                        'Successful',
+                        style:  TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 30),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      const Text(
+                        'Password Changed\nGo To Login',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      MyDivider(),
+                      const SizedBox(
+                        height: 45,
+                      ),
+                      defultTextButton(
+                        context,
+                          text: 'Ok',
+                          function: () {
+                            NavigateTo(
+                              context,
+                               Covid19LoginScreen(),
+                            );
+                          },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                  top: -50,
+                  child: Image.asset(
+                    "assets/images/4.png",
+                    width: 100.0,
+                  )),
+            ],
+          ));
                               });
                             }
                           },
@@ -488,62 +548,65 @@ class _RegisterScreenState extends State<RegisterScreen> {
 //   onChanged: dropdawon,
 //   );
 // }
-/*Dialog(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25.0),
-          ),
-          child: Stack(
-            overflow: Overflow.visible,
-            alignment: Alignment.topCenter,
-            children: [
-              Container(
-                height: 280,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 50, 10, 10),
-                  child: Column(
-                    children: [
-                      const Text(
-                        'Successful',
-                        style:  TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 30),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      const Text(
-                        'Password Changed\nGo To Login',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      MyDivider(),
-                      const SizedBox(
-                        height: 45,
-                      ),
-                      defultTextButton(
-                        context,
-                          text: 'Ok',
-                          function: () {
-                            NavigateTo(
-                              context,
-                               Covid19LoginScreen(),
-                            );
-                          },
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                  top: -50,
-                  child: Image.asset(
-                    "assets/images/4.png",
-                    width: 100.0,
-                  )),
-            ],
-          )),*/
+
+// متنساش تعمل componet
+//Dialog(
+//           shape: RoundedRectangleBorder(
+//               borderRadius: BorderRadius.circular(25.0),
+//           ),
+//           child: Stack(
+//             overflow: Overflow.visible,
+//             alignment: Alignment.topCenter,
+//             children: [
+//               Container(
+//                 height: 280,
+//                 child: Padding(
+//                   padding: const EdgeInsets.fromLTRB(10, 50, 10, 10),
+//                   child: Column(
+//                     children: [
+//                       const Text(
+//                         'Successful',
+//                         style:  TextStyle(
+//                             fontWeight: FontWeight.bold, fontSize: 30),
+//                       ),
+//                       const SizedBox(
+//                         height: 5,
+//                       ),
+//                       const Text(
+//                         'Password Changed\nGo To Login',
+//                         textAlign: TextAlign.center,
+//                         style: TextStyle(
+//                           fontSize: 15,
+//                           color: Colors.grey,
+//                         ),
+//                       ),
+//                       const SizedBox(
+//                         height: 25,
+//                       ),
+//                       MyDivider(),
+//                       const SizedBox(
+//                         height: 45,
+//                       ),
+//                       defultTextButton(
+//                         context,
+//                           text: 'Ok',
+//                           function: () {
+//                             NavigateTo(
+//                               context,
+//                                Covid19LoginScreen(),
+//                             );
+//                           },
+//                       ),
+//                     ],
+//                   ),
+//                 ),
+//               ),
+//               Positioned(
+//                   top: -50,
+//                   child: Image.asset(
+//                     "assets/images/4.png",
+//                     width: 100.0,
+//                   )),
+//             ],
+//           ))
+

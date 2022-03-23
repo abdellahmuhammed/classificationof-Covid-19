@@ -13,6 +13,7 @@ import 'package:finalproject/shared/component.dart';
 import 'package:finalproject/shared/remote/DioApi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 part 'covid_19_app_state.dart';
 
@@ -23,6 +24,7 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
 
   LoginModel loginModel;
   Data date2;
+
 
   bool isPassword = true;
   bool confirmPassword = true;
@@ -84,6 +86,8 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
       } else {
         return null;
       }
+
+
 
       loginModel = LoginModel.fromJson(value.data);
       emit(PostDataSuccessState(loginModel));
