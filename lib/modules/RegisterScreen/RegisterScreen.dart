@@ -154,7 +154,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    defultTextFormFiled(
+                    defultTextFormFiled(//
                       context,
                       controller: ssnController,
                       type: TextInputType.number,
