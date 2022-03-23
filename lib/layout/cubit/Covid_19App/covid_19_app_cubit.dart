@@ -39,9 +39,12 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
 
   List<Widget> screens = [
     const HomeScreen(),
-    const StatisticsScreen(),
+     StatisticsScreen(),
     const NewsScreen(),
   ];
+
+  List <String> titles =['Home ', 'Statistics' , 'News'];
+
 
   List<BottomNavigationBarItem> bootom = [
     const BottomNavigationBarItem(

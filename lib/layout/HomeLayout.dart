@@ -20,8 +20,7 @@ class HomeLayoutScreen extends StatelessWidget {
 
         return Scaffold(
           appBar: AppBar(
-            title: const Text(
-              'Home Screen',
+            title:  Text(cubit.titles[cubit.currentIndex],
             ),
             actions: [
             ],

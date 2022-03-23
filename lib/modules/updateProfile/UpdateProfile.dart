@@ -31,7 +31,7 @@ class UpdateProfileScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Create your account ',
+                    Text('Update your account ',
                         style: Theme.of(context).textTheme.bodyText1),
                     const SizedBox(
                       height: 20,
@@ -41,11 +41,11 @@ class UpdateProfileScreen extends StatelessWidget {
                       context,
                       controller: usernameController,
                       type: TextInputType.name,
-                      label: 'Enter UserName',
+                      label: 'Insert User Name',
                       prefixIcon: Icons.person,
                       validate: (String value) {
                         if (value.isEmpty) {
-                          return ' UserName most not be empty';
+                          return ' User Name most not be empty';
                         }
                         return null;
                       },

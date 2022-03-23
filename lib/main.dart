@@ -1,3 +1,4 @@
+import 'package:finalproject/layout/HomeLayout.dart';
 import 'package:finalproject/layout/cubit/Covid_19App/covid_19_app_cubit.dart';
 import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
 import 'package:finalproject/modules/OnBoardingScreen/OnBoardingScreen.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
             themeMode: DarkModeCubit
                 .get(context)
                 .isDarkShow ? ThemeMode.dark : ThemeMode.light,
-            home: const OnBoardingScreen(),
+            home: const HomeLayoutScreen(),
           );
         },
       ),

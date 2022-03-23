@@ -1,10 +1,10 @@
-
 import 'package:finalproject/modules/updateProfile/UpdateProfile.dart';
 import 'package:finalproject/shared/component.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key key}) : super(key: key);
+  var Usercontroller = TextEditingController();
+   ProfileScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +39,11 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   Text('Personal Information'),
                   Spacer(),
-                  defultMaterialButton(
-                      function: () {
-                        NavigateTo(context, UpdateProfileScreen());
-                      },
-                      text: 'Edit',
-                      radius: 15,
-                      height: 30,
-                      background: Colors.white)
+                  MaterialButton(onPressed: (){
+                    NavigateTo(context, UpdateProfileScreen());
+                  },
+                  child: Text('Edit' , style: Theme.of(context).textTheme.bodyText1,),
+                  )
                 ],
               ),
             ),
@@ -57,7 +54,18 @@ class ProfileScreen extends StatelessWidget {
                 padding: const EdgeInsetsDirectional.only(start: 15.0),
                 child: defultProfileRow(
                   context,
-                  onPressed: () {},
+                  onPressed: () {
+                    defultTextFormFiled(
+                        context,
+                        controller: Usercontroller,
+                        type: TextInputType.text,
+                        label: '',
+                        prefixIcon: Icons.edit,
+                        validate: (){
+
+                        },
+                    );
+                  },
                   text1: 'UserName',
                   text2: 'Abdellah Muhammed',
                   width: 75,
