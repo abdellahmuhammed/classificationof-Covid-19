@@ -141,12 +141,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           lastDate: DateTime.now(),
                         ).then((value) {
                           dobController.text =
-                              DateFormat.yMMMd().format(value).toString();
+                              DateFormat.yMd()  .format(value).toString();
                         });
                       },
                       validate: (String value) {
                         if (value.isEmpty) {
-                          return ' DateOfBirth must not be Empty';
+                          return ' Date Of Birth must not be Empty';
                         }
                         return null;
                       },
@@ -174,7 +174,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     defultTextFormFiled(
                       context,
                       controller: genderController,
-                      type: TextInputType.datetime,
+                      type: TextInputType.text,
                       label: 'Enter your gender',
                       prefixIcon: Icons.six__ft_apart_sharp,
                       validate: (String value) {
@@ -272,7 +272,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   phone_num.text,
                                   ssnController.text,
                                   role_id.text,
-                                  genderController.text).then((value) {
+                                  genderController.text,
+
+                              ).then((value) {
                                     print('Successfully $value');
                               });
                             }

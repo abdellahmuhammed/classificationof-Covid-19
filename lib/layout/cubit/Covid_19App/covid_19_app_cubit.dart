@@ -120,7 +120,35 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
     });
   }
 
-  var value;
 
-  void RadioButton() {}
+  // to update
+
+  Future<Response> PostUpdate(email, password, username, dob, gender,
+      address, phone_num, ssn, role_id) async {
+    emit(PostDataLoadingState());
+    return await DioApi.PostData(
+        url: 'api/users',
+        data: FormData.fromMap({
+          'api_section': 'users',
+          'action': 'edit',
+          'email': email,
+          'password': password,
+          'username': username,
+          'gender': gender,
+          'dob': dob,
+          'address': address,
+          'phone_num': phone_num,
+          'ssn': ssn,
+          'role_id': role_id,
+        })).then((value) {
+      print(value.data.toString());
+      loginModel = LoginModel.fromJson(value.data);
+      emit(PostDataSuccessState(loginModel));
+    }).catchError((onError) {
+      print('Error Happened when post data ${onError.toString()}');
+      emit(PostDataErrorState(onError.toString()));
+    });
+  }
+
+
 }

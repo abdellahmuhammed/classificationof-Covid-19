@@ -1,8 +1,11 @@
 import 'package:finalproject/layout/cubit/Covid_19App/covid_19_app_cubit.dart';
 import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
+import 'package:finalproject/modules/profile/profile.dart';
+import 'package:finalproject/shared/component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../modules/LoginScreen/Login_Screen.dart';
 import '../shared/styles/colors.dart';
 
 class HomeLayoutScreen extends StatelessWidget {
@@ -65,7 +68,9 @@ class HomeLayoutScreen extends StatelessWidget {
                     height: 15.0,
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      NavigateTo(context, ProfileScreen());
+                    },
                     child: Row(
                       children: const [
                         Icon(Icons.person),
@@ -111,7 +116,7 @@ class HomeLayoutScreen extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      NavigateAndRemove(context, Covid19LoginScreen());
                     },
                     child: Row(
                       children: const [

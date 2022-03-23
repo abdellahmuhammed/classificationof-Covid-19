@@ -141,8 +141,8 @@ class Covid19LoginScreen extends StatelessWidget
                       background: Colors.grey.withOpacity(.4),
                       function: () {
                         if (FormKey.currentState.validate()) {
-                          Covid19AppCubit.get(context).postdata(EmailController.text, PasswordController.text, context);
-                          NavigateAndRemove(context, const HomeLayoutScreen());
+                          Covid19AppCubit.get(context).postdata(
+                              EmailController.text, PasswordController.text, context);
                         }
                       },
                       text: 'تسجيل الدخول',

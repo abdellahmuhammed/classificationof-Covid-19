@@ -1,3 +1,5 @@
+import 'package:finalproject/layout/HomeLayout.dart';
+import 'package:finalproject/shared/component.dart';
 import 'package:flutter/material.dart';
 
 class DoctorScreen extends StatelessWidget {
@@ -9,8 +11,10 @@ class DoctorScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(''),
       ),
-      body: const Center(
-          child:  Text('Doctor Screen ')
+      body: Center(
+        child: IconButton(onPressed: (){
+          NavigateTo(context, const HomeLayoutScreen());
+        }, icon: const Icon(Icons.add)),
       ),
     );
   }
