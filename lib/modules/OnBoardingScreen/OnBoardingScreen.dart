@@ -50,7 +50,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         actions: [
           defultTextButton( context,
             function: () {
-              NavigateAndRemove( context,  HomeLoginScreen());
+              NavigateAndRemove( context,  Covid19LoginScreen());
             },
             text: 'skip',
           ),
@@ -98,7 +98,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 FloatingActionButton(
                   onPressed: () {
                     if (isLast == true) {
-                      NavigateAndRemove(context,  HomeLoginScreen());
+                      NavigateAndRemove(context,  Covid19LoginScreen());
                     } else {
                       OnBoardingCotroller.nextPage(
                         duration: const Duration(milliseconds: 750),
