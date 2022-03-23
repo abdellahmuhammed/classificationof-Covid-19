@@ -1,4 +1,5 @@
 import 'package:finalproject/layout/cubit/Covid_19App/covid_19_app_cubit.dart';
+import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -47,7 +48,9 @@ class HomeLayoutScreen extends StatelessWidget {
                                     image: AssetImage('assets/images/R.png')),
                               ),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    DarkModeCubit.get(context).ChangeAppMode();
+                                  },
                                   icon: const Icon(Icons.dark_mode)),
                             ],
                           ),

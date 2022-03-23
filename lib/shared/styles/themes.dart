@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'colors.dart';
-
 ThemeData lightTheme = ThemeData(
- primarySwatch: deepOrange,
+  primarySwatch: deepOrange,
   textTheme: const TextTheme(
     bodyText1: TextStyle(
-        color: Colors.black,
-        fontSize: 20.0,
-        fontWeight: FontWeight.bold,
+      color: Colors.black,
+      fontSize: 20.0,
+      fontWeight: FontWeight.bold,
     ),
     bodyText2: TextStyle(
       color: Colors.black,
@@ -31,13 +30,9 @@ ThemeData lightTheme = ThemeData(
       size: 30.0,
     ),
     unselectedLabelStyle: const TextStyle(
-        color: Colors.black,
-        fontSize: 18.0,
-        fontWeight: FontWeight.normal),
+        color: Colors.black, fontSize: 18.0, fontWeight: FontWeight.normal),
     selectedLabelStyle: const TextStyle(
-        color: Colors.black,
-        fontSize: 20.0,
-        fontWeight: FontWeight.bold),
+        color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.bold),
   ),
   appBarTheme: const AppBarTheme(
     titleSpacing: 20.0,
@@ -61,12 +56,11 @@ ThemeData lightTheme = ThemeData(
 );
 ThemeData darkTheme = ThemeData(
   primarySwatch: deepOrange,
-  secondaryHeaderColor:Colors.white ,
+  drawerTheme: const DrawerThemeData(backgroundColor: Colors.black),
+  secondaryHeaderColor: Colors.white,
   textTheme: const TextTheme(
     bodyText1: TextStyle(
-        color: Colors.white,
-        fontSize: 20.0,
-        fontWeight: FontWeight.bold),
+        color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),
     bodyText2: TextStyle(
       color: Colors.white,
       fontSize: 16.0,
@@ -88,13 +82,9 @@ ThemeData darkTheme = ThemeData(
       size: 30.0,
     ),
     unselectedLabelStyle: const TextStyle(
-        color: Colors.white,
-        fontSize: 18.0,
-        fontWeight: FontWeight.normal),
+        color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.normal),
     selectedLabelStyle: const TextStyle(
-        color: Colors.white,
-        fontSize: 20.0,
-        fontWeight: FontWeight.bold),
+        color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold),
   ),
   appBarTheme: const AppBarTheme(
     titleSpacing: 20.0,

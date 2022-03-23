@@ -112,42 +112,46 @@ void NavigateTo(context, Widget) => Navigator.push(
     );
 
 Widget defultTextFormFiled(
-context,{
-  @required TextEditingController controller,
-  @required TextInputType type,
-  @required String label,
-  @required IconData prefixIcon,
-  IconData suffixIcon,
-  @required Function validate,
-  Function onTap,
-  bool isPassword = false,
-  double radius = 15,
-  int maxLength,
-  int maxLines = 1,
-  int minLines = 1,
-  Function onPressed,
-  Function onchange,
-  Color cursorColor,
-
-}) =>
+    context, {
+      @required TextEditingController controller,
+      @required TextInputType type,
+      @required String label,
+      @required IconData prefixIcon,
+      IconData suffixIcon,
+      @required Function validate,
+      Function onTap,
+      bool isPassword = false,
+      double radius = 15,
+      int maxLength,
+      int maxLines = 1,
+      int minLines = 1,
+      Function suffixPressed,
+      Function onchange,
+      Color cursorColor,
+      TextDirection textdirection = TextDirection.rtl,
+    }) =>
     TextFormField(
       controller: controller,
       keyboardType: type,
       cursorColor: cursorColor,
-      onTap:onTap,
+      onTap: onTap,
       onChanged: onchange,
       style: Theme.of(context).textTheme.bodyText2,
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(radius),
         ),
-        label: Text(label , style: Theme.of(context).textTheme.bodyText2,),
+        label: Text(
+          label,
+          textDirection:textdirection,
+          style: Theme.of(context).textTheme.bodyText2,
+        ),
         prefixIcon: Icon(prefixIcon),
         suffixIcon: suffixIcon != null
             ? IconButton(
-                onPressed: onPressed,
-                icon: Icon(suffixIcon),
-              )
+          onPressed: suffixPressed,
+          icon: Icon(suffixIcon),
+        )
             : null,
       ),
       validator: validate,
@@ -155,8 +159,6 @@ context,{
       maxLength: maxLength,
       maxLines: maxLines,
       minLines: minLines,
-
-
     );
 
 Widget defultTextButton(
@@ -204,24 +206,28 @@ Widget defultAppBar() => AppBar(
     );
 
 Widget defultImage({
-  double height = 300,
-  double width = 400,
+  double Containerheight = 300,
+  double Containerwidth = 400,
   double radius = 20,
-  @required AssetImage Image,
+  @required ImageProvider Image,
   BoxFit fit = BoxFit.cover,
   Color color = Colors.white24,
+  String text,
+  Widget Widget,
 }) =>
     Container(
-      height: height,
-      width: width,
+      height: Containerheight,
+      width: Containerwidth,
       decoration: BoxDecoration(
         color: color,
         image: DecorationImage(
           image: Image,
           fit: fit,
+
         ),
         borderRadius: BorderRadius.circular(radius),
       ),
+      child: Widget,
     );
 
 Widget defultMaterialButton({
@@ -251,6 +257,30 @@ Widget defultMaterialButton({
         ),
       ),
     );
+
+
+Widget defultProfileRow(
+    context,
+    {
+      @required Function onPressed ,
+      @required String text1,
+      @required String text2,
+      double width  = 50.2,
+    })=> Row(
+  children: [
+    Text(text1 , style: Theme.of(context).textTheme.bodyText2,),
+    SizedBox(
+      width: width,
+    ),
+    TextButton(
+        onPressed: onPressed,
+        child: Text(text2 ,style: Theme.of(context).textTheme.bodyText2,)
+    )
+  ],
+);
+
+
+
 
 //                Container(
 //                   height: 50,

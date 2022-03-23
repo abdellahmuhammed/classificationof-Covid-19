@@ -6,9 +6,7 @@ class DarkModeCubit extends Cubit<DarkModeStates> {
   DarkModeCubit() : super(DarkModeInitial());
   static DarkModeCubit get(context) => BlocProvider.of(context);
 
-
 var isDarkShow = false;
-
 void ChangeAppMode(){
   isDarkShow =!isDarkShow;
   emit(ChangeAppModeState());

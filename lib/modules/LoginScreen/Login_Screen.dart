@@ -1,15 +1,15 @@
-// ignore_for_file: non_constant_identifier_names, must_be_immutable, unrelated_type_equality_checks
-
+import 'package:finalproject/layout/HomeLayout.dart';
 import 'package:finalproject/layout/cubit/Covid_19App/covid_19_app_cubit.dart';
 import 'package:finalproject/modules/RegisterScreen/RegisterScreen.dart';
 import 'package:finalproject/modules/forgetPassword/ForgetPassword_Screen.dart';
 import 'package:finalproject/shared/component.dart';
-import 'package:finalproject/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
+import '../../shared/styles/colors.dart';
 
 class HomeLoginScreen extends StatelessWidget {
+  const HomeLoginScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class HomeLoginScreen extends StatelessWidget {
               child: Text(
                 'Welcome Lets Start',
                 style: TextStyle(
-                    //  Theme.of(context).textTheme.bodyText1 ,
+                  //  Theme.of(context).textTheme.bodyText1 ,
                     color: black,
                     fontSize: 30,
                     fontWeight: FontWeight.bold),
@@ -62,7 +62,7 @@ class HomeLoginScreen extends StatelessWidget {
                 defultMaterialButton(
                   background: Colors.grey.withOpacity(.5),
                   function: () {
-                    NavigateTo(context, RegisterScreen());
+                    NavigateTo(context,  RegisterScreen());
                   },
                   text: 'Register',
                 ),
@@ -76,57 +76,62 @@ class HomeLoginScreen extends StatelessWidget {
 }
 
 class Covid19LoginScreen extends StatelessWidget {
-
   var EmailController = TextEditingController();
   var PasswordController = TextEditingController();
   var FormKey = GlobalKey<FormState>();
 
+  Covid19LoginScreen({Key key}) : super(key: key);
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     return BlocConsumer<Covid19AppCubit, Covid19AppStates>(
+      listener: (context, state) {
+        if (state is PostDataSuccessState) {
+          if (state.loginModel.success == 'Ok') {
+            // Dialog(
+            //   shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.circular(25.0),
+            //   ),
+            //   child: Stack(
+            //     overflow: Overflow.visible,
+            //     alignment: Alignment.topCenter,
+            //     children: [
+            //       Center(
+            //         child: Container(
+            //           height: MediaQuery.of(context).size.height * .4,
+            //           width: MediaQuery.of(context).size.width * .4,
+            //           decoration: BoxDecoration(
+            //             borderRadius: BorderRadius.circular(15),
+            //             color: grey,
+            //           ),
+            //           child: Text(
+            //             'Your Email or Password is Wrong'.toUpperCase(),
+            //             style: Theme.of(context).textTheme.bodyText2,
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // );
 
-      listener: (context, state)
-      {
-        if(state is PostDataSuccessState){
-          if(state.loginModel.data==2){
-            NavigateTo(context, ForgetPasswordScreen());
-
+            // {
+            //   // Fluttertoast.showToast(
+            //   //     msg: 'your Email or Password is wrong',
+            //   //     toastLength: Toast.LENGTH_LONG,
+            //   //     gravity: ToastGravity.BOTTOM,
+            //   //     backgroundColor: Colors.blue,
+            //   //     textColor: Colors.black,
+            //   //     fontSize: 16.0);
+            // }
           }
-
         }
-        // if(state is PostDataSuccessState)
-        // {
-        //   if (state.loginModel.success != null)
-        //   {
-        //     Fluttertoast.showToast(
-        //         msg: state.loginModel.success,
-        //         toastLength: Toast.LENGTH_LONG,
-        //         gravity: ToastGravity.BOTTOM,
-        //         backgroundColor: Colors.blue,
-        //         textColor: Colors.black,
-        //         fontSize: 16.0
-        //     );
-        //   }
-        //    else
-        //    {
-        //     Fluttertoast.showToast(
-        //         msg: "This is error",
-        //         toastLength: Toast.LENGTH_LONG,
-        //         gravity: ToastGravity.BOTTOM,
-        //         backgroundColor: Colors.grey,
-        //         textColor: Colors.black,
-        //         fontSize: 16.0
-        //     );
-        //   }
-        // }
-
       },
       builder: (context, state) {
         var cubit = Covid19AppCubit.get(context);
         return Scaffold(
           appBar: AppBar(),
-          body: Padding
-            (
+          body: Padding(
             padding: const EdgeInsets.all(20.0),
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
@@ -138,14 +143,14 @@ class Covid19LoginScreen extends StatelessWidget {
                       Image: const AssetImage('assets/images/2.png'),
                       color: Colors.white24.withOpacity(.25),
                       radius: 25,
-                      height: MediaQuery.of(context).size.height * .4,
-                      width: MediaQuery.of(context).size.width * 1,
+                      Containerheight: MediaQuery.of(context).size.height * .35,
+                      Containerwidth: MediaQuery.of(context).size.width * 1,
                     ),
                     const SizedBox(
                       height: 20.0,
                     ),
                     Text(
-                      ' any text here',
+                      ' تسجيل الدخول' ,
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
                     const SizedBox(
@@ -154,34 +159,34 @@ class Covid19LoginScreen extends StatelessWidget {
                     defultTextFormFiled(context,
                         controller: EmailController,
                         type: TextInputType.emailAddress,
-                        label: 'Enter your Email',
-                        prefixIcon: Icons.email,
-                        validate: (String Value) {
+                        label: 'إدخل البريد الاكتروني',
+                        prefixIcon: Icons.email, validate: (String Value) {
                           if (Value.isEmpty) {
-                            return 'Email must not be Empty';
+                            return 'من فضلك ادخل البريد الاكتروني';
                           } else {
                             return null;
                           }
-                        },
-                        radius: 15),
-
+                        }, radius: 15),
                     const SizedBox(
                       height: 20,
                     ),
-                    defultTextFormFiled(context,
+                    defultTextFormFiled(
+                      context,
                       radius: 15,
                       controller: PasswordController,
                       type: TextInputType.visiblePassword,
-                      label: 'Enter your Password',
+                      label: 'إدخل كلمة السر',
                       prefixIcon: Icons.lock,
                       isPassword: cubit.isPassword,
-                      suffixIcon: cubit.isPassword ? Icons.visibility :Icons.visibility_off  ,
-                      onPressed: (){
+                      suffixIcon: cubit.isPassword
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                      suffixPressed: () {
                         cubit.ChangeShowPassword();
-                        },
+                      },
                       validate: (String Value) {
                         if (Value.isEmpty) {
-                          return 'Password must not be Empty';
+                          return 'من فضلك ادخل  كلمة السر';
                         } else {
                           return null;
                         }
@@ -192,34 +197,43 @@ class Covid19LoginScreen extends StatelessWidget {
                         const Spacer(),
                         defultTextButton(context, function: () {
                           NavigateTo(context, ForgetPasswordScreen());
-                        }, text: 'Forget your password?', color: black),
+                        }, text: 'هل نسيت كلمة السر؟', color: Colors.blue ,
+
+                        ),
                       ],
                     ),
-
-                    // MaterialButton(
-                    //     onPressed:(){
-                    //       if (FormKey.currentState.validate())
-                    //     {
-                    //       Covid19AppCubit.get(context).postdata(
-                    //       EmailController.text, PasswordController.text);
-                    //
-                    //     }
-                    //     },
-                    //   child: Text('hhhh'),
-                    //       ),
                     defultMaterialButton(
-                      background: Colors.grey.withOpacity(.5),
+                      width: double.infinity,
+                      background: Colors.grey.withOpacity(.4),
                       function: () {
-                        if (FormKey.currentState.validate()){
-                         Covid19AppCubit.get(context).postdata(EmailController.text, PasswordController.text,context );
-
-                        }
-                        if(cubit.roleId==2){
-                          NavigateTo(context,ForgetPasswordScreen() );
+                        if (FormKey.currentState.validate()) {
+                          Covid19AppCubit.get(context).postdata(EmailController.text, PasswordController.text, context);
+                          NavigateAndRemove(context, const HomeLayoutScreen());
                         }
                       },
-                      text: 'Login',
+                      text: 'تسجيل الدخول',
                     ),
+
+                    const SizedBox(height: 10,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                          onPressed: (){
+                            NavigateTo(context,  RegisterScreen());
+                          },
+                          child: const Text('سجل هنا' ,
+                            style: TextStyle(
+                                color: Colors.blue
+                            ),
+                          ),
+                        ),
+                        Text('ليس لديك حساب؟' ,
+                          style: Theme.of(context).textTheme.bodyText2,
+                        ),
+
+                      ],
+                    )
                   ],
                 ),
               ),
