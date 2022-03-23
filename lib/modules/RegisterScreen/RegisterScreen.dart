@@ -154,7 +154,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    defultTextFormFiled(//
+                    defultTextFormFiled(
                       context,
                       controller: ssnController,
                       type: TextInputType.number,
@@ -182,7 +182,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           return ' gender must not be Empty';
                         }
                         return null;
-                        // comment
                       },
                     ),
                     const SizedBox(height: 20,),
