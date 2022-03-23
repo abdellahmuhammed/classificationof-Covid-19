@@ -279,6 +279,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           },
                           background: grey.withOpacity(.25),
                           text: 'Register'),
+                      //new
                     ),
                   ],
                 ),
