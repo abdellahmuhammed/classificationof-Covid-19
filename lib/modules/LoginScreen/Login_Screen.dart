@@ -5,6 +5,7 @@ import 'package:finalproject/modules/forgetPassword/ForgetPassword_Screen.dart';
 import 'package:finalproject/shared/component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../shared/styles/colors.dart';
 
@@ -21,45 +22,7 @@ class Covid19LoginScreen extends StatelessWidget
   {
     return BlocConsumer<Covid19AppCubit, Covid19AppStates>(
       listener: (context, state) {
-        if (state is PostDataSuccessState) {
-          if (state.loginModel.success == 'Ok') {
-            // Dialog(
-            //   shape: RoundedRectangleBorder(
-            //     borderRadius: BorderRadius.circular(25.0),
-            //   ),
-            //   child: Stack(
-            //     overflow: Overflow.visible,
-            //     alignment: Alignment.topCenter,
-            //     children: [
-            //       Center(
-            //         child: Container(
-            //           height: MediaQuery.of(context).size.height * .4,
-            //           width: MediaQuery.of(context).size.width * .4,
-            //           decoration: BoxDecoration(
-            //             borderRadius: BorderRadius.circular(15),
-            //             color: grey,
-            //           ),
-            //           child: Text(
-            //             'Your Email or Password is Wrong'.toUpperCase(),
-            //             style: Theme.of(context).textTheme.bodyText2,
-            //           ),
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // );
 
-            // {
-            //   // Fluttertoast.showToast(
-            //   //     msg: 'your Email or Password is wrong',
-            //   //     toastLength: Toast.LENGTH_LONG,
-            //   //     gravity: ToastGravity.BOTTOM,
-            //   //     backgroundColor: Colors.blue,
-            //   //     textColor: Colors.black,
-            //   //     fontSize: 16.0);
-            // }
-          }
-        }
       },
       builder: (context, state) {
         var cubit = Covid19AppCubit.get(context);
@@ -143,6 +106,18 @@ class Covid19LoginScreen extends StatelessWidget
                         if (FormKey.currentState.validate()) {
                           Covid19AppCubit.get(context).postdata(
                               EmailController.text, PasswordController.text, context);
+
+
+
+                        }else{
+
+                          Fluttertoast.showToast(
+                              msg: 'حاول مره اخري',
+                              toastLength: Toast.LENGTH_LONG,
+                              gravity: ToastGravity.BOTTOM,
+                              backgroundColor: Colors.blue,
+                              textColor: Colors.red,
+                              fontSize: 16.0);
                         }
                       },
                       text: 'تسجيل الدخول',
@@ -167,7 +142,8 @@ class Covid19LoginScreen extends StatelessWidget
                         ),
 
                       ],
-                    )
+                    ),
+
                   ],
                 ),
               ),

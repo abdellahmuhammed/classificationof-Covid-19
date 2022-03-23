@@ -43,11 +43,4 @@ class NewsCovidDataErrorState extends Covid19AppStates
 
   NewsCovidDataErrorState(this.Error);
 }
-class checkRoleIdState extends Covid19AppStates {}
-class checkRoleIdErrorState extends Covid19AppStates {
-  final Error;
-
-  checkRoleIdErrorState(this.Error);
-
-}
-class changeDropDownState extends Covid19AppStates{}
+class IsloginSuccuss extends Covid19AppStates{}
