@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:finalproject/layout/HomeLayout.dart';
 import 'package:finalproject/models/loginmodel/loginmodel.dart';
 import 'package:finalproject/modules/InfoScreen/HomeScreen.dart';
-import 'package:finalproject/modules/news/news.dart';
 import 'package:finalproject/modules/statistics%20Screen/statistics%20Screen.dart';
 import 'package:finalproject/modules/users/Doctor/Doctor.dart';
 import 'package:finalproject/modules/users/Paramedic/paramedic.dart';
@@ -42,10 +41,9 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
   List<Widget> screens = [
     const HomeScreen(),
      StatisticsScreen(),
-    const NewsScreen(),
   ];
 
-  List <String> titles =['Home ', 'Statistics' , 'News'];
+  List <String> titles =['Home ', 'Statistics' ,];
 
 
   List<BottomNavigationBarItem> bootom = [
@@ -53,8 +51,6 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
         icon: Icon(Icons.auto_stories), label: 'home'),
     const BottomNavigationBarItem(
         icon: Icon(Icons.baby_changing_station_sharp), label: 'Statistics'),
-    const BottomNavigationBarItem(
-        icon: Icon(Icons.arrow_back_ios_new_sharp), label: 'News'),
   ];
 
   var currentIndex = 0;
@@ -156,6 +152,7 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
       emit(PostDataErrorState(onError.toString()));
     });
   }
+
 
 
 }
