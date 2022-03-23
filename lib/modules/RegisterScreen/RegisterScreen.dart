@@ -200,10 +200,10 @@ class RegisterScreen extends StatelessWidget
                       },
                       validate: (String value) {
                         if (value.isEmpty) {
-                          return ' Confirmepassword must not be Empty';
+                          return ' Confirm password must not be Empty';
                         } else if (passwordController.text !=
                             ConfirmepasswordController.text) {
-                          return ' your password do not identical';
+                          return ' Confirm your password  do not identical';
                         }
                         return null;
                       },
