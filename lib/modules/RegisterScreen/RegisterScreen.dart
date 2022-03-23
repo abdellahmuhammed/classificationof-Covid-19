@@ -1,24 +1,31 @@
+
 import 'package:finalproject/layout/cubit/Covid_19App/covid_19_app_cubit.dart';
-import 'package:finalproject/modules/googlemaps/googlemaps.dart';
 import 'package:finalproject/shared/component.dart';
 import 'package:finalproject/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-class RegisterScreen extends StatelessWidget
-{
-  RegisterScreen({Key key}) : super(key: key);
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({Key key}) : super(key: key);
 
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
   var usernameController = TextEditingController();
   var emailController = TextEditingController();
-  var phoneController = TextEditingController();
+  var phone_num = TextEditingController();
   var addressController = TextEditingController();
   var dobController = TextEditingController();
   var passwordController = TextEditingController();
   var ConfirmepasswordController = TextEditingController();
   var ssnController = TextEditingController();
-  var vaccination_typeController = TextEditingController();
+  // var vaccination_typeController = TextEditingController();
+  var genderController = TextEditingController();
+  var role_id = TextEditingController();
+
   var FormKey = GlobalKey<FormState>();
 
   @override
@@ -50,7 +57,7 @@ class RegisterScreen extends StatelessWidget
                       context,
                       controller: usernameController,
                       type: TextInputType.name,
-                      label: 'Enter UserName',
+                      label: 'Enter User Name',
                       prefixIcon: Icons.person,
                       validate: (String value) {
                         if (value.isEmpty) {
@@ -64,7 +71,8 @@ class RegisterScreen extends StatelessWidget
                     ),
                     // email
                     defultTextFormFiled(
-                      context, controller: emailController,
+                      context,
+                      controller: emailController,
                       type: TextInputType.emailAddress,
                       label: 'Enter your email',
                       prefixIcon: Icons.email,
@@ -80,7 +88,8 @@ class RegisterScreen extends StatelessWidget
                     ),
                     // phone
                     defultTextFormFiled(
-                      context, controller: phoneController,
+                      context,
+                      controller: phone_num,
                       type: TextInputType.phone,
                       label: 'Enter your phone',
                       prefixIcon: Icons.phone,
@@ -100,12 +109,13 @@ class RegisterScreen extends StatelessWidget
                       height: 20,
                     ),
                     defultTextFormFiled(
-                      context, controller: addressController,
+                      context,
+                      controller: addressController,
                       type: TextInputType.url,
                       label: 'Enter your Address',
                       prefixIcon: Icons.place,
                       onTap: () {
-                        NavigateTo(context, const GoogleMapsScreen());
+                        // NavigateTo(context, const GoogleMapsScreen());
                       },
                       validate: (String value) {
                         if (value.isEmpty) {
@@ -118,7 +128,8 @@ class RegisterScreen extends StatelessWidget
                       height: 20,
                     ),
                     defultTextFormFiled(
-                      context, controller: dobController,
+                      context,
+                      controller: dobController,
                       type: TextInputType.datetime,
                       label: 'Enter your Date Of Birth',
                       prefixIcon: Icons.date_range_outlined,
@@ -144,7 +155,8 @@ class RegisterScreen extends StatelessWidget
                       height: 20,
                     ),
                     defultTextFormFiled(
-                      context, controller: ssnController,
+                      context,
+                      controller: ssnController,
                       type: TextInputType.number,
                       label: 'Enter your National ID',
                       prefixIcon: Icons.airline_seat_individual_suite_sharp,
@@ -152,8 +164,6 @@ class RegisterScreen extends StatelessWidget
                       validate: (String value) {
                         if (value.isEmpty) {
                           return ' National ID must not be Empty';
-                        }else if (value.length < 11) {
-                          return ' National ID is Shortest';
                         }
                         return null;
                       },
@@ -161,9 +171,38 @@ class RegisterScreen extends StatelessWidget
                     const SizedBox(
                       height: 20,
                     ),
+                    defultTextFormFiled(
+                      context,
+                      controller: genderController,
+                      type: TextInputType.datetime,
+                      label: 'Enter your gender',
+                      prefixIcon: Icons.six__ft_apart_sharp,
+                      validate: (String value) {
+                        if (value.isEmpty) {
+                          return ' gender must not be Empty';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 20,),
 
                     defultTextFormFiled(
-                      context, controller: passwordController,
+                      context,
+                      controller: role_id,
+                      type: TextInputType.name,
+                      label: 'Rol_Id',
+                      prefixIcon: Icons.airline_seat_individual_suite_sharp,
+                      validate: (String value) {
+                        if (value.isEmpty) {
+                          return ' Rol_ID most not be empty';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 20,),
+                    defultTextFormFiled(
+                      context,
+                      controller: passwordController,
                       type: TextInputType.visiblePassword,
                       label: 'Enter your Password',
                       prefixIcon: Icons.lock,
@@ -171,14 +210,14 @@ class RegisterScreen extends StatelessWidget
                           ? Icons.visibility
                           : Icons.visibility_off,
                       isPassword: cubit.isPassword,
-                      suffixPressed: () {
+                      onTap: () {
                         cubit.ChangeShowPassword();
                       },
                       validate: (String value) {
                         if (value.isEmpty) {
                           return ' Password must not be Empty';
                         } else if (value.length < 5) {
-                          return ' Password is Shortest';
+                          return ' Password isShortest';
                         }
                         return null;
                       },
@@ -187,7 +226,8 @@ class RegisterScreen extends StatelessWidget
                       height: 20,
                     ),
                     defultTextFormFiled(
-                      context, controller: ConfirmepasswordController,
+                      context,
+                      controller: ConfirmepasswordController,
                       type: TextInputType.visiblePassword,
                       label: 'Enter your Password',
                       suffixIcon: cubit.confirmPassword
@@ -195,21 +235,21 @@ class RegisterScreen extends StatelessWidget
                           : Icons.visibility_off,
                       prefixIcon: Icons.lock,
                       isPassword: cubit.confirmPassword,
-                      suffixPressed: () {
+                      onTap: () {
                         cubit.ChangeConfirmShowPassword();
                       },
                       validate: (String value) {
                         if (value.isEmpty) {
-                          return ' Confirm password must not be Empty';
+                          return ' Confirmepassword must not be Empty';
                         } else if (passwordController.text !=
                             ConfirmepasswordController.text) {
-                          return ' Confirm your password  do not identical';
+                          return ' your password do not identical';
                         }
                         return null;
                       },
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
                     // RadioButton(),
                     //  const SizedBox(
@@ -223,7 +263,18 @@ class RegisterScreen extends StatelessWidget
                       child: defultMaterialButton(
                           function: () {
                             if (FormKey.currentState.validate()) {
-                              print('Registering is done');
+                              cubit.postRegisterdata(
+                                  emailController.text,
+                                  passwordController.text,
+                                  usernameController.text,
+                                  dobController.text,
+                                  addressController.text,
+                                  phone_num.text,
+                                  ssnController.text,
+                                  role_id.text,
+                                  genderController.text).then((value) {
+                                    print('Successfully $value');
+                              });
                             }
                           },
                           background: grey.withOpacity(.25),
@@ -239,7 +290,6 @@ class RegisterScreen extends StatelessWidget
     );
   }
 }
-
 // Widget RadioButton() {
 //   return Column(
 //     children: [
@@ -366,6 +416,11 @@ class RegisterScreen extends StatelessWidget
 //   );
 // }
 //
+
+
+
+
+
 // String selectedValue;
 // List<String> items = [
 //   'Sinopharm',
@@ -430,9 +485,7 @@ class RegisterScreen extends StatelessWidget
 //   onChanged: dropdawon,
 //   );
 // }
-
-/*
-Dialog(
+/*Dialog(
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(25.0),
           ),

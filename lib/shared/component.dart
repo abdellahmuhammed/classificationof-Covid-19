@@ -233,7 +233,7 @@ Widget defultImage({
 Widget defultMaterialButton({
   double radius = 15,
   double height = 50,
-  double width = 120,
+  double width = double.maxFinite,
   @required Function function,
   @required String text,
   Color TextColor = Colors.black,

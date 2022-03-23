@@ -8,7 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../shared/styles/colors.dart';
 
-class HomeLoginScreen extends StatelessWidget {
+class HomeLoginScreen extends StatelessWidget
+{
   const HomeLoginScreen({Key key}) : super(key: key);
 
   @override
@@ -75,7 +76,8 @@ class HomeLoginScreen extends StatelessWidget {
   }
 }
 
-class Covid19LoginScreen extends StatelessWidget {
+class Covid19LoginScreen extends StatelessWidget
+{
   var EmailController = TextEditingController();
   var PasswordController = TextEditingController();
   var FormKey = GlobalKey<FormState>();
