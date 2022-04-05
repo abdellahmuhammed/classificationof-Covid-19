@@ -22,10 +22,8 @@ class HomeLayoutScreen extends StatelessWidget {
           appBar: AppBar(
             title:  Text(cubit.titles[cubit.currentIndex],
             ),
-            actions: [
-            ],
           ),
-          drawer: Container(
+          drawer: SizedBox(
             width: 220,
             child: Drawer(
               child: Column(
@@ -51,12 +49,12 @@ class HomeLayoutScreen extends StatelessWidget {
                               ),
                               IconButton(
                                   onPressed: () {
-                                    DarkModeCubit.get(context).ChangeAppMode();
+                                    DarkModeCubit.get(context).changeAppMode();
                                   },
                                   icon: const Icon(Icons.dark_mode)),
                             ],
                           ),
-                          Spacer(),
+                          const Spacer(),
                           const Text('Classification of Covid_19'),
                           const Text('01111111111111'),
                         ],

@@ -2,7 +2,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:finalproject/layout/HomeLayout.dart';
-import 'package:finalproject/models/loginmodel/loginmodel.dart';
+import 'package:finalproject/models/userLogin/UserLoginModel.dart';
 import 'package:finalproject/modules/InfoScreen/HomeScreen.dart';
 import 'package:finalproject/modules/statistics%20Screen/statistics%20Screen.dart';
 import 'package:finalproject/modules/users/Doctor/Doctor.dart';
@@ -12,7 +12,6 @@ import 'package:finalproject/shared/component.dart';
 import 'package:finalproject/shared/remote/DioApi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 part 'covid_19_app_state.dart';
 
@@ -21,8 +20,7 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
 
   static Covid19AppCubit get(context) => BlocProvider.of(context);
 
-  LoginModel loginModel;
-  Data date2;
+  UserLoginModel userLoginModel;
 
 
   bool isPassword = true;
@@ -40,10 +38,10 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
 
   List<Widget> screens = [
     const HomeScreen(),
-     StatisticsScreen(),
+    StatisticsScreen(),
   ];
 
-  List <String> titles =['Home ', 'Statistics' ,];
+  List <String> titles = ['Home ', 'Statistics',];
 
 
   List<BottomNavigationBarItem> bootom = [
@@ -60,9 +58,7 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
     emit(ChangeBottomNavBarState());
   }
 
-  var roleId;
-
-  Future<Response> postdata(String email, String password, context) async {
+  void postdata(String email, String password, context) async {
     emit(PostDataLoadingState());
     return await DioApi.PostData(
         url: 'api/users',
@@ -87,9 +83,8 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
       }
 
 
-
-      loginModel = LoginModel.fromJson(value.data);
-      emit(PostDataSuccessState(loginModel));
+      userLoginModel = UserLoginModel.fromJson(value.data);
+      emit(PostDataSuccessState(userLoginModel));
     }).catchError((onError) {
       print('Error Happened when post data ${onError.toString()}');
       emit(PostDataErrorState(onError.toString()));
@@ -115,8 +110,8 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
           'role_id': role_id,
         })).then((value) {
       print(value.data.toString());
-      loginModel = LoginModel.fromJson(value.data);
-      emit(PostDataSuccessState(loginModel));
+      userLoginModel = UserLoginModel.fromJson(value.data);
+      emit(PostDataSuccessState(userLoginModel));
     }).catchError((onError) {
       print('Error Happened when post data ${onError.toString()}');
       emit(PostDataErrorState(onError.toString()));
@@ -126,7 +121,8 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
 
   // to update
 
-  Future<Response> PostUpdate(email, password, username, dob, gender,
+  void PostUpdate
+      (email, password, username, dob, gender,
       address, phone_num, ssn, role_id) async {
     emit(PostDataLoadingState());
     return await DioApi.PostData(
@@ -145,14 +141,35 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
           'role_id': role_id,
         })).then((value) {
       print(value.data.toString());
-      loginModel = LoginModel.fromJson(value.data);
-      emit(PostDataSuccessState(loginModel));
+      userLoginModel = UserLoginModel.fromJson(value.data);
+      emit(PostDataSuccessState(userLoginModel));
     }).catchError((onError) {
       print('Error Happened when post data ${onError.toString()}');
       emit(PostDataErrorState(onError.toString()));
     });
   }
 
+  void getUserProfile() {
+    emit(LoadingGetDataUserState());
+    DioApi.PostData(
+        url: 'api/users',
+        data: FormData.fromMap({
+          'action': 'fetch',
+          'api_section': 'users',
+        })
+    ).then((value) {
+      userLoginModel = UserLoginModel.fromJson(value.data);
+      print(' data successfully ');
+      print(userLoginModel.token);
+      print(userLoginModel.success);
+    }).catchError((onError) {
+      emit(GetDataUserStateError());
+      print('Happened Error when get data ${onError.toString()}');
+    });
+  }
 
+  void UpdateUserProfile(){
+
+  }
 
 }

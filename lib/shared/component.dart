@@ -119,6 +119,8 @@ Widget defultTextFormFiled(
       @required IconData prefixIcon,
       IconData suffixIcon,
       @required Function validate,
+      Function onSubmit,
+      Function ,
       Function onTap,
       bool isPassword = false,
       double radius = 15,
@@ -159,6 +161,7 @@ Widget defultTextFormFiled(
       maxLength: maxLength,
       maxLines: maxLines,
       minLines: minLines,
+      onFieldSubmitted:onSubmit ,
     );
 
 Widget defultTextButton(
@@ -182,32 +185,14 @@ Widget defultTextButton(
 void NavigateAndRemove(context, Widget) => Navigator.pushAndRemoveUntil(
     context, MaterialPageRoute(builder: (context) => Widget), (route) => false);
 
-// Widget defultMaterialButton(
-//   context, {
-//   @required Function function,
-//   @required String text,
-//   Color BackgroundColor,
-//   Color color,
-//   double radius = 15,
-// }) =>
-//     MaterialButton(
-//       onPressed: function,
-//       child: Center(
-//         child: Text(
-//           text,
-//           style: TextStyle(color: color, backgroundColor: BackgroundColor),
-//         ),
-//       ),
-//     );
-
 Widget defultAppBar() => AppBar(
       backgroundColor: grey,
       systemOverlayStyle: const SystemUiOverlayStyle(statusBarColor: grey),
     );
 
 Widget defultImage({
-  double Containerheight = 300,
-  double Containerwidth = 400,
+  double ContainerHeight = 300,
+  double ContainerWidth = 400,
   double radius = 20,
   @required ImageProvider Image,
   BoxFit fit = BoxFit.cover,
@@ -216,8 +201,8 @@ Widget defultImage({
   Widget Widget,
 }) =>
     Container(
-      height: Containerheight,
-      width: Containerwidth,
+      height: ContainerHeight,
+      width: ContainerWidth,
       decoration: BoxDecoration(
         color: color,
         image: DecorationImage(
@@ -278,64 +263,3 @@ Widget defultProfileRow(
     )
   ],
 );
-
-
-
-
-//                Container(
-//                   height: 50,
-//                   width: 120,
-//                   decoration: BoxDecoration(
-//                     borderRadius: BorderRadius.circular(15),
-//                     color: Colors.grey.withOpacity(.5),
-//                   ),
-//                   child: MaterialButton(
-//                     onPressed: () {
-//                       NavigateTo(context, Covid19LoginScreen());
-//                     },
-//                     child: const Text(
-//                       'Login',
-//                       style: TextStyle(
-//                           color: black,
-//                           fontSize: 23,
-//                           fontWeight: FontWeight.bold),
-//                     ),
-//                   ),
-//                 ),
-
-// class MyStatefulWidget extends StatefulWidget {
-//   const MyStatefulWidget({Key key}) : super(key: key);
-//
-//   @override
-//   State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
-// }
-//
-// class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-//   String dropdownValue = 'One';
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return DropdownButton<String>(
-//       value: dropdownValue,
-//       icon: const Icon(Icons.arrow_downward),
-//       elevation: 16,
-//       style: const TextStyle(color: Colors.deepPurple),
-//       underline: Container(
-//         height: 2,
-//         color: Colors.deepPurpleAccent,
-//       ),
-//       onChanged: (String newValue) {
-//         setState(() {
-//           dropdownValue = newValue;
-//         });
-//       },
-//       items: <String>['One', 'Two', 'Free', 'Four']
-//           .map<DropdownMenuItem<String>>((String value) {
-//         return DropdownMenuItem<String>(
-//           value: value,
-//           child: Text(value),
-//         );
-//       }).toList(),
-//     );
-//   }
-// }

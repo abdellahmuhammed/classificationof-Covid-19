@@ -21,18 +21,23 @@ class DioApi{
 static Future<Response> PostData( {
   @ required String url ,
   @ required FormData data ,
+  String token,
 
 
 })async{
-
    return await _dio.post(
      url,
-     data: data
+     data: data,
    );
   }
-static Future<Response> getData(@required String url,@required Map<String , dynamic> query)async{
+static Future<Response> getData(
+    @required String url,
+     Map<String , dynamic> query
+    )async{
    return _dio.get(url,queryParameters: query);
-
   }
+
+
+
 
 }

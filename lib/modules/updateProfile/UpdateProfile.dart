@@ -97,7 +97,7 @@ class UpdateProfileScreen extends StatelessWidget {
                       child: defultMaterialButton(
                           function: () {
                             if (FormKey.currentState.validate()) {
-                              print('Registering is done');
+                              print('Update is done');
                             }
                           },
                           background: grey.withOpacity(.25),

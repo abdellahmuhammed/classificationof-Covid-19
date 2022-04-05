@@ -22,9 +22,9 @@ class GetDataLoadingState extends Covid19AppStates {}
 
 // post data
 class PostDataSuccessState extends Covid19AppStates {
-  final  LoginModel loginModel;
+  final  UserLoginModel userLoginModel;
 
-  PostDataSuccessState(this.loginModel);
+  PostDataSuccessState(this.userLoginModel);
 }
 class PostDataErrorState extends Covid19AppStates {
   final String Error;
@@ -43,4 +43,6 @@ class NewsCovidDataErrorState extends Covid19AppStates
 
   NewsCovidDataErrorState(this.Error);
 }
-class IsloginSuccuss extends Covid19AppStates{}
+class LoadingGetDataUserState extends Covid19AppStates{}
+class GetDataUserStateSuccess extends Covid19AppStates{}
+class GetDataUserStateError extends Covid19AppStates{}

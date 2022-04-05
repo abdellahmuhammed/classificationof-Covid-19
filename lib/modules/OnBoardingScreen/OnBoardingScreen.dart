@@ -1,21 +1,20 @@
-
 import 'package:finalproject/modules/LoginScreen/Login_Screen.dart';
+import 'package:finalproject/shared/Constant.dart';
 import 'package:finalproject/shared/component.dart';
+import 'package:finalproject/shared/local/catchhelper.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../shared/styles/colors.dart';
 
-class BoardingModel
-{
+class BoardingModel {
   final String title;
   final String image;
 
   BoardingModel({@required this.title, @required this.image});
 }
 
-class OnBoardingScreen extends StatefulWidget
-{
+class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key key}) : super(key: key);
 
   @override
@@ -23,22 +22,21 @@ class OnBoardingScreen extends StatefulWidget
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
-  var OnBoardingCotroller = PageController();
+  var onBoardingCotroller = PageController();
 
-  List<BoardingModel> BoardingList = [
+  List<BoardingModel> boardingList = [
     BoardingModel(
       title:
-      'تأكـد مـن اتباعـك أنـت والمحيطيـن بـك ممارسـات النظافـة الجيـدة و تنفـس هـواء النقـي',
+          'تأكـد مـن اتباعـك أنـت والمحيطيـن بـك ممارسـات النظافـة الجيـدة و تنفـس هـواء النقـي',
       image: 'assets/images/1.png',
     ),
     BoardingModel(
-      title:
-      'تتمثــل أعــراض الاكثـر شــيوعًا لمــرض كوفيــد-19 فــي الحمــى ',
+      title: 'تتمثــل أعــراض الاكثـر شــيوعًا لمــرض كوفيــد-19 فــي الحمــى ',
       image: 'assets/images/2.png',
     ),
     BoardingModel(
         title:
-        'اســتخدام الكمامــات الواقيــة اثنــاء الجلــوس مـع اكثـر مـن اثنيـن او عنـد الخـروج مـن المنـزل',
+            'اســتخدام الكمامــات الواقيــة اثنــاء الجلــوس مـع اكثـر مـن اثنيـن او عنـد الخـروج مـن المنـزل',
         image: 'assets/images/3.png'),
   ];
   bool isLast = false;
@@ -48,9 +46,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          defultTextButton( context,
+          defultTextButton(
+            context,
             function: () {
-              NavigateAndRemove( context,  Covid19LoginScreen());
+              onSubmit();
+              NavigateAndRemove(context, Covid19LoginScreen());
             },
             text: 'skip',
           ),
@@ -63,9 +63,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             Expanded(
               child: PageView.builder(
                 physics: const BouncingScrollPhysics(),
-                controller: OnBoardingCotroller,
+                controller: onBoardingCotroller,
                 onPageChanged: (int index) {
-                  if (index == BoardingList.length - 1) {
+                  if (index == boardingList.length - 1) {
                     setState(() {
                       isLast = true;
                     });
@@ -76,16 +76,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   }
                 },
                 itemBuilder: (context, index) =>
-                    ItemBilder(BoardingList[index]),
-                itemCount: BoardingList.length,
+                    itemBuilder(boardingList[index]),
+                itemCount: boardingList.length,
               ),
             ),
             Row(
               children: [
-                SmoothPageIndicator
-                  (
-                  controller: OnBoardingCotroller,
-                  count: BoardingList.length,
+                SmoothPageIndicator(
+                  controller: onBoardingCotroller,
+                  count: boardingList.length,
                   effect: const ExpandingDotsEffect(
                     dotColor: Colors.grey,
                     activeDotColor: deepOrange,
@@ -98,9 +97,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 FloatingActionButton(
                   onPressed: () {
                     if (isLast == true) {
-                      NavigateAndRemove(context,  Covid19LoginScreen());
+                      onSubmit();
+                      NavigateAndRemove(context, Covid19LoginScreen());
                     } else {
-                      OnBoardingCotroller.nextPage(
+                      onBoardingCotroller.nextPage(
                         duration: const Duration(milliseconds: 750),
                         curve: Curves.fastLinearToSlowEaseIn,
                       );
@@ -116,24 +116,33 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     );
   }
 
-  Widget ItemBilder(BoardingModel model) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Image(
-        image: AssetImage(model.image),
-        height: 450,
-      ),
-      const SizedBox(
-        height: 20.0,
-      ),
-      Text(
-        model.title,
-        textDirection: TextDirection.rtl,
-        style: Theme.of(context).textTheme.bodyText2,
-      ),
-      const SizedBox(
-        height: 20.0,
-      ),
-    ],
-  );
+  Widget itemBuilder(BoardingModel model) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image(
+            image: AssetImage(model.image),
+            height: 450,
+          ),
+          const SizedBox(
+            height: 20.0,
+          ),
+          Text(
+            model.title,
+            textDirection: TextDirection.rtl,
+            style: Theme.of(context).textTheme.bodyText2,
+          ),
+          const SizedBox(
+            height: 20.0,
+          ),
+        ],
+      );
+
+  void onSubmit() {
+    CatchHelper.saveData(key: 'OnBoarding', value: true).then((value) {
+      printFullText('OnBoarding saved Successfully ${value.toString()}');
+    }).catchError((onError) {
+      printFullText(
+          'Error happened on saving onBoarding ${onError.toString()}');
+    });
+  }
 }

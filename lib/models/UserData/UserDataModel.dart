@@ -1,21 +1,23 @@
- class  LoginModel {
+
+class CredentialUserDataModel {
   List<Data> data;
-  String success;
+  bool success;
 
+  CredentialUserDataModel({this.data, this.success});
 
-  LoginModel.fromJson(Map<String, dynamic> json) {
-    if (json['data'] = null) {
+  CredentialUserDataModel.fromJson(Map<String, dynamic> json) {
+    if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data.add( Data.fromJson(v));
+        data.add(new Data.fromJson(v));
       });
     }
     success = json['success'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  Map<String, dynamic>();
-    if (this.data = null) {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.data != null) {
       data['data'] = this.data.map((v) => v.toJson()).toList();
     }
     data['success'] = this.success;
@@ -24,19 +26,19 @@
 }
 
 class Data {
-  int iD;
+  String iD;
   String username;
   String gender;
-  int dob;
+  String dob;
   String job;
   String address;
   String email;
-  int phoneNum;
+  String phoneNum;
   String socialStatus;
-  int ssn;
-  int noOfKids;
-  int coordinates;
-  int roleId;
+  String ssn;
+  String noOfKids;
+  String coordinates;
+  String roleId;
   String vaccinationType;
 
   Data(
@@ -73,7 +75,7 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  Map<String, dynamic>();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['ID'] = this.iD;
     data['username'] = this.username;
     data['gender'] = this.gender;
