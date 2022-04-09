@@ -10,7 +10,7 @@ class CatchHelper{
  }
 
   static dynamic getData({@required String key}) {
-    return sharedPreferences.getBool(key);
+    return sharedPreferences.get(key);
   }
 
   static Future<bool> saveData({
@@ -21,5 +21,11 @@ class CatchHelper{
     if (value is int) return await sharedPreferences.setInt(key, value);
     if (value is bool) return await sharedPreferences.setBool(key, value);
     return await sharedPreferences.setDouble(key, value);
+  }
+
+
+  static Future<bool> removeUserData({@required String key})
+  async{
+   return await sharedPreferences.remove(key);
   }
 }

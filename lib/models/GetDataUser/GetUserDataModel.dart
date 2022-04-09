@@ -1,13 +1,26 @@
-
-class CredentialUserDataModel {
+class GetUserDataModel {
+  String token;
+  dynamic userId;
+  dynamic roleId;
+  dynamic userRole;
   List<Data> data;
   bool success;
 
-  CredentialUserDataModel({this.data, this.success});
+  GetUserDataModel(
+      {this.token,
+        this.userId,
+        this.roleId,
+        this.userRole,
+        this.data,
+        this.success});
 
-  CredentialUserDataModel.fromJson(Map<String, dynamic> json) {
+  GetUserDataModel.fromJson(Map<String, dynamic> json) {
+    token = json['token'];
+    userId = json['user_id'];
+    roleId = json['role_id'];
+    userRole = json['user_role'];
     if (json['data'] != null) {
-      data = <Data>[];
+      data = new List<Data>();
       json['data'].forEach((v) {
         data.add(new Data.fromJson(v));
       });
@@ -17,6 +30,10 @@ class CredentialUserDataModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['token'] = this.token;
+    data['user_id'] = this.userId;
+    data['role_id'] = this.roleId;
+    data['user_role'] = this.userRole;
     if (this.data != null) {
       data['data'] = this.data.map((v) => v.toJson()).toList();
     }

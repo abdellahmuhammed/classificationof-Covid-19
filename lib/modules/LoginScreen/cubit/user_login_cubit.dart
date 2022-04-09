@@ -31,7 +31,7 @@ class UserLoginCubit extends Cubit<UserLoginState> {
     emit(ChangeIconState());
   }
 
-  UserLoginModel userLoginModel;
+  UserLoginData userLoginModel;
 
   void userLogin({
     @required String email,
@@ -48,11 +48,11 @@ class UserLoginCubit extends Cubit<UserLoginState> {
           'password': password,
         }),
     ).then((value) {
-      userLoginModel = UserLoginModel.fromJson(value.data);
-      print(userLoginModel.roleId);
-      print(userLoginModel.userId);
+      userLoginModel = UserLoginData.fromJson(value.data);
+      //printFullText(userLoginModel.token);
       emit(UserLoginSuccess(userLoginModel));
-    }).catchError((onError) {
+    }).catchError((onError)
+    {
       printFullText('Error happened when user Login ${onError.toString()}');
       emit(UserLoginError(onError));
     });

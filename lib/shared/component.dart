@@ -4,6 +4,7 @@ import 'package:conditional_builder/conditional_builder.dart';
 import 'package:finalproject/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 Widget BuilderItem(article, context) => InkWell(
       onTap: () {},
@@ -50,39 +51,37 @@ Widget BuilderItem(article, context) => InkWell(
       ),
     );
 
-
-Widget defultContainer (
-    context ,
-    {
-      Color color= grey,
-      @required String text1 ,
-      @required  String text2 ,
-      double radius= 15,
-      double height,
-      double width,
-      MainAxisAlignment mainAxisAlignment = MainAxisAlignment.spaceEvenly,
-
-
-    })=> Container(
-  height: height,
-  width: width,
-  decoration: BoxDecoration(
-    color: color,
-    borderRadius: BorderRadius.circular(radius),
-  ),
-  child: Column(
-    mainAxisAlignment: mainAxisAlignment,
-    children: [
-      Text(text1, style: Theme.of(context).textTheme.bodyText1,
+Widget defultContainer(
+  context, {
+  Color color = grey,
+  @required String text1,
+  @required String text2,
+  double radius = 15,
+  double height,
+  double width,
+  MainAxisAlignment mainAxisAlignment = MainAxisAlignment.spaceEvenly,
+}) =>
+    Container(
+      height: height,
+      width: width,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(radius),
       ),
-      Text(text2,
-        style: Theme.of(context).textTheme.bodyText2,
-
+      child: Column(
+        mainAxisAlignment: mainAxisAlignment,
+        children: [
+          Text(
+            text1,
+            style: Theme.of(context).textTheme.bodyText1,
+          ),
+          Text(
+            text2,
+            style: Theme.of(context).textTheme.bodyText2,
+          ),
+        ],
       ),
-    ],
-  ),
-);
-
+    );
 
 Widget ArticleItemBuilder(list, {isSearch}) => ConditionalBuilder(
       condition: list.isNotEmpty,
@@ -112,26 +111,26 @@ void NavigateTo(context, Widget) => Navigator.push(
     );
 
 Widget defultTextFormFiled(
-    context, {
-      @required TextEditingController controller,
-      @required TextInputType type,
-      @required String label,
-      @required IconData prefixIcon,
-      IconData suffixIcon,
-      @required Function validate,
-      Function onSubmit,
-      Function ,
-      Function onTap,
-      bool isPassword = false,
-      double radius = 15,
-      int maxLength,
-      int maxLines = 1,
-      int minLines = 1,
-      Function suffixPressed,
-      Function onchange,
-      Color cursorColor,
-      TextDirection textdirection = TextDirection.rtl,
-    }) =>
+  context, {
+  @required TextEditingController controller,
+  @required TextInputType type,
+  @required String label,
+  @required IconData prefixIcon,
+  IconData suffixIcon,
+  @required Function validate,
+  Function onSubmit,
+  Function,
+  Function onTap,
+  bool isPassword = false,
+  double radius = 15,
+  int maxLength,
+  int maxLines = 1,
+  int minLines = 1,
+  Function suffixPressed,
+  Function onchange,
+  Color cursorColor,
+  TextDirection textdirection = TextDirection.rtl,
+}) =>
     TextFormField(
       controller: controller,
       keyboardType: type,
@@ -145,15 +144,15 @@ Widget defultTextFormFiled(
         ),
         label: Text(
           label,
-          textDirection:textdirection,
+          textDirection: textdirection,
           style: Theme.of(context).textTheme.bodyText2,
         ),
         prefixIcon: Icon(prefixIcon),
         suffixIcon: suffixIcon != null
             ? IconButton(
-          onPressed: suffixPressed,
-          icon: Icon(suffixIcon),
-        )
+                onPressed: suffixPressed,
+                icon: Icon(suffixIcon),
+              )
             : null,
       ),
       validator: validate,
@@ -161,7 +160,7 @@ Widget defultTextFormFiled(
       maxLength: maxLength,
       maxLines: maxLines,
       minLines: minLines,
-      onFieldSubmitted:onSubmit ,
+      onFieldSubmitted: onSubmit,
     );
 
 Widget defultTextButton(
@@ -208,7 +207,6 @@ Widget defultImage({
         image: DecorationImage(
           image: Image,
           fit: fit,
-
         ),
         borderRadius: BorderRadius.circular(radius),
       ),
@@ -243,23 +241,126 @@ Widget defultMaterialButton({
       ),
     );
 
-
 Widget defultProfileRow(
-    context,
-    {
-      @required Function onPressed ,
-      @required String text1,
-      @required String text2,
-      double width  = 50.2,
-    })=> Row(
-  children: [
-    Text(text1 , style: Theme.of(context).textTheme.bodyText2,),
-    SizedBox(
-      width: width,
-    ),
-    TextButton(
-        onPressed: onPressed,
-        child: Text(text2 ,style: Theme.of(context).textTheme.bodyText2,)
-    )
-  ],
+  context, {
+  @required Function onPressed,
+  @required String text1,
+  @required String text2,
+  double width = 50.2,
+}) =>
+    Row(
+      children: [
+        Text(
+          text1,
+          style: Theme.of(context).textTheme.bodyText2,
+        ),
+        SizedBox(
+          width: width,
+        ),
+        TextButton(
+            onPressed: onPressed,
+            child: Text(
+              text2,
+              style: Theme.of(context).textTheme.bodyText2,
+            ))
+      ],
+    );
+
+Future<bool> defaultFlutterToast({
+  @required String msg,
+  @required Color background,
+  Color textColor,
+}) =>
+    Fluttertoast.showToast(
+      msg: msg,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: background,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+
+Widget defaultTextButtonDrawer({
+  context,
+ @required Function onPressed,
+  @required  IconData icon,
+  @required  String text
+})=> TextButton(
+  onPressed:onPressed,
+  child: Row(
+    children:  [
+      Icon(icon),
+      const SizedBox(
+        width: 20,
+      ),
+      Text(text),
+    ],
+  ),
 );
+
+
+/*  Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          DropdownButtonHideUnderline(
+                            child:DropdownButton2(
+                              hint: Text(
+                                'Select vaccination type',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Theme
+                                      .of(context)
+                                      .hintColor,
+                                ),
+                              ),
+                              items: cubit.vaccinationTypeItems
+                                  .map((item) =>
+                                  DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(
+                                      item,
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ))
+                                  .toList(),
+                              value: cubit.vaccinationTypeSelectedValue,
+                              onChanged: (value) {
+                                cubit.vaccinationTypeDropDownBottom(value);
+                              },
+                            ),
+                          ),
+                          DropdownButtonHideUnderline(
+                            child:DropdownButton2(
+                              hint: Text(
+                                'Select gander type',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Theme
+                                      .of(context)
+                                      .hintColor,
+                                ),
+                              ),
+                              items: cubit.ganderTypeItems
+                                  .map((item) =>
+                                  DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(
+                                      item,
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ))
+                                  .toList(),
+                              value: cubit.ganderTypeSelectedValue,
+                              onChanged: (value) {
+                                cubit.ganderDropDownBottom(value);
+                              },
+                            ),
+                          ),
+
+                        ],
+                      ),*/

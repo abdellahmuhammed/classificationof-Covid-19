@@ -4,15 +4,12 @@ import 'package:finalproject/shared/component.dart';
 import 'package:finalproject/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 
-class StatisticsScreen extends StatelessWidget
-{
+class StatisticsScreen extends StatelessWidget {
   StatisticsScreen({Key key}) : super(key: key);
   var scaffoldKey = GlobalKey<ScaffoldState>();
   bool egyptShowBottomSheet = false;
   bool worldShowBottomSheet = false;
-  TextStyle style;
 
-  bool isSelected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +25,6 @@ class StatisticsScreen extends StatelessWidget
                 Navigator.pop(context);
                 egyptShowBottomSheet = false;
                 worldShowBottomSheet = true;
-                style = style;
               } else {
                 scaffoldKey.currentState
                     .showBottomSheet(
@@ -134,20 +130,16 @@ class StatisticsScreen extends StatelessWidget
                   {
                     egyptShowBottomSheet = false;
                     worldShowBottomSheet = true;
-                    style = style;
+
                   }
                 });
                 egyptShowBottomSheet = true;
                 worldShowBottomSheet = false;
-                style = const TextStyle(
-                    color: Colors.blue,
-                    backgroundColor: Colors.green,
-                    fontSize: 25);
+
               }
             },
             child: Text(
               'Egypt',
-              style: style,
             ),
           ),
           const SizedBox(
@@ -159,7 +151,6 @@ class StatisticsScreen extends StatelessWidget
                 Navigator.pop(context);
                 worldShowBottomSheet = false;
                 egyptShowBottomSheet = true;
-                style = style;
               } else {
                 scaffoldKey.currentState
                     .showBottomSheet(
@@ -265,20 +256,16 @@ class StatisticsScreen extends StatelessWidget
                   {
                     worldShowBottomSheet = false;
                     egyptShowBottomSheet = true;
-                    style = style;
                   }
                 });
                 worldShowBottomSheet = true;
                 egyptShowBottomSheet = false;
-                style = const TextStyle(
-                    color: Colors.blue,
-                    backgroundColor: Colors.green,
-                    fontSize: 25);
+
               }
             },
             child: Text(
               'World',
-              style: style,
+              // style: style,
             ),
           ),
           //             AwesomeDialog (

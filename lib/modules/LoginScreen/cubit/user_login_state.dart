@@ -11,7 +11,7 @@ class ChangeShowPasswordState extends UserLoginState {}
 
 class LoadingUserLogin extends UserLoginState {}
 class UserLoginSuccess extends UserLoginState {
-  final UserLoginModel userLoginModel;
+  final UserLoginData userLoginModel;
   UserLoginSuccess(this.userLoginModel);
 }
 class UserLoginError extends UserLoginState {

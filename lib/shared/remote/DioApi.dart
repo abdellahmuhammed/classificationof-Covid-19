@@ -17,26 +17,36 @@ class DioApi{
     );
   }
 
-
 static Future<Response> PostData( {
   @ required String url ,
   @ required FormData data ,
   String token,
-
-
 })async{
+  _dio.options.headers={
+    'token': token ?? '' ,
+  };
    return await _dio.post(
      url,
      data: data,
    );
   }
+
+
+
 static Future<Response> getData(
     @required String url,
-     Map<String , dynamic> query
-    )async{
-   return _dio.get(url,queryParameters: query);
-  }
+     Map<String , dynamic> query,
+ String token,
 
+ )async{
+    _dio.options.headers={
+      'token': token ?? '' ,
+    };
+   return _dio.get(
+       url,
+       queryParameters: query
+   );
+  }
 
 
 
