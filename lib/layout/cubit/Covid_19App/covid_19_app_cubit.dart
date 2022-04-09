@@ -124,8 +124,6 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
 
   /* to update*/
 
-
-
 // to get data
 
   GetUserDataModel getUserDataModel;
@@ -155,9 +153,10 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
   }
 
   void UpdateUserProfile(email, password, username, dob, gender, address, phone_num,
-      ssn, role_id) async {
-    emit(PostDataLoadingState());
-    return await DioApi.PostData(
+      ssn, role_id)
+  {
+    emit(LoadingUpdateDataUserState());
+      DioApi.PostData(
         url: 'api/users',
         data: FormData.fromMap({
           'api_section': 'users',
@@ -173,11 +172,12 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
           'role_id': role_id,
         })).then((value) {
       printFullText(value.data.toString());
-      userLoginModel = UserLoginData.fromJson(value.data);
-      emit(PostDataSuccessState(userLoginModel));
+      getUserDataModel = GetUserDataModel.fromJson(value.data);
+      printFullText('update successfully');
+      emit(UpdateDataUserStateSuccess());
     }).catchError((onError) {
-      printFullText('Error Happened when post data ${onError.toString()}');
-      emit(PostDataErrorState(onError.toString()));
+      printFullText('Error Happened when update user data ${onError.toString()}');
+      emit(UpdateDataUserStateError(onError.toString()));
     });
   }
 
