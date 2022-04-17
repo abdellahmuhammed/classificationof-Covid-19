@@ -17,8 +17,7 @@ void main() async {
   await CatchHelper.init();
   bool onBoarding = CatchHelper.getData(key: 'OnBoarding');
   bool isDarkShow = CatchHelper.getData(key: 'isDarkShow');
-  String token = CatchHelper.getData(key: 'token');
-  userid=CatchHelper.getData(key: 'userid');
+  dynamic userid = CatchHelper.getData(key: 'userid');
 
   // printFullText('onBoarding is $onBoarding');
   // printFullText('isDarkShow is $isDarkShow');
@@ -29,7 +28,7 @@ void main() async {
   Widget widget;
 
   if (onBoarding != null) {
-    if (token != null) {
+    if (userid != null) {
       widget = const HomeLayoutScreen();
     } else {
       widget = Covid19LoginScreen();

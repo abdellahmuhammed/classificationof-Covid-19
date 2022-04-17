@@ -28,6 +28,7 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
   static Covid19AppCubit get(context) => BlocProvider.of(context);
 
   UserLoginData userLoginModel;
+
   List<Widget> screens = [
     const HomeScreen(),
     StatisticsScreen(),
@@ -52,9 +53,14 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
     emit(ChangeBottomNavBarState());
   }
 
+
 // to get data
 
   GetUserDataModel getUserDataModel;
+
+
+
+
 
   void getUserProfile( ) {
     emit(LoadingGetDataUserState());
@@ -65,10 +71,19 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
         'api_section': 'users',
         'user_id':userid,
 
+
+
       }),
       token: token,
     ).then((value) {
       getUserDataModel = GetUserDataModel.fromJson(value.data);
+
+     // var user_id=GetUserDataModel().data ;
+
+
+
+
+
       printFullText(' data successfully ');
       printFullText(' success is ${value.data}');
 

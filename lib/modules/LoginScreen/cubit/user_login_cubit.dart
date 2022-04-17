@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:finalproject/models/userLogin/UserLoginModel.dart';
-import 'package:finalproject/shared/local/catchhelper.dart';
 import 'package:finalproject/shared/remote/DioApi.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
@@ -51,9 +50,6 @@ class UserLoginCubit extends Cubit<UserLoginState> {
         }),
     ).then((value) {
       userLoginModel = UserLoginData.fromJson(value.data);
-     // uerid=userLoginModel.userId;
-      //printFullText(uerid);
-      CatchHelper.saveData(key: 'userid', value: value.data['user_id']);
       emit(UserLoginSuccess(userLoginModel));
     }).catchError((onError)
     {

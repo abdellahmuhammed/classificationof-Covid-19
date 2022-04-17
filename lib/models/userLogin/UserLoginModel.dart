@@ -1,9 +1,11 @@
+// ignore_for_file: file_names
+
 class UserLoginData{
   bool success;
   String token;
-  dynamic userId;
-  dynamic roleId;
-  dynamic userRole;
+  int userId;
+  int roleId;
+  String userRole;
 
   UserLoginData(
       {this.success, this.token, this.userId, this.roleId, this.userRole});
