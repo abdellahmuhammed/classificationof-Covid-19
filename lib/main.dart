@@ -23,7 +23,7 @@ void main() async {
   // printFullText('onBoarding is $onBoarding');
   // printFullText('isDarkShow is $isDarkShow');
   printFullText('token is $token');
-  printFullText('userid is $userid');
+ print(userid);
 
 
   Widget widget;

@@ -130,7 +130,7 @@ class HomeLayoutScreen extends StatelessWidget {
           ),
           defaultTextButtonDrawer(
               onPressed: (){
-                CatchHelper.removeUserData(key: 'token').then((value) {
+                CatchHelper.removeUserData(key: 'userid').then((value) {
                   if (value) {
                     NavigateAndRemove(context, Covid19LoginScreen());
                   }

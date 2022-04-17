@@ -19,14 +19,14 @@ class Data {
   int iD;
   String username;
   String gender;
-  Null dob;
+  dynamic dob;
   String job;
   String address;
   String email;
   int phoneNum;
   String socialStatus;
   int ssn;
-  Null noOfKids;
+  dynamic noOfKids;
   String coordinates;
   int roleId;
   String vaccinationType;

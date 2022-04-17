@@ -37,13 +37,13 @@ class Covid19LoginScreen extends StatelessWidget {
                // printFullText('userRole is ${uerid}');
                 token = state.userLoginModel.token;
                 if (state.userLoginModel.token != null) {
-                  if (state.userLoginModel.roleId == '2') {
+                  if (state.userLoginModel.roleId == 2) {
                     NavigateAndRemove(context, const HomeLayoutScreen());
-                  } else if (state.userLoginModel.roleId == '3') {
+                  } else if (state.userLoginModel.roleId == 3) {
                     NavigateAndRemove(context, const ParamedicScreen());
-                  } else if (state.userLoginModel.roleId == '4') {
+                  } else if (state.userLoginModel.roleId == 4) {
                     NavigateAndRemove(context, const HomeLayoutScreen());
-                  } else if (state.userLoginModel.roleId == '5') {
+                  } else if (state.userLoginModel.roleId == 5) {
                     NavigateAndRemove(context, const RadiologistScreen());
                   }
                 }

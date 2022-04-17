@@ -6,7 +6,7 @@ void printFullText(String text) {
   final pattern = RegExp('.{1,800}'); // 800 is the size of each chunk
   pattern.allMatches(text).forEach((match) => print(match.group(0)));
 }
-dynamic userid;
+var userid;
 
  String token ='';
  String myToken ='f72d3b422a79a83afb2df462ebc1d74a';

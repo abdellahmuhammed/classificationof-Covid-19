@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:dio/dio.dart';
 import 'package:finalproject/models/userLogin/UserLoginModel.dart';
 import 'package:finalproject/shared/local/catchhelper.dart';
@@ -35,6 +37,7 @@ class UserLoginCubit extends Cubit<UserLoginState> {
   UserLoginData userLoginModel;
 
 
+// new update
   void userLogin({
     @required String email,
     @required String password,
@@ -51,9 +54,10 @@ class UserLoginCubit extends Cubit<UserLoginState> {
         }),
     ).then((value) {
       userLoginModel = UserLoginData.fromJson(value.data);
-     // uerid=userLoginModel.userId;
-      //printFullText(uerid);
+      //userid=value.data['user_id'];
+      // print(userid);
       CatchHelper.saveData(key: 'userid', value: value.data['user_id']);
+      print(userLoginModel.userId);
       emit(UserLoginSuccess(userLoginModel));
     }).catchError((onError)
     {

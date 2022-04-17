@@ -130,7 +130,7 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
 
 // to get data
 
-  GetUserDataModel getUserDataModel;
+  GetUserDataModel get1;
 
 
 
@@ -150,24 +150,19 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
       }),
       token: token,
     ).then((value) {
-      getUserDataModel = GetUserDataModel.fromJson(value.data);
+     get1=GetUserDataModel.fromJson(value.data);
 
      // var user_id=GetUserDataModel().data ;
 
 
-
-
-
       printFullText(' data successfully ');
-      printFullText(' success is ${value.data}');
+      //printFullText(' success is ${value.data}');
 
 
-      printFullText(' success is ${getUserDataModel.success}');
-      // printFullText(' id is ${getUserDataModel.data[1].iD}');
-      // printFullText(' roleId is ${getUserDataModel.data[1].username}');
-      // printFullText(' roleId is ${getUserDataModel.data[1].phoneNum}');
-      //
-      // printFullText(' roleId is ${getUserDataModel.data[1].gender}');
+      printFullText(' success is ${get1.success}');
+      printFullText(' success is ${get1.data[0].iD}');
+      printFullText(' success is ${get1.data[0].username}');
+
     }).catchError((onError) {
       emit(GetDataUserStateError());
       printFullText('Happened Error when get data ${onError.toString()}');
@@ -194,7 +189,7 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
           'role_id': role_id,
         })).then((value) {
       printFullText(value.data.toString());
-      getUserDataModel = GetUserDataModel.fromJson(value.data);
+      get1 = GetUserDataModel.fromJson(value.data);
       printFullText('update successfully');
       emit(UpdateDataUserStateSuccess());
     }).catchError((onError) {

@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:dio/dio.dart';
-import 'package:finalproject/models/GetDataUser/GetUserDataModel.dart';
+
 import 'package:finalproject/shared/Constant.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -24,7 +24,7 @@ static Future<Response> PostData( {
   @ required String url ,
   @ required FormData data ,
   String token,
-  int user_id
+
 })async{
   _dio.options.headers={
     'token': token ?? '' ,
