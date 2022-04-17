@@ -18,10 +18,13 @@ void main() async {
   bool onBoarding = CatchHelper.getData(key: 'OnBoarding');
   bool isDarkShow = CatchHelper.getData(key: 'isDarkShow');
   String token = CatchHelper.getData(key: 'token');
+  userid=CatchHelper.getData(key: 'userid');
 
   // printFullText('onBoarding is $onBoarding');
   // printFullText('isDarkShow is $isDarkShow');
   printFullText('token is $token');
+  printFullText('userid is $userid');
+
 
   Widget widget;
 

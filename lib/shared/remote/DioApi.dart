@@ -1,12 +1,14 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:dio/dio.dart';
+import 'package:finalproject/models/GetDataUser/GetUserDataModel.dart';
 import 'package:finalproject/shared/Constant.dart';
 import 'package:flutter/cupertino.dart';
 
 class DioApi{
 
  static Dio _dio;
+
 
   static init(){
     _dio = Dio(
@@ -17,10 +19,12 @@ class DioApi{
     );
   }
 
+
 static Future<Response> PostData( {
   @ required String url ,
   @ required FormData data ,
   String token,
+  int user_id
 })async{
   _dio.options.headers={
     'token': token ?? '' ,
@@ -28,6 +32,10 @@ static Future<Response> PostData( {
    return await _dio.post(
      url,
      data: data,
+
+
+
+
    );
   }
 

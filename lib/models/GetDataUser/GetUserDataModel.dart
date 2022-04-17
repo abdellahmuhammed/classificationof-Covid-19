@@ -1,6 +1,6 @@
 class GetUserDataModel {
   String token;
-  dynamic userId;
+  int userId;
   dynamic roleId;
   dynamic userRole;
   List<Data> data;
@@ -20,7 +20,7 @@ class GetUserDataModel {
     roleId = json['role_id'];
     userRole = json['user_role'];
     if (json['data'] != null) {
-      data = new List<Data>();
+      data = List<Data>();
       json['data'].forEach((v) {
         data.add(new Data.fromJson(v));
       });

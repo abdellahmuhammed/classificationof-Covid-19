@@ -34,6 +34,7 @@ class Covid19LoginScreen extends StatelessWidget {
                 printFullText('data of user login saving successfully');
                 printFullText('token is ${state.userLoginModel.token}');
                 printFullText('userRole is ${state.userLoginModel.userRole}');
+               // printFullText('userRole is ${uerid}');
                 token = state.userLoginModel.token;
                 if (state.userLoginModel.token != null) {
                   if (state.userLoginModel.roleId == '2') {

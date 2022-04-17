@@ -1,20 +1,24 @@
 // ignore_for_file: non_constant_identifier_names, prefer_typing_uninitialized_variables
 
+
+
+
+
 import 'package:dio/dio.dart';
-import 'package:finalproject/layout/HomeLayout.dart';
 import 'package:finalproject/models/GetDataUser/GetUserDataModel.dart';
 import 'package:finalproject/models/userLogin/UserLoginModel.dart';
 import 'package:finalproject/modules/InfoScreen/HomeScreen.dart';
 import 'package:finalproject/modules/statistics%20Screen/statistics%20Screen.dart';
-import 'package:finalproject/modules/users/Doctor/Doctor.dart';
-import 'package:finalproject/modules/users/Paramedic/paramedic.dart';
-import 'package:finalproject/modules/users/Patient/patient.dart';
+
 import 'package:finalproject/shared/Constant.dart';
+
 import 'package:finalproject/shared/remote/DioApi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../shared/component.dart';
+import '../../../shared/Constant.dart';
+
+
 
 part 'covid_19_app_state.dart';
 
@@ -127,25 +131,43 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
 // to get data
 
   GetUserDataModel getUserDataModel;
-  var index;
 
-  void getUserProfile() {
+
+
+
+
+  void getUserProfile( ) {
     emit(LoadingGetDataUserState());
     DioApi.PostData(
       url: 'api/users',
       data: FormData.fromMap({
         'action': 'fetch',
         'api_section': 'users',
+        'user_id':userid,
+
+
+
       }),
       token: token,
     ).then((value) {
       getUserDataModel = GetUserDataModel.fromJson(value.data);
+
+     // var user_id=GetUserDataModel().data ;
+
+
+
+
+
       printFullText(' data successfully ');
+      printFullText(' success is ${value.data}');
+
+
       printFullText(' success is ${getUserDataModel.success}');
-      printFullText(' email is ${getUserDataModel.data[3].email}');
-      printFullText(' roleId is ${getUserDataModel.data[3].username}');
-      printFullText(' roleId is ${getUserDataModel.data[3].phoneNum}');
-      printFullText(' roleId is ${getUserDataModel.data[3].gender}');
+      // printFullText(' id is ${getUserDataModel.data[1].iD}');
+      // printFullText(' roleId is ${getUserDataModel.data[1].username}');
+      // printFullText(' roleId is ${getUserDataModel.data[1].phoneNum}');
+      //
+      // printFullText(' roleId is ${getUserDataModel.data[1].gender}');
     }).catchError((onError) {
       emit(GetDataUserStateError());
       printFullText('Happened Error when get data ${onError.toString()}');

@@ -25,7 +25,10 @@ class HomeLayoutScreen extends StatelessWidget {
             ),
             actions: [
               IconButton(onPressed: (){
-                Covid19AppCubit.get(context).getUserProfile();
+               var covid= Covid19AppCubit.get(context);
+               covid.getUserProfile();
+
+
               }, icon: const Icon(Icons.add)),
             ],
           ),
