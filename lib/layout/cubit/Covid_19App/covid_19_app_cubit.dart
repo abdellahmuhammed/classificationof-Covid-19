@@ -29,20 +29,6 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
 
   UserLoginData userLoginModel;
 
-  //
-  // bool isPassword = true;
-  // bool confirmPassword = true;
-  //
-  // void ChangeShowPassword() {
-  //   isPassword = !isPassword;
-  //   emit(ChangeShowPasswordState());
-  // }
-  //
-  // void ChangeConfirmShowPassword() {
-  //   confirmPassword = !confirmPassword;
-  //   emit(ChangeShowPasswordState());
-  // }
-
   List<Widget> screens = [
     const HomeScreen(),
     StatisticsScreen(),
@@ -67,66 +53,6 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
     emit(ChangeBottomNavBarState());
   }
 
-  // void postdata(String email, String password, context) async {
-  //   emit(PostDataLoadingState());
-  //   return await DioApi.PostData(
-  //       url: 'api/users',
-  //       data: FormData.fromMap({
-  //         'api_section': 'users',
-  //         'action': 'login',
-  //         'email': email,
-  //         'password': password,
-  //       })).then((value) {
-  //     printFullText(value.data.toString());
-  //     var user_role = value.data['user_role']; //to show roleID
-  //     if (user_role == 'Radiologist') {
-  //       NavigateAndRemove(context, const HomeLayoutScreen());
-  //     } else if (user_role == 'ParamedicScreen') {
-  //       NavigateAndRemove(context, const ParamedicScreen());
-  //     } else if (user_role == 'Doctor') {
-  //       NavigateAndRemove(context, const DoctorScreen());
-  //     } else if (user_role == 'Patient') {
-  //       NavigateAndRemove(context, const PatientScreen());
-  //     } else {
-  //       return null;
-  //     }
-  //
-  //     userLoginModel = UserLoginData.fromJson(value.data);
-  //     emit(PostDataSuccessState(userLoginModel));
-  //   }).catchError((onError) {
-  //     printFullText('Error Happened when post data ${onError.toString()}');
-  //     emit(PostDataErrorState(onError.toString()));
-  //   });
-  // }
-
-  // Future<Response> postRegisterData(email, password, username, dob, gender,
-  //     address, phone_num, ssn, role_id) async {
-  //   emit(PostDataLoadingState());
-  //   return await DioApi.PostData(
-  //       url: 'api/users',
-  //       data: FormData.fromMap({
-  //         'api_section': 'users',
-  //         'action': 'add',
-  //         'email': email,
-  //         'password': password,
-  //         'username': username,
-  //         'gender': gender,
-  //         'dob': dob,
-  //         'address': address,
-  //         'phone_num': phone_num,
-  //         'ssn': ssn,
-  //         'role_id': role_id,
-  //       })).then((value) {
-  //     printFullText(value.data.toString());
-  //     userLoginModel = UserLoginData.fromJson(value.data);
-  //     emit(PostDataSuccessState(userLoginModel));
-  //   }).catchError((onError) {
-  //     printFullText('Error Happened when post data ${onError.toString()}');
-  //     emit(PostDataErrorState(onError.toString()));
-  //   });
-  // }
-
-  /* to update*/
 
 // to get data
 

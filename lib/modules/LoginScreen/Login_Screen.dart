@@ -2,7 +2,6 @@
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:finalproject/layout/HomeLayout.dart';
 import 'package:finalproject/modules/LoginScreen/cubit/user_login_cubit.dart';
-import 'package:finalproject/modules/RegisterScreen/RegisterScreen.dart';
 import 'package:finalproject/modules/forgetPassword/ForgetPassword_Screen.dart';
 import 'package:finalproject/modules/users/Paramedic/paramedic.dart';
 import 'package:finalproject/modules/users/Radiologist/Radiologist.dart';
@@ -34,7 +33,6 @@ class Covid19LoginScreen extends StatelessWidget {
                 printFullText('data of user login saving successfully');
                 printFullText('token is ${state.userLoginModel.token}');
                 printFullText('userRole is ${state.userLoginModel.userRole}');
-               // printFullText('userRole is ${uerid}');
                 token = state.userLoginModel.token;
                 if (state.userLoginModel.token != null) {
                   if (state.userLoginModel.roleId == 2) {
@@ -174,23 +172,23 @@ class Covid19LoginScreen extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            "Don't have account?",
-                            style: Theme.of(context).textTheme.bodyText2,
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              NavigateTo(context, RegisterScreen());
-                            },
-                            child: const Text(
-                              'Register here',
-                              style: TextStyle(color: Colors.blue),
-                            ),
-                          ),
-                        ],
-                      ),
+                      // Row(
+                      //   children: [
+                      //     Text(
+                      //       "Don't have account?",
+                      //       style: Theme.of(context).textTheme.bodyText2,
+                      //     ),
+                      //     TextButton(
+                      //       onPressed: () {
+                      //         NavigateTo(context, RegisterScreen());
+                      //       },
+                      //       child: const Text(
+                      //         'Register here',
+                      //         style: TextStyle(color: Colors.blue),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
                     ],
                   ),
                 ),
