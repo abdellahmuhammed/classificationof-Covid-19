@@ -2,7 +2,6 @@ import 'package:finalproject/shared/Constant.dart';
 import 'package:finalproject/shared/local/catchhelper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
-
 part 'dark_mode_state.dart';
 
 class DarkModeCubit extends Cubit<DarkModeStates> {
