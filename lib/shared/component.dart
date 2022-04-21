@@ -122,7 +122,7 @@ Widget defultTextFormFiled(
   Function,
   Function onTap,
   bool isPassword = false,
-  double radius = 15,
+  double radius = 0,
   int maxLength,
   int maxLines = 1,
   int minLines = 1,
@@ -242,11 +242,13 @@ Widget defultMaterialButton({
     );
 
 Widget defultProfileRow(
-  context, {
-  @required Function onPressed,
+   {
+     context,
+   Function onPressed,
   @required String text1,
   @required String text2,
   double width = 50.2,
+     Function validate,
 }) =>
     Row(
       children: [
@@ -262,7 +264,8 @@ Widget defultProfileRow(
             child: Text(
               text2,
               style: Theme.of(context).textTheme.bodyText2,
-            ))
+            ),
+        ),
       ],
     );
 
@@ -300,67 +303,31 @@ Widget defaultTextButtonDrawer({
 );
 
 
-/*  Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          DropdownButtonHideUnderline(
-                            child:DropdownButton2(
-                              hint: Text(
-                                'Select vaccination type',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Theme
-                                      .of(context)
-                                      .hintColor,
-                                ),
-                              ),
-                              items: cubit.vaccinationTypeItems
-                                  .map((item) =>
-                                  DropdownMenuItem<String>(
-                                    value: item,
-                                    child: Text(
-                                      item,
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ))
-                                  .toList(),
-                              value: cubit.vaccinationTypeSelectedValue,
-                              onChanged: (value) {
-                                cubit.vaccinationTypeDropDownBottom(value);
-                              },
-                            ),
-                          ),
-                          DropdownButtonHideUnderline(
-                            child:DropdownButton2(
-                              hint: Text(
-                                'Select gander type',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: Theme
-                                      .of(context)
-                                      .hintColor,
-                                ),
-                              ),
-                              items: cubit.ganderTypeItems
-                                  .map((item) =>
-                                  DropdownMenuItem<String>(
-                                    value: item,
-                                    child: Text(
-                                      item,
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ))
-                                  .toList(),
-                              value: cubit.ganderTypeSelectedValue,
-                              onChanged: (value) {
-                                cubit.ganderDropDownBottom(value);
-                              },
-                            ),
-                          ),
+Widget defaultPersonalInfoRow({
+  context,
+  @required TextEditingController controller,
+  @required IconData PrefixIcon ,
+  Function validate  ,
+  TextInputType type,
+  String label ='',
+  @required String text,
 
-                        ],
-                      ),*/
+})=>Row(
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  children: [
+    Text(text ,style: Theme.of(context).textTheme.bodyText1,
+    ),
+    SizedBox(
+      width: MediaQuery.of(context).size.width*.6,
+      height: MediaQuery.of(context).size.height*.04,
+      child: defultTextFormFiled(
+          context,
+          controller: controller,
+          prefixIcon:PrefixIcon ,
+          validate: validate,
+          type: type,
+          label: label
+      ),
+    ),
+  ],
+);

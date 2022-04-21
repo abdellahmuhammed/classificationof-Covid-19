@@ -1,9 +1,11 @@
 // ignore_for_file: must_be_immutable, unrelated_type_equality_checks, file_names
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:finalproject/layout/HomeLayout.dart';
+import 'package:finalproject/modules/DoctorScreens/HomeScreen.dart';
 import 'package:finalproject/modules/LoginScreen/cubit/user_login_cubit.dart';
 import 'package:finalproject/modules/forgetPassword/ForgetPassword_Screen.dart';
 import 'package:finalproject/modules/users/Paramedic/paramedic.dart';
+import 'package:finalproject/modules/users/Patient/patient.dart';
 import 'package:finalproject/modules/users/Radiologist/Radiologist.dart';
 import 'package:finalproject/shared/Constant.dart';
 import 'package:finalproject/shared/component.dart';
@@ -28,19 +30,20 @@ class Covid19LoginScreen extends StatelessWidget {
           if (state is UserLoginSuccess) {
             if (state.userLoginModel.success) {
               CatchHelper.saveData(
-                      key: 'token', value: state.userLoginModel.token)
+                      key: 'userid', value: state.userLoginModel.userId)
                   .then((value) {
                 printFullText('data of user login saving successfully');
-                printFullText('token is ${state.userLoginModel.token}');
+                printFullText('userid is ${state.userLoginModel.userId}');
                 printFullText('userRole is ${state.userLoginModel.userRole}');
-                token = state.userLoginModel.token;
-                if (state.userLoginModel.token != null) {
+                userid = state.userLoginModel.userId;
+                if (state.userLoginModel.userId != null) {
                   if (state.userLoginModel.roleId == 2) {
-                    NavigateAndRemove(context, const HomeLayoutScreen());
-                  } else if (state.userLoginModel.roleId == 3) {
+                    NavigateAndRemove(context, const DoctorHomeScreen());
+                  }
+                  else if (state.userLoginModel.roleId == 3){
                     NavigateAndRemove(context, const ParamedicScreen());
                   } else if (state.userLoginModel.roleId == 4) {
-                    NavigateAndRemove(context, const HomeLayoutScreen());
+                    NavigateAndRemove(context, const PatientScreen());
                   } else if (state.userLoginModel.roleId == 5) {
                     NavigateAndRemove(context, const RadiologistScreen());
                   }

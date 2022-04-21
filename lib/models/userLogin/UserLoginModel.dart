@@ -17,14 +17,4 @@ class UserLoginData{
     roleId = json['role_id'];
     userRole = json['user_role'];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
-    data['token'] = this.token;
-    data['user_id'] = this.userId;
-    data['role_id'] = this.roleId;
-    data['user_role'] = this.userRole;
-    return data;
-  }
 }

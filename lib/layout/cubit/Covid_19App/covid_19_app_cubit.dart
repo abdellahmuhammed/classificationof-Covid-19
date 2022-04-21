@@ -57,11 +57,6 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
 // to get data
 
   GetUserDataModel get1;
-
-
-
-
-
   void getUserProfile( ) {
     emit(LoadingGetDataUserState());
     DioApi.PostData(
@@ -70,24 +65,15 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
         'action': 'fetch',
         'api_section': 'users',
         'user_id':userid,
-
-
-
       }),
       token: token,
     ).then((value) {
      get1=GetUserDataModel.fromJson(value.data);
-
-     // var user_id=GetUserDataModel().data ;
-
-
       printFullText(' data successfully ');
-      //printFullText(' success is ${value.data}');
-
-
       printFullText(' success is ${get1.success}');
       printFullText(' success is ${get1.data[0].iD}');
       printFullText(' success is ${get1.data[0].username}');
+      printFullText(' success is ${get1.data[0].phoneNum}');
 
     }).catchError((onError) {
       emit(GetDataUserStateError());
@@ -95,34 +81,34 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
     });
   }
 
-  void UpdateUserProfile(email, password, username, dob, gender, address, phone_num,
-      ssn, role_id)
-  {
-    emit(LoadingUpdateDataUserState());
-      DioApi.PostData(
-        url: 'api/users',
-        data: FormData.fromMap({
-          'api_section': 'users',
-          'action': 'edit',
-          'email': email,
-          'password': password,
-          'username': username,
-          'gender': gender,
-          'dob': dob,
-          'address': address,
-          'phone_num': phone_num,
-          'ssn': ssn,
-          'role_id': role_id,
-        })).then((value) {
-      printFullText(value.data.toString());
-      get1 = GetUserDataModel.fromJson(value.data);
-      printFullText('update successfully');
-      emit(UpdateDataUserStateSuccess());
-    }).catchError((onError) {
-      printFullText('Error Happened when update user data ${onError.toString()}');
-      emit(UpdateDataUserStateError(onError.toString()));
-    });
-  }
+  // void UpdateUserProfile(email, password, username, dob, gender, address, phone_num,
+  //     ssn, role_id)
+  // {
+  //   emit(LoadingUpdateDataUserState());
+  //     DioApi.PostData(
+  //       url: 'api/users',
+  //       data: FormData.fromMap({
+  //         'api_section': 'users',
+  //         'action': 'edit',
+  //         'email': email,
+  //         'password': password,
+  //         'username': username,
+  //         'gender': gender,
+  //         'dob': dob,
+  //         'address': address,
+  //         'phone_num': phone_num,
+  //         'ssn': ssn,
+  //         'role_id': role_id,
+  //       })).then((value) {
+  //     printFullText(value.data.toString());
+  //     get1 = GetUserDataModel.fromJson(value.data);
+  //     printFullText('update successfully');
+  //     emit(UpdateDataUserStateSuccess());
+  //   }).catchError((onError) {
+  //     printFullText('Error Happened when update user data ${onError.toString()}');
+  //     emit(UpdateDataUserStateError(onError.toString()));
+  //   });
+  // }
 
 
 }
