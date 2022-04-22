@@ -1,50 +1,76 @@
-import 'package:finalproject/layout/cubit/Covid_19App/covid_19_app_cubit.dart';
+// ignore_for_file: file_names
+
 import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
-import 'package:finalproject/modules/profile/profile.dart';
+import 'package:finalproject/modules/DoctorScreens/DoctorProfileScreen/DoctorProfileScreen.dart';
+import 'package:finalproject/modules/DoctorScreens/patient%20details/patient%20details.dart';
+import 'package:finalproject/modules/LoginScreen/Login_Screen.dart';
 import 'package:finalproject/shared/component.dart';
 import 'package:finalproject/shared/local/catchhelper.dart';
+import 'package:finalproject/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../modules/LoginScreen/Login_Screen.dart';
-import '../shared/styles/colors.dart';
-
-class HomeLayoutScreen extends StatelessWidget {
-  const HomeLayoutScreen({Key key}) : super(key: key);
+class DoctorHomeScreen extends StatelessWidget {
+  const DoctorHomeScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<Covid19AppCubit, Covid19AppStates>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        var cubit = Covid19AppCubit.get(context);
-
-        return Scaffold(
-          appBar: AppBar(
-            title:  Text(cubit.titles[cubit.currentIndex],
-            ),
-            actions: [
-              IconButton(onPressed: (){
-               var covid= Covid19AppCubit.get(context);
-               covid.getUserProfile();
-              }, icon: const Icon(Icons.add)),
-            ],
-          ),
-          drawer: buildDrawer(context:context ),
-          bottomNavigationBar: BottomNavigationBar(
-            items: Covid19AppCubit.get(context).bottom,
-            currentIndex: Covid19AppCubit.get(context).currentIndex,
-            onTap: (index) {
-              Covid19AppCubit.get(context).ChangeBottomNavBar(index);
-            },
-          ),
-          body: Covid19AppCubit.get(context).screens[Covid19AppCubit.get(context).currentIndex],
-        );
-      },
+    return Scaffold(
+      appBar: AppBar(),
+        drawer: buildDrawer(context:context ),
+      body: ListView.separated(
+        physics: const BouncingScrollPhysics(),
+          itemBuilder: (context , index) => buildHomeScreen(context: context),
+          separatorBuilder:  (context , index) => MyDivider(),
+          itemCount: 15
+      ),
     );
   }
 
+  Widget buildHomeScreen({context})=>InkWell(
+    onTap: (){
+      NavigateTo(context,  PatientDetails());
+    },
+    child: Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height*.16,
+            width: MediaQuery.of(context).size.width*.4,
+            decoration: BoxDecoration(
+                image:   DecorationImage(
+                  image: NetworkImage('https://student.valuxapps.com/storage/uploads/banners/1619472351ITAM5.3bb51c97376281.5ec3ca8c1e8c5.jpg'),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.circular(15.0)),
+          ),
+          const SizedBox(width: 20,),
 
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Name,here',
+                  style: Theme.of(context).textTheme.bodyText1,
+                  overflow: TextOverflow.ellipsis,
+                  textDirection: TextDirection.rtl,
+                  maxLines: 3,
+                ),
+                const SizedBox(height: 10,),
+                Text(
+                  'infection_date',
+                  style: Theme.of(context).textTheme.bodyText2,
+                  textDirection: TextDirection.rtl,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
   Widget buildDrawer({context})=>SizedBox(
     width: 220,
     child: Drawer(
@@ -88,7 +114,7 @@ class HomeLayoutScreen extends StatelessWidget {
           ),
           defaultTextButtonDrawer(
               onPressed: (){
-                NavigateTo(context, ProfileScreen());
+                NavigateTo(context,  DoctorProfileScreen());
               },
               icon: Icons.person,
               text: 'Profile'

@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable, unrelated_type_equality_checks, file_names
 import 'package:conditional_builder/conditional_builder.dart';
-import 'package:finalproject/layout/HomeLayout.dart';
-import 'package:finalproject/modules/DoctorScreens/HomeScreen.dart';
+import 'package:finalproject/modules/DoctorScreens/HomelayoutScreen.dart';
 import 'package:finalproject/modules/LoginScreen/cubit/user_login_cubit.dart';
 import 'package:finalproject/modules/forgetPassword/ForgetPassword_Screen.dart';
 import 'package:finalproject/modules/users/Paramedic/paramedic.dart';

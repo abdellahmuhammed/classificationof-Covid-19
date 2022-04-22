@@ -1,8 +1,9 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, file_names
 
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:finalproject/layout/cubit/DoctorCubit/doctor_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/CTScanScreen/CTScanScreen.dart';
+import 'package:finalproject/modules/DoctorScreens/DiagnosisScreen/DiagnosisScreen.dart';
 import 'package:finalproject/shared/component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,14 +49,17 @@ class PatientDetails extends StatelessWidget {
                                         'https://student.valuxapps.com/storage/uploads/banners/1619472351ITAM5.3bb51c97376281.5ec3ca8c1e8c5.jpg'),
                                     fit: BoxFit.cover)),
                           ),
-                          TextButton(
-                            onPressed: () {
-                              NavigateTo(context, const CTScanScreen());
-                            },
-                            child: const Text(
-                              'ShowMore',
-                              style: TextStyle(
-                                  color: Colors.redAccent, fontSize: 15),
+                          Container(
+                            height: MediaQuery.of(context).size.height * .04,
+                            color: Colors.grey.withOpacity(.6),
+                            child: TextButton(
+                              onPressed: () {
+                                NavigateTo(context, const CTScanScreen());
+                              },
+                              child:  Text(
+                                'Show More CT Scan',
+                                style: Theme.of(context).textTheme.bodyText1,
+                              ),
                             ),
                           ),
                         ],
@@ -74,45 +78,20 @@ class PatientDetails extends StatelessWidget {
                       const SizedBox(
                         height: 30,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30),
-                        child: DropdownButton2(
-                          hint: Text(
-                            'Select diagnosis',
-                            style: Theme.of(context).textTheme.bodyText2
-                          ),
-                          items: DoctorCubit.get(context)
-                              .items
-                              .map((item) => DropdownMenuItem<String>(
-                                    value: item,
-                                    child: Text(
-                                      item,
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ),
-                          )
-                              .toList(),
-                          value: DoctorCubit.get(context).selectedValue,
-                          onChanged: (index) {
-                            DoctorCubit.get(context).changeRadioIndex(index);
-                          },
-                          buttonHeight: 40,
-                          buttonWidth: 140,
-                          itemHeight: 40,
-                        ),
-                      ),
                       const SizedBox(height: 15,),
-                      defultMaterialButton(
-                          function: (){}, // الدوسه بتاعت الزرار
-                          text: 'Send diagnose',
-                        background: Colors.grey[300]
-                      ),
                     ],
                   ),
                 ),
               ),
+              floatingActionButton: FloatingActionButton.extended(
+                onPressed: () {
+                  NavigateTo(context,  DiagnosisScreen());
+                },
+                label: const Text('diagnose the Patient'),
+                icon: const Icon(Icons.send),
+                backgroundColor: Colors.grey.withOpacity(.6),
+              ),
+              floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
             ),
           );
         },
@@ -136,7 +115,8 @@ class PatientDetails extends StatelessWidget {
                   context,
                   controller: userNameController,
                   prefixIcon: Icons.person,
-                  validate: null,
+                    validate: null,
+                    enabled: false,
                   type: null,
                   label: 'user name',
                 ),
@@ -159,7 +139,8 @@ class PatientDetails extends StatelessWidget {
                 child: defultTextFormFiled(context,
                     controller: emailController,
                     prefixIcon: Icons.person,
-                    validate: null,
+                      validate: null,
+                    enabled: false,
                     type: null,
                     label: 'email'),
               ),
@@ -181,7 +162,8 @@ class PatientDetails extends StatelessWidget {
                 child: defultTextFormFiled(context,
                     controller: phoneController,
                     prefixIcon: Icons.person,
-                    validate: null,
+                      validate: null,
+                    enabled: false,
                     type: null,
                     label: 'phone'),
               ),
@@ -203,7 +185,8 @@ class PatientDetails extends StatelessWidget {
                 child: defultTextFormFiled(context,
                     controller: ssnController,
                     prefixIcon: Icons.person,
-                    validate: null,
+                      validate: null,
+                    enabled: false,
                     type: null,
                     label: 'National ID'),
               ),
@@ -225,7 +208,8 @@ class PatientDetails extends StatelessWidget {
                 child: defultTextFormFiled(context,
                     controller: jobController,
                     prefixIcon: Icons.person,
-                    validate: null,
+                      validate: null,
+                    enabled: false,
                     type: null,
                     label: 'job'),
               ),
@@ -247,7 +231,8 @@ class PatientDetails extends StatelessWidget {
                 child: defultTextFormFiled(context,
                     controller: addressController,
                     prefixIcon: Icons.person,
-                    validate: null,
+                      validate: null,
+                    enabled: false,
                     type: null,
                     label: 'address'),
               ),
@@ -269,7 +254,8 @@ class PatientDetails extends StatelessWidget {
                 child: defultTextFormFiled(context,
                     controller: dobController,
                     prefixIcon: Icons.person,
-                    validate: null,
+                      validate: null,
+                    enabled: false,
                     type: null,
                     label: 'dob'),
               ),
@@ -291,7 +277,8 @@ class PatientDetails extends StatelessWidget {
                 child: defultTextFormFiled(context,
                     controller: genderController,
                     prefixIcon: Icons.person,
-                    validate: null,
+                      validate: null,
+                    enabled: false,
                     type: null,
                     label: 'gender'),
               ),
@@ -332,141 +319,3 @@ class PatientDetails extends StatelessWidget {
         itemHeight: 40,
       );
 }
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//         title: 'Flutter Demo',
-//         theme: ThemeData(
-//           primarySwatch: Colors.blue,
-//         ),
-//         home: const HomePage(),
-//         debugShowCheckedModeBanner: false);
-//   }
-// }
-
-// class HomePage extends StatefulWidget {
-//   const HomePage({Key key}) : super(key: key);
-//
-//   @override
-//   _HomePageState createState() => _HomePageState();
-// }
-//
-// class _HomePageState extends State<HomePage> {
-//   int _stackIndex = 0;
-//
-//   String _singleValue = "Text alignment right";
-//   String _verticalGroupValue = "Pending";
-//
-//   List<String> _status = ["Pending", "Released", "Blocked"];
-//
-//   @override
-//   Widget build(BuildContext context) => Scaffold(
-//     appBar: AppBar(
-//       title: const Text("Radio button group example"),
-//     ),
-//     body: IndexedStack(
-//       index: _stackIndex,
-//       children: <Widget>[
-//         Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             RadioButton(
-//               description: "Text alignment right",
-//               value: "Text alignment right",
-//               groupValue: _singleValue,
-//               onChanged: (value) => setState(
-//                     () => _singleValue = value,
-//               ),
-//               activeColor: Colors.red,
-//               textStyle: const TextStyle(
-//                   fontSize: 30,
-//                   fontWeight: FontWeight.w600,
-//                   color: Colors.red
-//               ),
-//             ),
-//             RadioButton(
-//               description: "Text alignment left",
-//               value: "Text alignment left",
-//               groupValue: _singleValue,
-//               onChanged: (value) => setState(
-//                     () => _singleValue = value,
-//               ),
-//               textPosition: RadioButtonTextPosition.left,
-//             ),
-//           ],
-//         ),
-//         Column(
-//           children: <Widget>[
-//             RadioGroup<String>.builder(
-//               groupValue: _verticalGroupValue,
-//               onChanged: (value) => setState(() {
-//                 _verticalGroupValue = value;
-//               }),
-//               items: _status,
-//               itemBuilder: (item) => RadioButtonBuilder(
-//                 item,
-//               ),
-//               activeColor: Colors.red,
-//             ),
-//             RadioGroup<String>.builder(
-//               groupValue: _verticalGroupValue,
-//               onChanged: (value) => setState(() {
-//                 _verticalGroupValue = value;
-//               }),
-//               items: _status,
-//               itemBuilder: (item) => RadioButtonBuilder(
-//                 item,
-//                 textPosition: RadioButtonTextPosition.left,
-//               ),
-//             ),
-//           ],
-//         ),
-//         RadioGroup<String>.builder(
-//           direction: Axis.horizontal,
-//           groupValue: _verticalGroupValue,
-//           horizontalAlignment: MainAxisAlignment.spaceAround,
-//           onChanged: (value) => setState(() {
-//             _verticalGroupValue = value;
-//           }),
-//           items: _status,
-//           textStyle: const TextStyle(
-//               fontSize: 15,
-//               color: Colors.blue
-//           ),
-//           itemBuilder: (item) => RadioButtonBuilder(
-//             item,
-//
-//           ),
-//         ),
-//       ],
-//     ),
-//     bottomNavigationBar: BottomNavigationBar(
-//       items: const[
-//          BottomNavigationBarItem(
-//           label:' Text("Single")',
-//           icon: Icon(
-//             Icons.radio_button_checked,
-//           ),
-//         ),
-//          BottomNavigationBarItem(
-//           label: ' Text("Vertical")',
-//           icon: Icon(
-//             Icons.list,
-//           ),
-//         ),
-//          BottomNavigationBarItem(
-//           label: 'Text("Horizontal")',
-//           icon: Icon(
-//             Icons.linear_scale,
-//           ),
-//         ),
-//       ],
-//       currentIndex: _stackIndex,
-//       onTap: (index) => setState(
-//             () => _stackIndex = index,
-//       ),
-//     ),
-//   );
-// }

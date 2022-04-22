@@ -53,7 +53,6 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
     emit(ChangeBottomNavBarState());
   }
 
-
 // to get data
 
   GetUserDataModel get1;

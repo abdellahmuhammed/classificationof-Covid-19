@@ -6,3 +6,5 @@ abstract class DoctorState {}
 class DoctorInitial extends DoctorState {}
 
 class ChangeRadioState extends DoctorState {}
+
+class ChangeBottomNavBarState extends DoctorState {}
