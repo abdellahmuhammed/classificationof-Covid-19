@@ -4,3 +4,5 @@ part of 'doctor_cubit.dart';
 abstract class DoctorState {}
 
 class DoctorInitial extends DoctorState {}
+
+class ChangeRadioState extends DoctorState {}

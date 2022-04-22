@@ -61,11 +61,12 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => Covid19AppCubit()..getUserProfile(),
+          create: (context) => Covid19AppCubit()
+            //..getUserProfile(),
         ),
         BlocProvider(
           create: (context) =>
-              DarkModeCubit()..changeAppMode(formShared: isDarkShow),
+              DarkModeCubit()..changeAppMode(formShared: false),
         ),
       ],
       child: BlocConsumer<DarkModeCubit, DarkModeStates>(
