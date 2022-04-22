@@ -132,10 +132,12 @@ Widget defultTextFormFiled(
   TextDirection textdirection = TextDirection.rtl,
 }) =>
     TextFormField(
+      enabled: false,
       controller: controller,
       keyboardType: type,
       cursorColor: cursorColor,
       onTap: onTap,
+      enableInteractiveSelection: false,
       onChanged: onchange,
       style: Theme.of(context).textTheme.bodyText2,
       decoration: InputDecoration(
