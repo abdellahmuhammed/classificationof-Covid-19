@@ -126,13 +126,14 @@ Widget defultTextFormFiled(
   int maxLength,
   int maxLines = 1,
   int minLines = 1,
+      bool enabled,
   Function suffixPressed,
   Function onchange,
   Color cursorColor,
   TextDirection textdirection = TextDirection.rtl,
 }) =>
     TextFormField(
-      enabled: false,
+      enabled: enabled,
       controller: controller,
       keyboardType: type,
       cursorColor: cursorColor,
