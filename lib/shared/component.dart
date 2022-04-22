@@ -96,14 +96,13 @@ Widget ArticleItemBuilder(list, {isSearch}) => ConditionalBuilder(
           : const Center(
               child: CircularProgressIndicator(
               color: Colors.brown,
-            ),
-      ),
+            )),
     );
 
 Widget MyDivider() => Container(
       color: Colors.grey,
       width: double.infinity,
-      height: 5.0,
+      height: 2.0,
     );
 
 void NavigateTo(context, Widget) => Navigator.push(
@@ -130,11 +129,10 @@ Widget defultTextFormFiled(
   Function suffixPressed,
   Function onchange,
   Color cursorColor,
-      bool enabled ,
   TextDirection textdirection = TextDirection.rtl,
 }) =>
     TextFormField(
-      enabled: enabled,
+      enabled: false,
       controller: controller,
       keyboardType: type,
       cursorColor: cursorColor,
