@@ -129,7 +129,14 @@ class HomeLayoutScreen extends StatelessWidget {
           defaultTextButtonDrawer(
               onPressed: (){
                 CatchHelper.removeUserData(key: 'userid').then((value) {
-                  if (value) {
+                  if (value)
+                  {
+                    NavigateAndRemove(context, Covid19LoginScreen());
+                  }
+                });
+                CatchHelper.removeUserData(key: 'RolId').then((value) {
+                  if (value)
+                  {
                     NavigateAndRemove(context, Covid19LoginScreen());
                   }
                 });

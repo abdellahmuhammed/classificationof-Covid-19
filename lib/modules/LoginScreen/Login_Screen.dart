@@ -38,8 +38,7 @@ class Covid19LoginScreen extends StatelessWidget {
                 if (state.userLoginModel.userId != null) {
                   if (state.userLoginModel.roleId == 2) {
                     NavigateAndRemove(context, const DoctorHomeScreen());
-                  }
-                  else if (state.userLoginModel.roleId == 3){
+                  } else if (state.userLoginModel.roleId == 3) {
                     NavigateAndRemove(context, const ParamedicScreen());
                   } else if (state.userLoginModel.roleId == 4) {
                     NavigateAndRemove(context, const PatientScreen());
@@ -49,6 +48,14 @@ class Covid19LoginScreen extends StatelessWidget {
                 }
                 defaultFlutterToast(
                     msg: 'Login successfully', background: Colors.greenAccent);
+              });
+              CatchHelper.saveData(
+                  key: 'RolId', value: state.userLoginModel.roleId)
+                  .then((value) => {
+                rolId = state.userLoginModel.roleId,
+                printFullText('Rol ID saving successfully'),
+                printFullText(
+                    'userRole is ${state.userLoginModel.userRole}'),
               });
             } else {
               defaultFlutterToast(

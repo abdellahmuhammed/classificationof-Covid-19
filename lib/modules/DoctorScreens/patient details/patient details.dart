@@ -22,80 +22,77 @@ class PatientDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => DoctorCubit(),
-      child: BlocConsumer<DoctorCubit, DoctorState>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          return SafeArea(
-            child: Scaffold(
-              body: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Stack(
-                        alignment: AlignmentDirectional.bottomEnd,
-                        children: [
-                          Container(
-                            height: MediaQuery.of(context).size.height * .16,
-                            width: double.infinity,
-                            decoration: const BoxDecoration(
-                                // ct scan image
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                        'https://student.valuxapps.com/storage/uploads/banners/1619472351ITAM5.3bb51c97376281.5ec3ca8c1e8c5.jpg'),
-                                    fit: BoxFit.cover)),
-                          ),
-                          Container(
-                            height: MediaQuery.of(context).size.height * .04,
-                            color: Colors.grey.withOpacity(.6),
-                            child: TextButton(
-                              onPressed: () {
-                                NavigateTo(context, const CTScanScreen());
-                              },
-                              child:  Text(
-                                'Show More CT Scan',
-                                style: Theme.of(context).textTheme.bodyText1,
-                              ),
+    return BlocConsumer<DoctorCubit, DoctorState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return SafeArea(
+          child: Scaffold(
+            body: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Stack(
+                      alignment: AlignmentDirectional.bottomEnd,
+                      children: [
+                        Container(
+                          height: MediaQuery.of(context).size.height * .16,
+                          width: double.infinity,
+                          decoration: const BoxDecoration(
+                              // ct scan image
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      'https://student.valuxapps.com/storage/uploads/banners/1619472351ITAM5.3bb51c97376281.5ec3ca8c1e8c5.jpg'),
+                                  fit: BoxFit.cover)),
+                        ),
+                        Container(
+                          height: MediaQuery.of(context).size.height * .04,
+                          color: Colors.grey.withOpacity(.6),
+                          child: TextButton(
+                            onPressed: () {
+                              NavigateTo(context, const CTScanScreen());
+                            },
+                            child:  Text(
+                              'Show More CT Scan',
+                              style: Theme.of(context).textTheme.bodyText1,
                             ),
                           ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        'Personal Information',
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      buildPersonalInformation(context),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      const SizedBox(height: 15,),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'Personal Information',
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    buildPersonalInformation(context),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    const SizedBox(height: 15,),
+                  ],
                 ),
               ),
-              floatingActionButton: FloatingActionButton.extended(
-                onPressed: () {
-                  NavigateTo(context,  DiagnosisScreen());
-                },
-                label: const Text('diagnose the Patient'),
-                icon: const Icon(Icons.send),
-                backgroundColor: Colors.grey.withOpacity(.6),
-              ),
-              floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
             ),
-          );
-        },
-      ),
+            floatingActionButton: FloatingActionButton.extended(
+              onPressed: () {
+                NavigateTo(context,  DiagnosisScreen());
+              },
+              label: const Text('diagnose the Patient'),
+              icon: const Icon(Icons.send),
+              backgroundColor: Colors.grey.withOpacity(.6),
+            ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+          ),
+        );
+      },
     );
   }
 

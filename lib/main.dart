@@ -3,9 +3,13 @@ import 'package:finalproject/layout/HomeLayout.dart';
 import 'package:finalproject/layout/cubit/Covid_19App/covid_19_app_cubit.dart';
 import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
 import 'package:finalproject/layout/cubit/DoctorCubit/doctor_cubit.dart';
+import 'package:finalproject/models/userLogin/UserLoginModel.dart';
 import 'package:finalproject/modules/DoctorScreens/HomelayoutScreen.dart';
 import 'package:finalproject/modules/LoginScreen/Login_Screen.dart';
 import 'package:finalproject/modules/OnBoardingScreen/OnBoardingScreen.dart';
+import 'package:finalproject/modules/users/Paramedic/paramedic.dart';
+import 'package:finalproject/modules/users/Patient/patient.dart';
+import 'package:finalproject/modules/users/Radiologist/Radiologist.dart';
 import 'package:finalproject/shared/Constant.dart';
 import 'package:finalproject/shared/local/catchhelper.dart';
 import 'package:finalproject/shared/remote/DioApi.dart';
@@ -20,21 +24,30 @@ void main() async {
   bool onBoarding = CatchHelper.getData(key: 'OnBoarding');
   bool isDarkShow = CatchHelper.getData(key: 'isDarkShow');
   dynamic userid = CatchHelper.getData(key: 'userid');
+  dynamic rolId = CatchHelper.getData(key: 'RolId');
 
   // printFullText('onBoarding is $onBoarding');
   // printFullText('isDarkShow is $isDarkShow');
   printFullText('token is $token');
- print(userid);
-
-
-
-
+  printFullText('RolId is $rolId');
+  printFullText('userid is $userid');
 
   Widget widget;
 
   if (onBoarding != null) {
     if (userid != null) {
-      widget = const DoctorHomeScreen();
+      if(rolId== 2){
+        widget = const DoctorHomeScreen();
+      }
+      if(rolId== 3){
+        widget =  HomeLayoutScreen();
+      }
+      if(rolId== 4){
+        widget =  HomeLayoutScreen();
+      }
+      if(rolId == 5){
+        widget = const RadiologistScreen();
+      }
     } else {
       widget = Covid19LoginScreen();
     }
@@ -69,7 +82,7 @@ class MyApp extends StatelessWidget {
           //..getUserProfile(),
         ),
         BlocProvider(
-          create: (context) => Covid19AppCubit()
+          create: (context) => Covid19AppCubit()..getUserProfile()
             //..getUserProfile(),
         ),
         BlocProvider(

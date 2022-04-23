@@ -27,3 +27,4 @@ class UpdateDataUserStateError extends Covid19AppStates{
   UpdateDataUserStateError(this.onError);
 }
 
+
