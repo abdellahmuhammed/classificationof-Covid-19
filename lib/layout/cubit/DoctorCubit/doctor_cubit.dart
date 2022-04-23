@@ -22,18 +22,20 @@ class DoctorCubit extends Cubit<DoctorState> {
     selectedValue = index as String;
     emit(ChangeRadioState());
   }
+
   InfectedModel getInfectedUser ;
   void getLessPro(){
     emit(DoctorLoadingState());
-    DioApi.PostData(url: 'api/infected', data: FormData.fromMap({
+    DioApi.PostData(
+        url:
+    'api/infected',
+        data: FormData.fromMap({
       'action':'fetch',
       'voting_required':'1'
-
     }
     ),
     token: token
     ).then((value) {
-
       getInfectedUser=InfectedModel.fromJson(value.data);
       print(getInfectedUser.data[0].patient);
       emit(DoctorSuccessState());

@@ -73,10 +73,11 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
       printFullText(' success is ${get1.data[0].iD}');
       printFullText(' success is ${get1.data[0].username}');
       printFullText(' success is ${get1.data[0].phoneNum}');
-
+      emit(GetDataUserStateSuccess());
     }).catchError((onError) {
-      emit(GetDataUserStateError());
       printFullText('Happened Error when get data ${onError.toString()}');
+      emit(GetDataUserStateError());
+
     });
   }
 
@@ -108,6 +109,5 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
   //     emit(UpdateDataUserStateError(onError.toString()));
   //   });
   // }
-
 
 }

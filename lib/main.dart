@@ -65,6 +65,10 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
+            create: (context) => DoctorCubit()..getLessPro()
+          //..getUserProfile(),
+        ),
+        BlocProvider(
           create: (context) => Covid19AppCubit()
             //..getUserProfile(),
         ),
