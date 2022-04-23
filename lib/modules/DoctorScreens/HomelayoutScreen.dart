@@ -1,7 +1,9 @@
 // ignore_for_file: file_names, unnecessary_string_interpolations
 
+import 'package:conditional_builder/conditional_builder.dart';
 import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
 import 'package:finalproject/layout/cubit/DoctorCubit/doctor_cubit.dart';
+import 'package:finalproject/models/infectedData/infectedModel.dart';
 import 'package:finalproject/modules/DoctorScreens/DoctorProfileScreen/DoctorProfileScreen.dart';
 import 'package:finalproject/modules/DoctorScreens/patient%20details/patient%20details.dart';
 import 'package:finalproject/modules/LoginScreen/Login_Screen.dart';
@@ -23,16 +25,15 @@ class DoctorHomeScreen extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(),
             drawer: buildDrawer(context: context),
-            body: ListView.separated(
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) => buildHomeScreen(context: context, index: index),
-                separatorBuilder: (context, index) => MyDivider(),
-                itemCount: 2),
-            floatingActionButton: FloatingActionButton(
-              child: const Icon(Icons.add),
-              onPressed: (){
-                doctorCubit.getLessPro();
-              },
+            body: ConditionalBuilder(
+              condition: state is ! DoctorLoadingState,
+              builder: (BuildContext context)=>ListView.separated(
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) => buildHomeScreen(context: context, index: index),
+                  separatorBuilder: (context, index) => MyDivider(),
+                  itemCount: 2),
+              fallback: (BuildContext context)=> const Center(child: CircularProgressIndicator(),),
+
             ),
           );
         });

@@ -1,9 +1,5 @@
 // ignore_for_file: non_constant_identifier_names, prefer_typing_uninitialized_variables
 
-
-
-
-
 import 'package:dio/dio.dart';
 import 'package:finalproject/models/GetDataUser/GetUserDataModel.dart';
 import 'package:finalproject/models/userLogin/UserLoginModel.dart';

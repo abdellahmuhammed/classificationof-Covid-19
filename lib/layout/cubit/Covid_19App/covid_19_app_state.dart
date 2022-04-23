@@ -27,12 +27,3 @@ class UpdateDataUserStateError extends Covid19AppStates{
   UpdateDataUserStateError(this.onError);
 }
 
-
-
-class LoadingPatientInfectedState extends Covid19AppStates{}
-class PatientInfectedStateSuccess extends Covid19AppStates{}
-class PatientInfectedStateError extends Covid19AppStates{
-  final String onError;
-
-  PatientInfectedStateError(this.onError);
-}
