@@ -25,7 +25,7 @@ class DoctorHomeScreen extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(),
             drawer: buildDrawer(context: context),
-            body: ConditionalBuilder(
+            body: ConditionalBuilder(//
               condition: state is ! DoctorLoadingState,
               builder: (BuildContext context)=>ListView.separated(
                   physics: const BouncingScrollPhysics(),
