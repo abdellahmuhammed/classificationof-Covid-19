@@ -1,5 +1,7 @@
 // ignore_for_file: file_names, avoid_print
 
+import 'package:finalproject/models/infectedData/infectedModel.dart';
+
 String baseUrl = 'https://csi-covid19.000webhostapp.com/api/';
 
 void printFullText(String text) {
@@ -10,3 +12,4 @@ var userid;
 
  String token ='';
  String myToken ='f72d3b422a79a83afb2df462ebc1d74a';
+

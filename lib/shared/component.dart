@@ -1,10 +1,13 @@
 // ignore_for_file: non_constant_identifier_names, avoid_types_as_parameter_names
 
 import 'package:conditional_builder/conditional_builder.dart';
+import 'package:finalproject/layout/cubit/DoctorCubit/doctor_cubit.dart';
 import 'package:finalproject/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
+import '../modules/DoctorScreens/patient details/patient details.dart';
 
 Widget BuilderItem(article, context) => InkWell(
       onTap: () {},

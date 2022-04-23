@@ -1,32 +1,47 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, unnecessary_string_interpolations
 
 import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
+import 'package:finalproject/layout/cubit/DoctorCubit/doctor_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/DoctorProfileScreen/DoctorProfileScreen.dart';
 import 'package:finalproject/modules/DoctorScreens/patient%20details/patient%20details.dart';
 import 'package:finalproject/modules/LoginScreen/Login_Screen.dart';
+
 import 'package:finalproject/shared/component.dart';
 import 'package:finalproject/shared/local/catchhelper.dart';
 import 'package:finalproject/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DoctorHomeScreen extends StatelessWidget {
   const DoctorHomeScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-        drawer: buildDrawer(context:context ),
-      body: ListView.separated(
-        physics: const BouncingScrollPhysics(),
-          itemBuilder: (context , index) => buildHomeScreen(context: context),
-          separatorBuilder:  (context , index) => MyDivider(),
-          itemCount: 15
-      ),
-    );
-  }
 
-  Widget buildHomeScreen({context})=>InkWell(
+    return BlocProvider(create: (context)=>DoctorCubit(),
+    child: BlocConsumer<DoctorCubit,DoctorState>(listener: ((context, state) {}),
+    builder: (context,state){
+      var DoctorU=DoctorCubit.get(context);
+      return Scaffold(
+        appBar: AppBar(),
+        drawer: buildDrawer(context:context ),
+        body: ListView.separated(
+            physics: const BouncingScrollPhysics(),
+            itemBuilder: (context , index) =>buildHomeScreen(context: context,index: index),
+            separatorBuilder:  (context , index) => MyDivider(),
+            itemCount: 2
+        ),
+        floatingActionButton: FloatingActionButton(child: IconButton(icon: Icon(Icons.add),),
+        onPressed:(){
+          DoctorU.getLessPro();
+        } ,
+        ),
+      );
+
+    }));}
+
+
+  Widget buildHomeScreen({context,index})=>InkWell(
     onTap: (){
       NavigateTo(context,  PatientDetails());
     },
@@ -52,7 +67,7 @@ class DoctorHomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Name,here',
+                  '${DoctorCubit.get(context).getInfectedUser.data[index].patient}',
                   style: Theme.of(context).textTheme.bodyText1,
                   overflow: TextOverflow.ellipsis,
                   textDirection: TextDirection.rtl,
@@ -60,7 +75,8 @@ class DoctorHomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 10,),
                 Text(
-                  'infection_date',
+                  '${DoctorCubit.get(context).getInfectedUser.data[index].infectionDate}',
+
                   style: Theme.of(context).textTheme.bodyText2,
                   textDirection: TextDirection.rtl,
                 ),
@@ -71,6 +87,8 @@ class DoctorHomeScreen extends StatelessWidget {
       ),
     ),
   );
+
+
   Widget buildDrawer({context})=>SizedBox(
     width: 220,
     child: Drawer(
