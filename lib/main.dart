@@ -16,6 +16,7 @@ import 'package:finalproject/shared/remote/DioApi.dart';
 import 'package:finalproject/shared/styles/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_offline/flutter_offline.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -100,10 +101,50 @@ class MyApp extends StatelessWidget {
             themeMode: DarkModeCubit.get(context).isDarkShow
                 ? ThemeMode.dark
                 : ThemeMode.light,
-            home: startWidget,
+            home: OfflineBuilder(
+              connectivityBuilder: (
+                  BuildContext context,
+                  ConnectivityResult connectivity,
+                  Widget child,
+                  ) {
+                final bool connected = connectivity != ConnectivityResult.none;
+                if (connected) {
+                  return startWidget;
+                } else {
+                  return noInternetBuilder(context);
+                }
+              },
+              child: Column(),
+            ),
           );
         },
       ),
     );
   }
+
+  Widget noInternetBuilder(context) => Center(
+    child: Container(
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.all(30.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('assets/images/817-no-internet-connection.gif' ,
+                height: MediaQuery.of(context).size.height*.5,
+                width: MediaQuery.of(context).size.width*.8
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Text(
+              'No Internet Connection..check Internet',
+              style: TextStyle(color: Colors.black, fontSize: 14.5 ,decoration: TextDecoration.none),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
 }

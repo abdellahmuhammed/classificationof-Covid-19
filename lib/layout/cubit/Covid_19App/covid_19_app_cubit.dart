@@ -77,17 +77,6 @@ class Covid19AppCubit extends Cubit<Covid19AppStates> {
     });
   }
 
-
-
-
-
-
-
-
-
-
-
-
   // void UpdateUserProfile(email, password, username, dob, gender, address, phone_num,
   //     ssn, role_id)
   // {

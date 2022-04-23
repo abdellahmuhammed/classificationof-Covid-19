@@ -32,7 +32,7 @@ dependencies:
   date_format: ^2.0.5
   dio: ^4.0.4
   group_radio_button: ^1.2.0
-
+  flutter_offline: "^2.1.0"
   awesome_dialog: ^2.1.2
   flutter:
     sdk: flutter

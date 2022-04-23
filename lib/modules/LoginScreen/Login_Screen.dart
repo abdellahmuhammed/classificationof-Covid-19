@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable, unrelated_type_equality_checks, file_names
 import 'package:conditional_builder/conditional_builder.dart';
+import 'package:finalproject/layout/HomeLayout.dart';
 import 'package:finalproject/modules/DoctorScreens/HomelayoutScreen.dart';
 import 'package:finalproject/modules/LoginScreen/cubit/user_login_cubit.dart';
 import 'package:finalproject/modules/forgetPassword/ForgetPassword_Screen.dart';
@@ -28,12 +29,12 @@ class Covid19LoginScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is UserLoginSuccess) {
             if (state.userLoginModel.success) {
+              // saving user id
               CatchHelper.saveData(
-                      key: 'userid', value: state.userLoginModel.userId)
-                  .then((value) {
+                      key: 'userid', value: state.userLoginModel.userId).then((value){
+
                 printFullText('data of user login saving successfully');
                 printFullText('userid is ${state.userLoginModel.userId}');
-                printFullText('userRole is ${state.userLoginModel.userRole}');
                 userid = state.userLoginModel.userId;
                 if (state.userLoginModel.userId != null) {
                   if (state.userLoginModel.roleId == 2) {
@@ -41,23 +42,19 @@ class Covid19LoginScreen extends StatelessWidget {
                   } else if (state.userLoginModel.roleId == 3) {
                     NavigateAndRemove(context, const ParamedicScreen());
                   } else if (state.userLoginModel.roleId == 4) {
-                    NavigateAndRemove(context, const PatientScreen());
+                    NavigateAndRemove(context, const HomeLayoutScreen());
                   } else if (state.userLoginModel.roleId == 5) {
                     NavigateAndRemove(context, const RadiologistScreen());
                   }
                 }
                 defaultFlutterToast(
                     msg: 'Login successfully', background: Colors.greenAccent);
+
               });
-              CatchHelper.saveData(
-                  key: 'RolId', value: state.userLoginModel.roleId)
-                  .then((value) => {
-                rolId = state.userLoginModel.roleId,
-                printFullText('Rol ID saving successfully'),
-                printFullText(
-                    'userRole is ${state.userLoginModel.userRole}'),
-              });
-            } else {
+
+            }
+            else
+            {
               defaultFlutterToast(
                   msg: 'Wrong Email or Password', background: Colors.red);
             }
