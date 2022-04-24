@@ -1,9 +1,10 @@
 // ignore_for_file: must_be_immutable, file_names
 
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:finalproject/layout/cubit/DoctorCubit/doctor_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/CTScanScreen/CTScanScreen.dart';
 import 'package:finalproject/modules/DoctorScreens/DiagnosisScreen/DiagnosisScreen.dart';
+import 'package:finalproject/modules/DoctorScreens/cubit/doctor_cubit.dart';
+import 'package:finalproject/modules/DoctorScreens/cubit/doctor_state.dart';
 import 'package:finalproject/shared/component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,8 +1,9 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:finalproject/layout/cubit/DoctorCubit/doctor_cubit.dart';
-import 'package:finalproject/modules/DoctorScreens/HomelayoutScreen.dart';
+import 'package:finalproject/modules/DoctorScreens/DoctorHomelayoutScreen.dart';
+import 'package:finalproject/modules/DoctorScreens/cubit/doctor_cubit.dart';
+import 'package:finalproject/modules/DoctorScreens/cubit/doctor_state.dart';
 import 'package:finalproject/shared/component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -96,7 +97,7 @@ class DiagnosisScreen extends StatelessWidget {
                   child: defultMaterialButton(
                       function: (){
                         defaultFlutterToast(msg: 'Diagnosis done successfully', background: Colors.grey);
-                        NavigateAndRemove(context, const DoctorHomeScreen());
+                        NavigateAndRemove(context, const DoctorHomeLayoutScreen());
                       },// هنا هيروح فين بالظبط
                       text: 'Send' ,
                     background: Colors.grey.withOpacity(.4),

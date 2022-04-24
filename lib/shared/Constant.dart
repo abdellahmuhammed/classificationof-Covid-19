@@ -10,7 +10,5 @@ void printFullText(String text) {
 }
 var userid;
 var RolId;
-
  String token ='';
- String myToken ='f72d3b422a79a83afb2df462ebc1d74a';
 

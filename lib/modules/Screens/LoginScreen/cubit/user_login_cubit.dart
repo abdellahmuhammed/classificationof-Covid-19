@@ -2,12 +2,12 @@
 
 import 'package:dio/dio.dart';
 import 'package:finalproject/models/userLogin/UserLoginModel.dart';
+import 'package:finalproject/shared/Constant.dart';
 import 'package:finalproject/shared/local/catchhelper.dart';
 import 'package:finalproject/shared/remote/DioApi.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
-import '../../../shared/Constant.dart';
 
 part 'user_login_state.dart';
 

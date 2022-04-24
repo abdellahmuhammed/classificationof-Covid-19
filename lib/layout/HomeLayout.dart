@@ -1,6 +1,11 @@
-import 'package:finalproject/layout/cubit/Covid_19App/covid_19_app_cubit.dart';
+import 'package:conditional_builder/conditional_builder.dart';
 import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
+import 'package:finalproject/modules/PatientScreens/PatientProfile/PatientProfile.dart';
+import 'package:finalproject/modules/PatientScreens/cubit/Patient_cubit.dart';
+import 'package:finalproject/modules/PatientScreens/cubit/Patient_state.dart';
+import 'package:finalproject/modules/Screens/LoginScreen/Login_Screen.dart';
 import 'package:finalproject/shared/component.dart';
+import 'package:finalproject/shared/local/catchhelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,15 +14,12 @@ class HomeLayoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<Covid19AppCubit, Covid19AppStates>(
+    return BlocConsumer<PatientCubit, PatientStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var cubit = Covid19AppCubit.get(context);
+        var cubit = PatientCubit.get(context);
         return Scaffold(
           appBar: AppBar(
-            title: Text(
-              cubit.titles[cubit.currentIndex],
-            ),
             actions: [
               IconButton(
                 onPressed: () {
@@ -27,18 +29,20 @@ class HomeLayoutScreen extends StatelessWidget {
               ),
             ],
           ),
-          drawer: SafeArea(child: defultDrawer(context: context)),
-          bottomNavigationBar: BottomNavigationBar(
-            items: Covid19AppCubit.get(context).bottom,
-            currentIndex: Covid19AppCubit.get(context).currentIndex,
-            onTap: (index) {
-              Covid19AppCubit.get(context).ChangeBottomNavBar(index);
-            },
+          drawer: ConditionalBuilder(
+              condition: true,
+            builder: (BuildContext context)=> defultDrawer(
+              context,
+              cubit.get1.data[0].username,
+              cubit.get1.data[0].phoneNum,
+              PatientProfileScreen(),
+            ),
+            fallback: (BuildContext context)=> const Center(child:CircularProgressIndicator(),),
+
           ),
-          body: Covid19AppCubit.get(context)
-              .screens[Covid19AppCubit.get(context).currentIndex],
         );
       },
     );
   }
+
 }

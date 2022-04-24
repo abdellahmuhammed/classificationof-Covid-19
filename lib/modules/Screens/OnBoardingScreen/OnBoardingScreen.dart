@@ -1,11 +1,11 @@
-import 'package:finalproject/modules/LoginScreen/Login_Screen.dart';
+import 'package:finalproject/modules/Screens/LoginScreen/Login_Screen.dart';
 import 'package:finalproject/shared/Constant.dart';
 import 'package:finalproject/shared/component.dart';
 import 'package:finalproject/shared/local/catchhelper.dart';
+import 'package:finalproject/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../shared/styles/colors.dart';
 
 class BoardingModel {
   final String title;
@@ -50,7 +50,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             context,
             function: () {
               onSubmit();
-              NavigateAndRemove(context, Covid19LoginScreen());
+              NavigateAndRemove(context, LoginScreen());
             },
             text: 'skip',
           ),
@@ -98,7 +98,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   onPressed: () {
                     if (isLast == true) {
                       onSubmit();
-                      NavigateAndRemove(context, Covid19LoginScreen());
+                      NavigateAndRemove(context, LoginScreen());
                     } else {
                       onBoardingCotroller.nextPage(
                         duration: const Duration(milliseconds: 750),

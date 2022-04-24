@@ -1,9 +1,11 @@
-import 'package:finalproject/layout/cubit/Covid_19App/covid_19_app_cubit.dart';
+// ignore_for_file: must_be_immutable
+
+import 'package:finalproject/modules/PatientScreens/cubit/Patient_cubit.dart';
+import 'package:finalproject/modules/PatientScreens/cubit/Patient_state.dart';
 import 'package:finalproject/shared/component.dart';
 import 'package:finalproject/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 
 class UpdateProfileScreen extends StatelessWidget {
    UpdateProfileScreen({Key key}) : super(key: key);
@@ -14,12 +16,12 @@ class UpdateProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<Covid19AppCubit, Covid19AppStates>(
+    return BlocConsumer<PatientCubit, PatientStates>(
       listener: (context, state) {
         // TODO: implement listener
       },
       builder: (context, state) {
-        var cubit = Covid19AppCubit.get(context);
+        var cubit = PatientCubit.get(context);
         return Scaffold(
           appBar: AppBar(),
           body: Padding(

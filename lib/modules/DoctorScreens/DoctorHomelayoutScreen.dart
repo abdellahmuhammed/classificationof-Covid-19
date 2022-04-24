@@ -2,35 +2,46 @@
 
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
-import 'package:finalproject/layout/cubit/DoctorCubit/doctor_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/DoctorProfileScreen/DoctorProfileScreen.dart';
+import 'package:finalproject/modules/DoctorScreens/cubit/doctor_cubit.dart';
+import 'package:finalproject/modules/DoctorScreens/cubit/doctor_state.dart';
 import 'package:finalproject/modules/DoctorScreens/patient%20details/patient%20details.dart';
-import 'package:finalproject/modules/LoginScreen/Login_Screen.dart';
+import 'package:finalproject/modules/Screens/LoginScreen/Login_Screen.dart';
 import 'package:finalproject/shared/component.dart';
 import 'package:finalproject/shared/local/catchhelper.dart';
 import 'package:finalproject/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class DoctorHomeScreen extends StatelessWidget {
-  const DoctorHomeScreen({Key key}) : super(key: key);
+class DoctorHomeLayoutScreen extends StatelessWidget {
+  const DoctorHomeLayoutScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<DoctorCubit, DoctorState>(
         listener: ((context, state) {}),
         builder: (context, state) {
-          var doctorCubit= DoctorCubit.get(context);
+          var cubit= DoctorCubit.get(context);
           return Scaffold(
             appBar: AppBar(),
-            drawer: buildDrawer(context: context),
+            drawer: ConditionalBuilder(
+              condition: true,
+              builder: (BuildContext context)=> defultDrawer(
+                context,
+                cubit.getInfectedUser.data[0].doctor,
+                cubit.getInfectedUser.data[0].doctorId,
+                DoctorProfileScreen(),
+              ),
+              fallback: (BuildContext context)=> const Center(
+                child:CircularProgressIndicator(),),
+            ),
             body: ConditionalBuilder(
               condition: state is ! DoctorLoadingState,
               builder: (BuildContext context)=>ListView.separated(
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) => buildHomeScreen(context: context, index: index ,),
                   separatorBuilder: (context, index) => MyDivider(),
-                  itemCount:DoctorCubit.get(context).getInfectedUser.data.length,
+                  itemCount:cubit.getInfectedUser.data.length,
               ),
               fallback: (BuildContext context)=> const Center(child: CircularProgressIndicator(),),
 
@@ -169,7 +180,7 @@ class DoctorHomeScreen extends StatelessWidget {
                   onPressed: () {
                     CatchHelper.removeUserData(key: 'userid').then((value) {
                       if (value) {
-                        NavigateAndRemove(context, Covid19LoginScreen());
+                        NavigateAndRemove(context, LoginScreen());
                       }
                     });
                   },

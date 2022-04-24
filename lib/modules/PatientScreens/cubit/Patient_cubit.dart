@@ -3,8 +3,9 @@
 import 'package:dio/dio.dart';
 import 'package:finalproject/models/GetDataUser/GetUserDataModel.dart';
 import 'package:finalproject/models/userLogin/UserLoginModel.dart';
-import 'package:finalproject/modules/InfoScreen/HomeScreen.dart';
-import 'package:finalproject/modules/statistics%20Screen/statistics%20Screen.dart';
+import 'package:finalproject/modules/PatientScreens/PatientHomeLayout.dart';
+import 'package:finalproject/modules/PatientScreens/cubit/Patient_state.dart';
+import 'package:finalproject/modules/PatientScreens/statistics%20Screen/statistics%20Screen.dart';
 
 import 'package:finalproject/shared/Constant.dart';
 
@@ -14,19 +15,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../shared/Constant.dart';
 
+class PatientCubit extends Cubit<PatientStates> {
+  PatientCubit() : super(Covid19AppInitial());
 
-
-part 'covid_19_app_state.dart';
-
-class Covid19AppCubit extends Cubit<Covid19AppStates> {
-  Covid19AppCubit() : super(Covid19AppInitial());
-
-  static Covid19AppCubit get(context) => BlocProvider.of(context);
+  static PatientCubit get(context) => BlocProvider.of(context);
 
   UserLoginData userLoginModel;
 
   List<Widget> screens = [
-    const HomeScreen(),
+    const PatientHomeLayoutScreen(),
     StatisticsScreen(),
   ];
 

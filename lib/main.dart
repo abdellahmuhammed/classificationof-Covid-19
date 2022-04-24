@@ -1,15 +1,15 @@
 import 'package:finalproject/MyBlocObserver.dart';
-import 'package:finalproject/layout/HomeLayout.dart';
-import 'package:finalproject/layout/cubit/Covid_19App/covid_19_app_cubit.dart';
 import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
-import 'package:finalproject/layout/cubit/DoctorCubit/doctor_cubit.dart';
-import 'package:finalproject/models/userLogin/UserLoginModel.dart';
-import 'package:finalproject/modules/DoctorScreens/HomelayoutScreen.dart';
-import 'package:finalproject/modules/LoginScreen/Login_Screen.dart';
-import 'package:finalproject/modules/OnBoardingScreen/OnBoardingScreen.dart';
-import 'package:finalproject/modules/users/Paramedic/paramedic.dart';
-import 'package:finalproject/modules/users/Patient/patient.dart';
-import 'package:finalproject/modules/users/Radiologist/Radiologist.dart';
+import 'package:finalproject/modules/DoctorScreens/DoctorHomelayoutScreen.dart';
+import 'package:finalproject/modules/DoctorScreens/cubit/doctor_cubit.dart';
+import 'package:finalproject/modules/ParamedicScreen/cubit/paramedic_cubit.dart';
+import 'package:finalproject/modules/ParamedicScreen/paramedicHomeLayout.dart';
+import 'package:finalproject/modules/PatientScreens/PatientHomeLayout.dart';
+import 'package:finalproject/modules/PatientScreens/cubit/Patient_cubit.dart';
+import 'package:finalproject/modules/RadiologistScreen/RadiologistHomeLayout.dart';
+import 'package:finalproject/modules/RadiologistScreen/cubit/radiologist_cubit.dart';
+import 'package:finalproject/modules/Screens/LoginScreen/Login_Screen.dart';
+import 'package:finalproject/modules/Screens/OnBoardingScreen/OnBoardingScreen.dart';
 import 'package:finalproject/shared/Constant.dart';
 import 'package:finalproject/shared/local/catchhelper.dart';
 import 'package:finalproject/shared/remote/DioApi.dart';
@@ -24,6 +24,7 @@ void main() async {
   await CatchHelper.init();
   bool onBoarding = CatchHelper.getData(key: 'OnBoarding');
   bool isDarkShow = CatchHelper.getData(key: 'isDarkShow');
+  String token = CatchHelper.getData(key: 'token');
   dynamic userid = CatchHelper.getData(key: 'userid');
   dynamic rolId = CatchHelper.getData(key: 'RolId');
 
@@ -35,22 +36,23 @@ void main() async {
 
   Widget widget;
 
-  if (onBoarding != null) {
+  if (onBoarding != null)
+  {
     if (userid != null) {
       if(rolId== 2){
-        widget = const DoctorHomeScreen();
+        widget =  const RadiologistHomeLayoutScreen();
       }
       if(rolId== 3){
-        widget =  HomeLayoutScreen();
+        widget =  const DoctorHomeLayoutScreen();
       }
       if(rolId== 4){
-        widget =  HomeLayoutScreen();
+        widget =  const PatientHomeLayoutScreen();
       }
       if(rolId == 5){
-        widget = const RadiologistScreen();
+        widget = const ParamedicHomeLayoutScreen();
       }
     } else {
-      widget = Covid19LoginScreen();
+      widget = LoginScreen();
     }
   } else {
     widget = const OnBoardingScreen();
@@ -83,8 +85,16 @@ class MyApp extends StatelessWidget {
           //..getUserProfile(),
         ),
         BlocProvider(
-          create: (context) => Covid19AppCubit()..getUserProfile()
+          create: (context) => PatientCubit()..getUserProfile()
             //..getUserProfile(),
+        ),
+        BlocProvider(
+            create: (context) => RadiologistCubit()
+          //..getUserProfile(),
+        ),
+        BlocProvider(
+            create: (context) => ParamedicCubit()
+          //..getUserProfile(),
         ),
         BlocProvider(
           create: (context) =>

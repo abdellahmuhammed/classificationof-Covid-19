@@ -1,12 +1,10 @@
 // ignore_for_file: must_be_immutable, unrelated_type_equality_checks, file_names
 import 'package:conditional_builder/conditional_builder.dart';
-import 'package:finalproject/layout/HomeLayout.dart';
-import 'package:finalproject/modules/DoctorScreens/HomelayoutScreen.dart';
-import 'package:finalproject/modules/LoginScreen/cubit/user_login_cubit.dart';
-import 'package:finalproject/modules/forgetPassword/ForgetPassword_Screen.dart';
-import 'package:finalproject/modules/users/Paramedic/paramedic.dart';
-import 'package:finalproject/modules/users/Patient/patient.dart';
-import 'package:finalproject/modules/users/Radiologist/Radiologist.dart';
+import 'package:finalproject/modules/DoctorScreens/DoctorHomelayoutScreen.dart';
+import 'package:finalproject/modules/ParamedicScreen/paramedicHomeLayout.dart';
+import 'package:finalproject/modules/PatientScreens/PatientHomeLayout.dart';
+import 'package:finalproject/modules/RadiologistScreen/RadiologistHomeLayout.dart';
+import 'package:finalproject/modules/Screens/LoginScreen/cubit/user_login_cubit.dart';
 import 'package:finalproject/shared/Constant.dart';
 import 'package:finalproject/shared/component.dart';
 import 'package:finalproject/shared/local/catchhelper.dart';
@@ -14,12 +12,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class Covid19LoginScreen extends StatelessWidget {
+class LoginScreen extends StatelessWidget {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var formKey = GlobalKey<FormState>();
 
-  Covid19LoginScreen({Key key}) : super(key: key);
+  LoginScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +27,13 @@ class Covid19LoginScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is UserLoginSuccess) {
             if (state.userLoginModel.success) {
+              // saving token
+              CatchHelper.saveData(
+                  key: 'token', value: state.userLoginModel.token).then((value) => {
+                token = state.userLoginModel.token,
+                printFullText('token  saving successfully'),
+                printFullText('token is ${state.userLoginModel.token}'),
+              });
               // saving user id
               CatchHelper.saveData(
                       key: 'userid', value: state.userLoginModel.userId).then((value)
@@ -38,18 +43,19 @@ class Covid19LoginScreen extends StatelessWidget {
                 userid = state.userLoginModel.userId;
                 if (state.userLoginModel.userId != null) {
                   if (state.userLoginModel.roleId == 2) {
-                    NavigateAndRemove(context, const DoctorHomeScreen());
+                    NavigateAndRemove(context, const RadiologistHomeLayoutScreen());
                   } else if (state.userLoginModel.roleId == 3) {
-                    NavigateAndRemove(context, const ParamedicScreen());
+                    NavigateAndRemove(context, const DoctorHomeLayoutScreen());
                   } else if (state.userLoginModel.roleId == 4) {
-                    NavigateAndRemove(context, const HomeLayoutScreen());
+                    NavigateAndRemove(context, const PatientHomeLayoutScreen());
                   } else if (state.userLoginModel.roleId == 5) {
-                    NavigateAndRemove(context, const RadiologistScreen());
+                    NavigateAndRemove(context, const ParamedicHomeLayoutScreen());
                   }
                 }
                 defaultFlutterToast(
                     msg: 'Login successfully', background: Colors.greenAccent);
               });
+              // saving Rol Id
               CatchHelper.saveData(
                   key: 'RolId', value: state.userLoginModel.roleId).then((value) => {
                     RolId = state.userLoginModel.roleId,
@@ -146,19 +152,7 @@ class Covid19LoginScreen extends StatelessWidget {
                           }
                         },
                       ),
-                      Row(
-                        children: [
-                          const Spacer(),
-                          defultTextButton(
-                            context,
-                            function: () {
-                              NavigateTo(context, ForgetPasswordScreen());
-                            },
-                            text: 'Forget your password',
-                            color: Colors.blue,
-                          ),
-                        ],
-                      ),
+                      const SizedBox(height: 20,),
                       ConditionalBuilder(
                         condition: state is! LoadingUserLogin,
                         builder: (BuildContext context) => defultMaterialButton(

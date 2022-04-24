@@ -1,18 +1,16 @@
 // ignore_for_file: non_constant_identifier_names, avoid_types_as_parameter_names
 
 import 'package:conditional_builder/conditional_builder.dart';
-import 'package:finalproject/layout/cubit/Covid_19App/covid_19_app_cubit.dart';
 import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
-import 'package:finalproject/layout/cubit/DoctorCubit/doctor_cubit.dart';
-import 'package:finalproject/modules/LoginScreen/Login_Screen.dart';
-import 'package:finalproject/modules/profile/profile.dart';
+import 'package:finalproject/modules/PatientScreens/PatientProfile/PatientProfile.dart';
+import 'package:finalproject/modules/PatientScreens/cubit/Patient_cubit.dart';
+import 'package:finalproject/modules/Screens/LoginScreen/Login_Screen.dart';
 import 'package:finalproject/shared/local/catchhelper.dart';
 import 'package:finalproject/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../modules/DoctorScreens/patient details/patient details.dart';
 
 Widget BuilderItem(article, context) => InkWell(
       onTap: () {},
@@ -343,87 +341,89 @@ Widget defaultPersonalInfoRow({
   ],
 );
 
-Widget defultDrawer({context})=>ConditionalBuilder(
-    condition: Covid19AppCubit.get(context).get1 != null,
-  fallback:(BuildContext context) =>  const Center(child: CircularProgressIndicator(),) ,
-  builder: (BuildContext context) => SizedBox(
-  width: 220,
-  child: Drawer(
-    child: Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.asset('assets/images/R.png' , height: 150,),
-          const SizedBox(
-            height: 15.0,
-          ),
-          Text(Covid19AppCubit.get(context).get1.data[0].username),
-          const SizedBox(
-            height: 15.0,
-          ),
-          Text('${Covid19AppCubit.get(context).get1.data[0].phoneNum}'),
-          const SizedBox(
-            height: 15.0,
-          ),
-          defaultTextButtonDrawer(
-              onPressed: (){
-                NavigateTo(context, ProfileScreen());
-              },
-              icon: Icons.person,
-              text: 'Profile'
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          TextButton(
-            onPressed: () {},
-            child: Row(
-              children: const [
-                Icon(Icons.language),
-                SizedBox(
-                  width: 20,
+Widget defultDrawer(context,
+    @required String Name,
+    @required int Phone,
+    @required  Widget goToProfile,
+    ) =>
+    SizedBox(
+      width: 220,
+      child: Drawer(
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.asset('assets/images/R.png', height: 150,),
+              const SizedBox(
+                height: 15.0,
+              ),
+              Text(Name,),
+              const SizedBox(
+                height: 15.0,
+              ),
+              Text('${Phone.round()}'),
+              const SizedBox(
+                height: 15.0,
+              ),
+              defaultTextButtonDrawer(
+                  onPressed:(){
+                    NavigateTo(context, goToProfile);
+                  },
+                  icon: Icons.person,
+                  text: 'Profile'
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextButton(
+                onPressed: () {},
+                child: Row(
+                  children: const [
+                    Icon(Icons.language),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Text('Language'),
+                  ],
                 ),
-                Text('Language'),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          TextButton(
-            onPressed: () {},
-            child: Row(
-              children: const [
-                Icon(Icons.phone),
-                SizedBox(
-                  width: 20,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextButton(
+                onPressed: () {},
+                child: Row(
+                  children: const [
+                    Icon(Icons.phone),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Text('Connect With us'),
+                  ],
                 ),
-                Text('Connect With us'),
-              ],
-            ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              defaultTextButtonDrawer(
+                  onPressed: () {
+                    CatchHelper.removeUserData(key: 'userid').then((value) {
+                      CatchHelper.removeUserData(key: 'RolId');
+                      CatchHelper.removeUserData(key: 'token');
+
+                      if (value) {
+                        NavigateAndRemove(context, LoginScreen());
+                      }
+                    });
+                  },
+                  icon: Icons.logout,
+                  text: 'Logout'
+              ),
+            ],
           ),
-          const SizedBox(
-            height: 10,
-          ),
-          defaultTextButtonDrawer(
-              onPressed: (){
-                CatchHelper.removeUserData(key: 'userid').then((value){
-                  CatchHelper.removeUserData(key: 'RolId');
-                  if (value)
-                  {
-                    NavigateAndRemove(context, Covid19LoginScreen());
-                  }
-                });
-              },
-              icon: Icons.logout,
-              text: 'Logout'
-          ),
-        ],
+        ),
       ),
-    ),
-  ),
-),
-);
+    );
 
 

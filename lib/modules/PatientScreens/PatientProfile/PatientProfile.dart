@@ -1,13 +1,14 @@
 // ignore_for_file: must_be_immutable, file_names
 
 import 'package:conditional_builder/conditional_builder.dart';
-import 'package:finalproject/layout/cubit/Covid_19App/covid_19_app_cubit.dart';
+import 'package:finalproject/modules/PatientScreens/cubit/Patient_cubit.dart';
+import 'package:finalproject/modules/PatientScreens/cubit/Patient_state.dart';
 import 'package:finalproject/shared/component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProfileScreen extends StatelessWidget {
-  ProfileScreen({Key key}) : super(key: key);
+class PatientProfileScreen extends StatelessWidget {
+  PatientProfileScreen({Key key}) : super(key: key);
 
   var userNameController = TextEditingController();
   var emailController = TextEditingController();
@@ -20,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<Covid19AppCubit, Covid19AppStates>(
+    return BlocConsumer<PatientCubit, PatientStates>(
       listener: (context, state) {},
       builder: (context, state) {
         return SafeArea(
@@ -82,7 +83,7 @@ class ProfileScreen extends StatelessWidget {
               validate: null,
               enabled: false,
               type: null,
-              label: Covid19AppCubit.get(context).get1.data[0].username,
+              label: PatientCubit.get(context).get1.data[0].username,
             ),
           ),
         ],
@@ -106,7 +107,7 @@ class ProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label: Covid19AppCubit.get(context).get1.data[0].email
+                label: PatientCubit.get(context).get1.data[0].email
             ),
           ),
         ],
@@ -130,7 +131,7 @@ class ProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label: '${Covid19AppCubit.get(context).get1.data[0].phoneNum}',
+                label: '${PatientCubit.get(context).get1.data[0].phoneNum}',
             ),
           ),
         ],
@@ -154,7 +155,7 @@ class ProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label: '${Covid19AppCubit.get(context).get1.data[0].ssn}',
+                label: '${PatientCubit.get(context).get1.data[0].ssn}',
             ),
           ),
         ],
@@ -178,7 +179,7 @@ class ProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label: Covid19AppCubit.get(context).get1.data[0].job,
+                label: PatientCubit.get(context).get1.data[0].job,
             ),
           ),
         ],
@@ -202,7 +203,7 @@ class ProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label: Covid19AppCubit.get(context).get1.data[0].address,
+                label: PatientCubit.get(context).get1.data[0].address,
             ),
           ),
         ],
@@ -226,7 +227,7 @@ class ProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label: Covid19AppCubit.get(context).get1.data[0].dob
+                label: PatientCubit.get(context).get1.data[0].dob
             ),
           ),
         ],
@@ -250,7 +251,7 @@ class ProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label:Covid19AppCubit.get(context).get1.data[0].gender
+                label:PatientCubit.get(context).get1.data[0].gender
             ),
           ),
         ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ParamedicScreen extends StatelessWidget {
-  const ParamedicScreen({Key key}) : super(key: key);
+class ParamedicHomeLayoutScreen extends StatelessWidget {
+  const ParamedicHomeLayoutScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +10,7 @@ class ParamedicScreen extends StatelessWidget {
         title: const Text(''),
       ),
       body: const Center(
-          child:  Text('Paramedic Screen ')
+          child:  Text('ParamedicHomeLayoutScreen Screen ')
       ),
     );
   }
