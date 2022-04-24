@@ -9,7 +9,7 @@ void printFullText(String text) {
   pattern.allMatches(text).forEach((match) => print(match.group(0)));
 }
 var userid;
-var rolId;
+var RolId;
 
  String token ='';
  String myToken ='f72d3b422a79a83afb2df462ebc1d74a';

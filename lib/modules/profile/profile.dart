@@ -1,11 +1,7 @@
 // ignore_for_file: must_be_immutable, file_names
 
 import 'package:conditional_builder/conditional_builder.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:finalproject/layout/cubit/Covid_19App/covid_19_app_cubit.dart';
-import 'package:finalproject/layout/cubit/DoctorCubit/doctor_cubit.dart';
-import 'package:finalproject/modules/DoctorScreens/CTScanScreen/CTScanScreen.dart';
-import 'package:finalproject/modules/DoctorScreens/DiagnosisScreen/DiagnosisScreen.dart';
 import 'package:finalproject/shared/component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,34 +34,6 @@ class ProfileScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Stack(
-                        alignment: AlignmentDirectional.bottomEnd,
-                        children: [
-                          Container(
-                            height: MediaQuery.of(context).size.height * .16,
-                            width: double.infinity,
-                            decoration: const BoxDecoration(
-                              // ct scan image
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                        'https://student.valuxapps.com/storage/uploads/banners/1619472351ITAM5.3bb51c97376281.5ec3ca8c1e8c5.jpg'),
-                                    fit: BoxFit.cover)),
-                          ),
-                          Container(
-                            height: MediaQuery.of(context).size.height * .04,
-                            color: Colors.grey.withOpacity(.6),
-                            child: TextButton(
-                              onPressed: () {
-                                NavigateTo(context, const CTScanScreen());
-                              },
-                              child:  Text(
-                                'Show More CT Scan',
-                                style: Theme.of(context).textTheme.bodyText1,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
                       const SizedBox(
                         height: 20,
                       ),
@@ -95,7 +63,7 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget buildPersonalInformation(context) => Column(
+  Widget buildPersonalInformation (context) => Column(
     children: [
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -114,7 +82,7 @@ class ProfileScreen extends StatelessWidget {
               validate: null,
               enabled: false,
               type: null,
-              label: '${Covid19AppCubit.get(context).get1.data[0].username}',
+              label: Covid19AppCubit.get(context).get1.data[0].username,
             ),
           ),
         ],
@@ -138,7 +106,8 @@ class ProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label: 'email'),
+                label: Covid19AppCubit.get(context).get1.data[0].email
+            ),
           ),
         ],
       ),
@@ -161,7 +130,8 @@ class ProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label: 'phone'),
+                label: '${Covid19AppCubit.get(context).get1.data[0].phoneNum}',
+            ),
           ),
         ],
       ),
@@ -184,7 +154,8 @@ class ProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label: 'National ID'),
+                label: '${Covid19AppCubit.get(context).get1.data[0].ssn}',
+            ),
           ),
         ],
       ),
@@ -207,7 +178,8 @@ class ProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label: 'job'),
+                label: Covid19AppCubit.get(context).get1.data[0].job,
+            ),
           ),
         ],
       ),
@@ -230,7 +202,8 @@ class ProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label: 'address'),
+                label: Covid19AppCubit.get(context).get1.data[0].address,
+            ),
           ),
         ],
       ),
@@ -253,7 +226,8 @@ class ProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label: 'dob'),
+                label: Covid19AppCubit.get(context).get1.data[0].dob
+            ),
           ),
         ],
       ),
@@ -276,7 +250,8 @@ class ProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label: 'gender'),
+                label:Covid19AppCubit.get(context).get1.data[0].gender
+            ),
           ),
         ],
       ),
@@ -284,34 +259,5 @@ class ProfileScreen extends StatelessWidget {
         height: 15,
       ),
     ],
-  );
-
-  Widget buildRadioButtonItem({context}) => DropdownButton2(
-    hint: Text(
-      'Select diagnosis',
-      style: TextStyle(
-        fontSize: 14,
-        color: Theme.of(context).hintColor,
-      ),
-    ),
-    items: DoctorCubit.get(context)
-        .items
-        .map((item) => DropdownMenuItem<String>(
-      value: item,
-      child: Text(
-        item,
-        style: const TextStyle(
-          fontSize: 14,
-        ),
-      ),
-    ))
-        .toList(),
-    value: DoctorCubit.get(context)..selectedValue,
-    onChanged: (value) {
-      DoctorCubit.get(context).selectedValue = value as String;
-    },
-    buttonHeight: 40,
-    buttonWidth: 140,
-    itemHeight: 40,
   );
 }

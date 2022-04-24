@@ -101,7 +101,8 @@ class MyApp extends StatelessWidget {
             themeMode: DarkModeCubit.get(context).isDarkShow
                 ? ThemeMode.dark
                 : ThemeMode.light,
-            home: OfflineBuilder(
+            home:
+            OfflineBuilder(
               connectivityBuilder: (
                   BuildContext context,
                   ConnectivityResult connectivity,
@@ -133,7 +134,7 @@ class MyApp extends StatelessWidget {
           children: [
             Image.asset('assets/images/817-no-internet-connection.gif' ,
                 height: MediaQuery.of(context).size.height*.5,
-                width: MediaQuery.of(context).size.width*.8
+                width: double.infinity
             ),
             const SizedBox(
               height: 20,

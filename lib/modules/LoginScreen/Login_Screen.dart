@@ -31,10 +31,10 @@ class Covid19LoginScreen extends StatelessWidget {
             if (state.userLoginModel.success) {
               // saving user id
               CatchHelper.saveData(
-                      key: 'userid', value: state.userLoginModel.userId).then((value){
-
-                printFullText('data of user login saving successfully');
-                printFullText('userid is ${state.userLoginModel.userId}');
+                      key: 'userid', value: state.userLoginModel.userId).then((value)
+              {
+                printFullText('UsrId  saving successfully');
+                printFullText('userId is ${state.userLoginModel.userId}');
                 userid = state.userLoginModel.userId;
                 if (state.userLoginModel.userId != null) {
                   if (state.userLoginModel.roleId == 2) {
@@ -49,7 +49,12 @@ class Covid19LoginScreen extends StatelessWidget {
                 }
                 defaultFlutterToast(
                     msg: 'Login successfully', background: Colors.greenAccent);
-
+              });
+              CatchHelper.saveData(
+                  key: 'RolId', value: state.userLoginModel.roleId).then((value) => {
+                    RolId = state.userLoginModel.roleId,
+              printFullText('RolId  saving successfully'),
+                  printFullText('RolId is ${state.userLoginModel.roleId}'),
               });
 
             }
