@@ -27,7 +27,7 @@ class PatientProfileScreen extends StatelessWidget {
         return SafeArea(
           child: Scaffold(
             body: ConditionalBuilder(
-              condition: state is ! LoadingGetDataUserState ,
+              condition: state is ! LoadingGetPatientDataState ,
               builder: (BuildContext context) => Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: SingleChildScrollView(
@@ -83,7 +83,7 @@ class PatientProfileScreen extends StatelessWidget {
               validate: null,
               enabled: false,
               type: null,
-              label: PatientCubit.get(context).get1.data[0].username,
+              label: PatientCubit.get(context).getPatientDataModel.data[0].username,
             ),
           ),
         ],
@@ -107,7 +107,7 @@ class PatientProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label: PatientCubit.get(context).get1.data[0].email
+                label: PatientCubit.get(context).getPatientDataModel.data[0].email
             ),
           ),
         ],
@@ -131,7 +131,7 @@ class PatientProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label: '${PatientCubit.get(context).get1.data[0].phoneNum}',
+                label: '${PatientCubit.get(context).getPatientDataModel.data[0].phoneNum}',
             ),
           ),
         ],
@@ -155,7 +155,7 @@ class PatientProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label: '${PatientCubit.get(context).get1.data[0].ssn}',
+                label: '${PatientCubit.get(context).getPatientDataModel.data[0].ssn}',
             ),
           ),
         ],
@@ -179,7 +179,7 @@ class PatientProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label: PatientCubit.get(context).get1.data[0].job,
+                label: PatientCubit.get(context).getPatientDataModel.data[0].job,
             ),
           ),
         ],
@@ -203,7 +203,7 @@ class PatientProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label: PatientCubit.get(context).get1.data[0].address,
+                label: PatientCubit.get(context).getPatientDataModel.data[0].address,
             ),
           ),
         ],
@@ -227,7 +227,7 @@ class PatientProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label: PatientCubit.get(context).get1.data[0].dob
+                label: PatientCubit.get(context).getPatientDataModel.data[0].dob
             ),
           ),
         ],
@@ -251,7 +251,7 @@ class PatientProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label:PatientCubit.get(context).get1.data[0].gender
+                label:PatientCubit.get(context).getPatientDataModel.data[0].gender
             ),
           ),
         ],

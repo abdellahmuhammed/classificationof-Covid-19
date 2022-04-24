@@ -3,15 +3,12 @@ import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
 import 'package:finalproject/modules/PatientScreens/PatientProfile/PatientProfile.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_cubit.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_state.dart';
-import 'package:finalproject/modules/Screens/LoginScreen/Login_Screen.dart';
 import 'package:finalproject/shared/component.dart';
-import 'package:finalproject/shared/local/catchhelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeLayoutScreen extends StatelessWidget {
   const HomeLayoutScreen({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<PatientCubit, PatientStates>(
@@ -33,8 +30,8 @@ class HomeLayoutScreen extends StatelessWidget {
               condition: true,
             builder: (BuildContext context)=> defultDrawer(
               context,
-              cubit.get1.data[0].username,
-              cubit.get1.data[0].phoneNum,
+              cubit.getPatientDataModel.data[0].username,
+              cubit.getPatientDataModel.data[0].phoneNum,
               PatientProfileScreen(),
             ),
             fallback: (BuildContext context)=> const Center(child:CircularProgressIndicator(),),

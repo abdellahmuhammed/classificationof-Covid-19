@@ -33,7 +33,7 @@ class PatientDetails extends StatelessWidget {
         return SafeArea(
           child: Scaffold(
             body: ConditionalBuilder(
-              condition: cubit.getInfectedUser != null && PatientCubit.get(context).get1 != null ,
+              condition: cubit.getInfectedUser != null && PatientCubit.get(context).getPatientDataModel != null ,
               builder: (BuildContext context) => Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: SingleChildScrollView(
@@ -198,7 +198,7 @@ class PatientDetails extends StatelessWidget {
                       validate: null,
                     enabled: false,
                     type: null,
-                    label: '${PatientCubit.get(context).get1.data[0].ssn}',
+                    label: '${PatientCubit.get(context).getPatientDataModel.data[0].ssn}',
                 ),
               ),
             ],
@@ -222,7 +222,7 @@ class PatientDetails extends StatelessWidget {
                       validate: null,
                     enabled: false,
                     type: null,
-                    label: '${PatientCubit.get(context).get1.data[0].ssn}'
+                    label: '${PatientCubit.get(context).getPatientDataModel.data[0].ssn}'
                 ),
               ),
             ],
@@ -246,7 +246,7 @@ class PatientDetails extends StatelessWidget {
                       validate: null,
                     enabled: false,
                     type: null,
-                    label: '${PatientCubit.get(context).get1.data[0].address}'
+                    label: '${PatientCubit.get(context).getPatientDataModel.data[0].address}'
                 ),
               ),
             ],
@@ -270,7 +270,7 @@ class PatientDetails extends StatelessWidget {
                       validate: null,
                     enabled: false,
                     type: null,
-                    label: '${PatientCubit.get(context).get1.data[0].dob}'
+                    label: '${PatientCubit.get(context).getPatientDataModel.data[0].dob}'
                 ),
               ),
             ],
@@ -294,7 +294,7 @@ class PatientDetails extends StatelessWidget {
                       validate: null,
                     enabled: false,
                     type: null,
-                    label: '${PatientCubit.get(context).get1.data[0].gender}'
+                    label: '${PatientCubit.get(context).getPatientDataModel.data[0].gender}'
                 ),
               ),
             ],

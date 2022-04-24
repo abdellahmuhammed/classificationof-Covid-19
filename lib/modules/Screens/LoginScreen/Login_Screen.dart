@@ -47,7 +47,7 @@ class LoginScreen extends StatelessWidget {
                   } else if (state.userLoginModel.roleId == 3) {
                     NavigateAndRemove(context, const DoctorHomeLayoutScreen());
                   } else if (state.userLoginModel.roleId == 4) {
-                    NavigateAndRemove(context, const PatientHomeLayoutScreen());
+                    NavigateAndRemove(context,  PatientHomeLayoutScreen());
                   } else if (state.userLoginModel.roleId == 5) {
                     NavigateAndRemove(context, const ParamedicHomeLayoutScreen());
                   }

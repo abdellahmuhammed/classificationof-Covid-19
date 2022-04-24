@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 @immutable
 abstract class PatientStates {}
 
-class Covid19AppInitial extends PatientStates {}
+class PatientInitial extends PatientStates {}
 class ChangeShowPasswordState extends PatientStates {}
 class ChangeBottomNavBarState extends PatientStates {}
 
 // get PatientProfile
 
-class LoadingGetDataUserState extends PatientStates{}
-class GetDataUserStateSuccess extends PatientStates{}
-class GetDataUserStateError extends PatientStates{}
+class LoadingGetPatientDataState extends PatientStates{}
+class GetPatientDataStateSuccess extends PatientStates{}
+class GetPatientDataStateError extends PatientStates{}
 
 
 // update PatientProfile

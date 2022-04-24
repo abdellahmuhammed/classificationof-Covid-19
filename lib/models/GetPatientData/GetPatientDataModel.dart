@@ -1,10 +1,10 @@
-class GetUserDataModel {
+class GetPatientDataModel {
   List<Data> data;
   bool success;
 
-  GetUserDataModel({this.data, this.success});
+  GetPatientDataModel({this.data, this.success});
 
-  GetUserDataModel.fromJson(Map<String, dynamic> json) {
+  GetPatientDataModel.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {

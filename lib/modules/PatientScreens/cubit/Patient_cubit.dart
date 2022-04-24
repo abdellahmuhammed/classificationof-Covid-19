@@ -1,58 +1,25 @@
 // ignore_for_file: non_constant_identifier_names, prefer_typing_uninitialized_variables
 
 import 'package:dio/dio.dart';
-import 'package:finalproject/models/GetDataUser/GetUserDataModel.dart';
-import 'package:finalproject/models/userLogin/UserLoginModel.dart';
-import 'package:finalproject/modules/PatientScreens/PatientHomeLayout.dart';
+import 'package:finalproject/models/GetPatientData/GetPatientDataModel.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_state.dart';
-import 'package:finalproject/modules/PatientScreens/statistics%20Screen/statistics%20Screen.dart';
-
 import 'package:finalproject/shared/Constant.dart';
-
 import 'package:finalproject/shared/remote/DioApi.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../shared/Constant.dart';
 
 class PatientCubit extends Cubit<PatientStates> {
-  PatientCubit() : super(Covid19AppInitial());
+  PatientCubit() : super(PatientInitial());
 
   static PatientCubit get(context) => BlocProvider.of(context);
 
-  UserLoginData userLoginModel;
-
-  List<Widget> screens = [
-    const PatientHomeLayoutScreen(),
-    StatisticsScreen(),
-  ];
-
-  List<String> titles = [
-    'Home ',
-    'Statistics',
-  ];
-
-  List<BottomNavigationBarItem> bottom = [
-    const BottomNavigationBarItem(
-        icon: Icon(Icons.auto_stories), label: 'home'),
-    const BottomNavigationBarItem(
-        icon: Icon(Icons.baby_changing_station_sharp), label: 'Statistics'),
-  ];
-
-  var currentIndex = 0;
-
-  void ChangeBottomNavBar(index) {
-    currentIndex = index;
-    emit(ChangeBottomNavBarState());
-  }
 
 // to get data
-  List <dynamic> gett =[];
 
-  GetUserDataModel get1;
+  GetPatientDataModel getPatientDataModel;
 
   void getUserProfile( ) {
-    emit(LoadingGetDataUserState());
+    emit(LoadingGetPatientDataState());
     DioApi.PostData(
       url: 'api/users',
       data: FormData.fromMap({
@@ -62,7 +29,10 @@ class PatientCubit extends Cubit<PatientStates> {
       }),
       token: token,
     ).then((value) {
-     get1=GetUserDataModel.fromJson(value.data);
+      getPatientDataModel=GetPatientDataModel.fromJson(value.data);
+
+
+
      // ابقي شوف حوار الليست تو ماب
 
      // gett = value.data;
@@ -71,14 +41,14 @@ class PatientCubit extends Cubit<PatientStates> {
      //   })
      // }) as Map<String, dynamic>;
       printFullText(' data successfully ');
-      printFullText(' success is ${get1.success}');
-      printFullText(' success is ${get1.data[0].iD}');
-      printFullText(' success is ${get1.data[0].username}');
-      printFullText(' success is ${get1.data[0].phoneNum}');
-      emit(GetDataUserStateSuccess());
+      printFullText(' success is ${getPatientDataModel.success}');
+      printFullText(' success is ${getPatientDataModel.data[0].iD}');
+      printFullText(' success is ${getPatientDataModel.data[0].username}');
+      printFullText(' success is ${getPatientDataModel.data[0].phoneNum}');
+      emit(GetPatientDataStateSuccess());
     }).catchError((onError) {
       printFullText('Happened Error when get data ${onError.toString()}');
-      emit(GetDataUserStateError());
+      emit(GetPatientDataStateError());
 
     });
   }
@@ -103,7 +73,7 @@ class PatientCubit extends Cubit<PatientStates> {
   //         'role_id': role_id,
   //       })).then((value) {
   //     printFullText(value.data.toString());
-  //     get1 = GetUserDataModel.fromJson(value.data);
+  //     getPatientDataModel = GetUserDataModel.fromJson(value.data);
   //     printFullText('update successfully');
   //     emit(UpdateDataUserStateSuccess());
   //   }).catchError((onError) {
