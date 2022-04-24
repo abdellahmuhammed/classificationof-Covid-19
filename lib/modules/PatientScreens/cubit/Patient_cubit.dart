@@ -47,8 +47,10 @@ class PatientCubit extends Cubit<PatientStates> {
   }
 
 // to get data
+  List <dynamic> gett =[];
 
   GetUserDataModel get1;
+
   void getUserProfile( ) {
     emit(LoadingGetDataUserState());
     DioApi.PostData(
@@ -61,6 +63,13 @@ class PatientCubit extends Cubit<PatientStates> {
       token: token,
     ).then((value) {
      get1=GetUserDataModel.fromJson(value.data);
+     // ابقي شوف حوار الليست تو ماب
+
+     // gett = value.data;
+     // Map  <String ,dynamic> mmm = gett.map((e) =>{
+     //   e.forEach((mmm, value) {
+     //   })
+     // }) as Map<String, dynamic>;
       printFullText(' data successfully ');
       printFullText(' success is ${get1.success}');
       printFullText(' success is ${get1.data[0].iD}');

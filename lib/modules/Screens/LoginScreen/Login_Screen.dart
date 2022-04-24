@@ -31,7 +31,7 @@ class LoginScreen extends StatelessWidget {
               CatchHelper.saveData(
                   key: 'token', value: state.userLoginModel.token).then((value) => {
                 token = state.userLoginModel.token,
-                printFullText('token  saving successfully'),
+                printFullText('token saving successfully'),
                 printFullText('token is ${state.userLoginModel.token}'),
               });
               // saving user id

@@ -6,6 +6,7 @@ import 'package:finalproject/modules/DoctorScreens/DoctorProfileScreen/DoctorPro
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_state.dart';
 import 'package:finalproject/modules/DoctorScreens/patient%20details/patient%20details.dart';
+import 'package:finalproject/modules/PatientScreens/cubit/Patient_cubit.dart';
 import 'package:finalproject/modules/Screens/LoginScreen/Login_Screen.dart';
 import 'package:finalproject/shared/component.dart';
 import 'package:finalproject/shared/local/catchhelper.dart';
@@ -25,7 +26,7 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(),
             drawer: ConditionalBuilder(
-              condition: true,
+              condition: state is ! DoctorLoadingState,
               builder: (BuildContext context)=> defultDrawer(
                 context,
                 cubit.getInfectedUser.data[0].doctor,
@@ -45,6 +46,12 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
               ),
               fallback: (BuildContext context)=> const Center(child: CircularProgressIndicator(),),
 
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                PatientCubit.get(context).getUserProfile();
+              },
+              child: Icon(Icons.add)
             ),
           );
         });

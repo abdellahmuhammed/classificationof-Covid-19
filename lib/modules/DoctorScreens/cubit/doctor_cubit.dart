@@ -23,6 +23,7 @@ class DoctorCubit extends Cubit<DoctorState> {
   }
 
   InfectedModel getInfectedUser ;
+
   void getLessPro(){
     emit(DoctorLoadingState());
     DioApi.PostData(
