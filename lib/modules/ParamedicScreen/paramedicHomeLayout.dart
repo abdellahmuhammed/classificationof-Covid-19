@@ -6,9 +6,7 @@ class ParamedicHomeLayoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(''),
-      ),
+      appBar: AppBar(),
       body: const Center(
           child:  Text('ParamedicHomeLayoutScreen Screen ')
       ),

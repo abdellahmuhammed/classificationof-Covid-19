@@ -16,30 +16,25 @@ class RadiologistHomeLayoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<RadiologistCubit, RadiologistState>(
-  listener: (context, state) {
-    // TODO: implement listener
-  },
-  builder: (context, state) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('RadiologistHomeLayoutScreen'),
-      ),
-      body:SizedBox(
-          width: 220,
-          child: ConditionalBuilder(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(),
+          drawer: ConditionalBuilder(
             condition: true,
             builder: (BuildContext context)=> defultDrawer(
               context,
-              'dddd',
-             12355,
+              'cubit.getInfectedUser.data[0].doctor',
+              4568,
               DoctorProfileScreen(),
             ),
-            fallback: (BuildContext context)=> const Center(
+            fallback: (BuildContext context) => const Center(
               child:CircularProgressIndicator(),),
           ),
-    ),
+        );
+      },
     );
-  },
-);
   }
 }
