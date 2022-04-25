@@ -54,6 +54,8 @@ class UserLoginCubit extends Cubit<UserLoginState> {
         }),
     ).then((value) {
       userLoginModel = UserLoginData.fromJson(value.data);
+
+      CatchHelper.saveData(key: 'check', value: value.data['user_id']);
       emit(UserLoginSuccess(userLoginModel));
     }).catchError((onError)
     {

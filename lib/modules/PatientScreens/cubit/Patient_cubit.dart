@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:finalproject/models/GetPatientData/GetPatientDataModel.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_state.dart';
 import 'package:finalproject/shared/Constant.dart';
+import 'package:finalproject/shared/local/catchhelper.dart';
 import 'package:finalproject/shared/remote/DioApi.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../shared/Constant.dart';
@@ -13,8 +14,9 @@ class PatientCubit extends Cubit<PatientStates> {
 
   static PatientCubit get(context) => BlocProvider.of(context);
 
-
+var check=CatchHelper.getData(key: 'check');
 // to get data
+  List <dynamic>Id=[];
 
   GetPatientDataModel getPatientDataModel;
 
@@ -25,7 +27,7 @@ class PatientCubit extends Cubit<PatientStates> {
       data: FormData.fromMap({
         'action': 'fetch',
         'api_section': 'users',
-        'user_id':userid,
+        'user_id':check,
       }),
       token: token,
     ).then((value) {
@@ -35,16 +37,17 @@ class PatientCubit extends Cubit<PatientStates> {
 
      // ابقي شوف حوار الليست تو ماب
 
-     // gett = value.data;
-     // Map  <String ,dynamic> mmm = gett.map((e) =>{
-     //   e.forEach((mmm, value) {
-     //   })
-     // }) as Map<String, dynamic>;
+
       printFullText(' data successfully ');
-      printFullText(' success is ${getPatientDataModel.success}');
-      printFullText(' success is ${getPatientDataModel.data[0].iD}');
-      printFullText(' success is ${getPatientDataModel.data[0].username}');
-      printFullText(' success is ${getPatientDataModel.data[0].phoneNum}');
+      for(int i=0;i<getPatientDataModel.data.length;i++){
+        var id =getPatientDataModel.data[i].username;
+        Id=[id];
+
+      print(Id);
+      //printFullText(' success is ${getPatientDataModel.success}');
+      //printFullText(' success is ${getPatientDataModel.data[i].iD}');
+      //printFullText(' success is ${getPatientDataModel.data[i].username}');
+      printFullText(' Phone num is ${getPatientDataModel.data[i].phoneNum}');}
       emit(GetPatientDataStateSuccess());
     }).catchError((onError) {
       printFullText('Happened Error when get data ${onError.toString()}');

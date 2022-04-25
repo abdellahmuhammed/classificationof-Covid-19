@@ -40,7 +40,7 @@ class LoginScreen extends StatelessWidget {
               {
                 printFullText('UsrId  saving successfully');
                 printFullText('userId is ${state.userLoginModel.userId}');
-                userid = state.userLoginModel.userId;
+                //userid = state.userLoginModel.userId;
                 if (state.userLoginModel.userId != null) {
                   if (state.userLoginModel.roleId == 2) {
                     NavigateAndRemove(context, const RadiologistHomeLayoutScreen());

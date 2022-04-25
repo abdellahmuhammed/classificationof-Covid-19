@@ -35,6 +35,10 @@ List <dynamic> patientList =[];
             const Center(
               child: CircularProgressIndicator(),),
           ),
+          floatingActionButton: FloatingActionButton(child: Icon(Icons.add),onPressed: (){
+            PatientCubit.get(context).getUserProfile();
+
+          },),
         );
       },
     );

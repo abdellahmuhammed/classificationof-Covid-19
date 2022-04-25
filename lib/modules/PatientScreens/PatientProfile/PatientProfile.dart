@@ -179,7 +179,7 @@ class PatientProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label: PatientCubit.get(context).getPatientDataModel.data[0].job,
+                label:'66',
             ),
           ),
         ],
@@ -203,7 +203,7 @@ class PatientProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label: PatientCubit.get(context).getPatientDataModel.data[0].address,
+                label: '8',
             ),
           ),
         ],
@@ -227,7 +227,7 @@ class PatientProfileScreen extends StatelessWidget {
                 validate: null,
                 enabled: false,
                 type: null,
-                label: PatientCubit.get(context).getPatientDataModel.data[0].dob
+                label: '7'
             ),
           ),
         ],
