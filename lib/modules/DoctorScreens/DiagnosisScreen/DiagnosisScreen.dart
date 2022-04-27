@@ -76,45 +76,6 @@ class DiagnosisScreen extends StatelessWidget {
                     onChanged: (index) {
                       DoctorCubit.get(context).changeRadoIndex(index);
                     }),
-                // Padding(
-                //   padding: const EdgeInsets.all(15.0),
-                //   child: Row(
-                //     children: [
-                //       Text(
-                //         ' Select diagnosis',
-                //         style: Theme.of(context).textTheme.bodyText2,
-                //       ),
-                //       const SizedBox(
-                //         width: 40,
-                //       ),
-                //       DropdownButton2(
-                //         hint: Text('Select here',
-                //             style: Theme.of(context).textTheme.bodyText2),
-                //         items: DoctorCubit.get(context)
-                //             .items
-                //             .map(
-                //               (item) => DropdownMenuItem<String>(
-                //                 value: item,
-                //                 child: Text(
-                //                   item,
-                //                   style: const TextStyle(
-                //                     fontSize: 14,
-                //                   ),
-                //                 ),
-                //               ),
-                //             )
-                //             .toList(),
-                //         value: DoctorCubit.get(context).selectedValue,
-                //         onChanged: (index) {
-                //           DoctorCubit.get(context).changeRadoIndexIndex(index);
-                //         },
-                //         buttonHeight: 40,
-                //         buttonWidth: 140,
-                //         itemHeight: 40,
-                //       ),
-                //     ],
-                //   ),
-                // ),
                 const SizedBox(
                   height: 15,
                 ),
@@ -138,30 +99,4 @@ class DiagnosisScreen extends StatelessWidget {
       },
     );
   }
-
-  Widget buildRadioButton({context}) => Column(
-        children: [
-          RadioListTile(
-              title: const Text('covid19'),
-              value: 1,
-              groupValue: DoctorCubit.get(context).value,
-              onChanged: (index) {
-                DoctorCubit.get(context).changeRadoIndex(index);
-              }),
-          RadioListTile(
-              title: const Text('covid19'),
-              value: 2,
-              groupValue: DoctorCubit.get(context).value,
-              onChanged: (index) {
-                DoctorCubit.get(context).changeRadoIndex(index);
-              }),
-          RadioListTile(
-              title: const Text('covid19'),
-              value: 3,
-              groupValue: DoctorCubit.get(context).value,
-              onChanged: (index) {
-                DoctorCubit.get(context).changeRadoIndex(index);
-              }),
-        ],
-      );
 }
