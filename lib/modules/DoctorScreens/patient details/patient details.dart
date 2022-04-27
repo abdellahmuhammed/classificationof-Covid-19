@@ -294,7 +294,7 @@ class PatientDetails extends StatelessWidget {
                       validate: null,
                     enabled: false,
                     type: null,
-                    label: '${PatientCubit.get(context).getPatientDataModel.data[0].gender}'
+                    label: PatientCubit.get(context).getPatientDataModel.data[0].gender
                 ),
               ),
             ],
@@ -305,32 +305,4 @@ class PatientDetails extends StatelessWidget {
         ],
       );
 
-  Widget buildRadioButtonItem({context}) => DropdownButton2(
-        hint: Text(
-          'Select diagnosis',
-          style: TextStyle(
-            fontSize: 14,
-            color: Theme.of(context).hintColor,
-          ),
-        ),
-        items: DoctorCubit.get(context)
-            .items
-            .map((item) => DropdownMenuItem<String>(
-                  value: item,
-                  child: Text(
-                    item,
-                    style: const TextStyle(
-                      fontSize: 14,
-                    ),
-                  ),
-                ))
-            .toList(),
-        value: DoctorCubit.get(context)..selectedValue,
-        onChanged: (value) {
-          DoctorCubit.get(context).selectedValue = value as String;
-        },
-        buttonHeight: 40,
-        buttonWidth: 140,
-        itemHeight: 40,
-      );
 }

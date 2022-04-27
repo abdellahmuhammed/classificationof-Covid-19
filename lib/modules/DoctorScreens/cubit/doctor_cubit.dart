@@ -10,18 +10,6 @@ class DoctorCubit extends Cubit<DoctorState> {
   DoctorCubit() : super(DoctorInitial());
   static DoctorCubit get(context)=>BlocProvider.of(context);
 
-
-  String selectedValue;
-  List<String> items = [
-    'covid19',
-    'Uninfected',
-    'Pneumonia',
-  ];
-
-  void changeRadioIndex(index){
-    selectedValue = index as String;
-    emit(ChangeRadioState());
-  }
 List<dynamic>PatinetId=[];
   InfectedModel getInfectedUser ;
 
@@ -85,5 +73,12 @@ void getPatientData(){
 }
 
 
+int value;
+
+void changeRadoIndex(index){
+
+  value = index;
+  emit(ChangeRadioState());
+}
 
 }

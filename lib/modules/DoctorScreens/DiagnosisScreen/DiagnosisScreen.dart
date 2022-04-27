@@ -60,21 +60,21 @@ class DiagnosisScreen extends StatelessWidget {
                     value: 1,
                     groupValue: DoctorCubit.get(context).value,
                     onChanged: (index) {
-                      DoctorCubit.get(context).changeRadio(index);
+                      DoctorCubit.get(context).changeRadoIndex(index);
                     }),
                 RadioListTile(
                     title: const Text('Uninfected'),
                     value: 2,
                     groupValue: DoctorCubit.get(context).value,
                     onChanged: (index) {
-                      DoctorCubit.get(context).changeRadio(index);
+                      DoctorCubit.get(context).changeRadoIndex(index);
                     }),
                 RadioListTile(
                     title: const Text('Pneumonia'),
                     value: 3,
                     groupValue: DoctorCubit.get(context).value,
                     onChanged: (index) {
-                      DoctorCubit.get(context).changeRadio(index);
+                      DoctorCubit.get(context).changeRadoIndex(index);
                     }),
                 // Padding(
                 //   padding: const EdgeInsets.all(15.0),
@@ -106,7 +106,7 @@ class DiagnosisScreen extends StatelessWidget {
                 //             .toList(),
                 //         value: DoctorCubit.get(context).selectedValue,
                 //         onChanged: (index) {
-                //           DoctorCubit.get(context).changeRadioIndex(index);
+                //           DoctorCubit.get(context).changeRadoIndexIndex(index);
                 //         },
                 //         buttonHeight: 40,
                 //         buttonWidth: 140,
@@ -146,21 +146,21 @@ class DiagnosisScreen extends StatelessWidget {
               value: 1,
               groupValue: DoctorCubit.get(context).value,
               onChanged: (index) {
-                DoctorCubit.get(context).changeRadio(index);
+                DoctorCubit.get(context).changeRadoIndex(index);
               }),
           RadioListTile(
               title: const Text('covid19'),
               value: 2,
               groupValue: DoctorCubit.get(context).value,
               onChanged: (index) {
-                DoctorCubit.get(context).changeRadio(index);
+                DoctorCubit.get(context).changeRadoIndex(index);
               }),
           RadioListTile(
               title: const Text('covid19'),
               value: 3,
               groupValue: DoctorCubit.get(context).value,
               onChanged: (index) {
-                DoctorCubit.get(context).changeRadio(index);
+                DoctorCubit.get(context).changeRadoIndex(index);
               }),
         ],
       );
