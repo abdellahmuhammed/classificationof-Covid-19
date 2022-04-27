@@ -16,7 +16,7 @@ class PatientCubit extends Cubit<PatientStates> {
 
 var check=CatchHelper.getData(key: 'check');
 // to get data
-  List <dynamic>Id=[];
+//   List <dynamic>Id=[];
 
   GetPatientDataModel getPatientDataModel;
 
@@ -31,26 +31,19 @@ var check=CatchHelper.getData(key: 'check');
       }),
       token: token,
     ).then((value) {
-      getPatientDataModel=GetPatientDataModel.fromJson(value.data);
-
-
-
-     // ابقي شوف حوار الليست تو ماب
-
-
+      getPatientDataModel = GetPatientDataModel.fromJson(value.data);
       printFullText(' data successfully ');
-      for(int i=0;i<getPatientDataModel.data.length;i++){
-        var id =getPatientDataModel.data[i].username;
-        Id=[id];
 
-      print(Id);
-      //printFullText(' success is ${getPatientDataModel.success}');
-      //printFullText(' success is ${getPatientDataModel.data[i].iD}');
-      //printFullText(' success is ${getPatientDataModel.data[i].username}');
-      printFullText(' Phone num is ${getPatientDataModel.data[i].phoneNum}');}
+      // for(int i=0;i<getPatientDataModel.data.length;i++){
+      //   var id =getPatientDataModel.data[i].username;
+      //   Id=[id];
+      // print(Id);
+      // printFullText(' Phone num is ${getPatientDataModel.data[0].phoneNum}');
+      // }
+
       emit(GetPatientDataStateSuccess());
-    }).catchError((onError) {
-      printFullText('Happened Error when get data ${onError.toString()}');
+    }).catchError(( onError) {
+      printFullText('Happened Error when get data ${ onError.toString()}');
       emit(GetPatientDataStateError());
 
     });

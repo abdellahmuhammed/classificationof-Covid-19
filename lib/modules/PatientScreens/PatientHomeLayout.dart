@@ -19,25 +19,23 @@ List <dynamic> patientList =[];
       listener: (context, state) {
         },
       builder: (context, state) {
-
         return Scaffold(
           appBar: AppBar(),
           drawer: ConditionalBuilder(
-            condition: true,
+            condition: state is ! LoadingGetPatientDataState,
             builder: (BuildContext context) =>
                 defultDrawer(
                   context,
-                  'cubit.getInfectedUser.data[0].doctor',
-                  1234563,
+                  PatientCubit.get(context).getPatientDataModel.data[0].username ,
+                  PatientCubit.get(context).getPatientDataModel.data[0].phoneNum,
                   PatientProfileScreen(),
                 ),
             fallback: (BuildContext context) =>
             const Center(
               child: CircularProgressIndicator(),),
           ),
-          floatingActionButton: FloatingActionButton(child: Icon(Icons.add),onPressed: (){
+          floatingActionButton: FloatingActionButton(child: const Icon(Icons.add),onPressed: (){
             PatientCubit.get(context).getUserProfile();
-
           },),
         );
       },

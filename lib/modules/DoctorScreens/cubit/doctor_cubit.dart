@@ -17,10 +17,6 @@ class DoctorCubit extends Cubit<DoctorState> {
     'Pneumonia',
   ];
 
-  void changeRadioIndex(index){
-    selectedValue = index as String;
-    emit(ChangeRadioState());
-  }
 
   InfectedModel getInfectedUser ;
 
@@ -48,7 +44,12 @@ class DoctorCubit extends Cubit<DoctorState> {
     
   }
 
+  int value ;
 
+  void changeRadio(index){
+    value = index;
+    emit(ChangeRadioState());
+  }
 
 
 }

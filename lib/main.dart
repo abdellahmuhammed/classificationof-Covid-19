@@ -1,5 +1,6 @@
 import 'package:finalproject/MyBlocObserver.dart';
 import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
+import 'package:finalproject/modules/DoctorScreens/DiagnosisScreen/DiagnosisScreen.dart';
 import 'package:finalproject/modules/DoctorScreens/DoctorHomelayoutScreen.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_cubit.dart';
 import 'package:finalproject/modules/ParamedicScreen/cubit/paramedic_cubit.dart';
@@ -10,6 +11,7 @@ import 'package:finalproject/modules/RadiologistScreen/RadiologistHomeLayout.dar
 import 'package:finalproject/modules/RadiologistScreen/cubit/radiologist_cubit.dart';
 import 'package:finalproject/modules/Screens/LoginScreen/Login_Screen.dart';
 import 'package:finalproject/modules/Screens/OnBoardingScreen/OnBoardingScreen.dart';
+import 'package:finalproject/modules/Screens/Test/Test.dart';
 import 'package:finalproject/shared/Constant.dart';
 import 'package:finalproject/shared/local/catchhelper.dart';
 import 'package:finalproject/shared/remote/DioApi.dart';
@@ -120,7 +122,7 @@ class MyApp extends StatelessWidget {
                   ) {
                 final bool connected = connectivity != ConnectivityResult.none;
                 if (connected) {
-                  return startWidget;
+                  return  DiagnosisScreen();
                 } else {
                   return noInternetBuilder(context);
                 }

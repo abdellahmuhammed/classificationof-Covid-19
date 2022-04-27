@@ -1,6 +1,5 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:finalproject/modules/DoctorScreens/DoctorHomelayoutScreen.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_state.dart';
@@ -9,20 +8,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DiagnosisScreen extends StatelessWidget {
-   DiagnosisScreen({Key key}) : super(key: key);
+  DiagnosisScreen({Key key}) : super(key: key);
+
   var userNameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-  create: (context) => DoctorCubit(),
-  child: BlocConsumer<DoctorCubit, DoctorState>(
-  listener: (context, state) {
-    // TODO: implement listener
-  },
-  builder: (context, state) {
-    return SafeArea(
+    return BlocConsumer<DoctorCubit, DoctorState>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        return SafeArea(
           child: Scaffold(
             body: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.network(
                   'https://student.valuxapps.com/storage/uploads/banners/1619472351ITAM5.3bb51c97376281.5ec3ca8c1e8c5.jpg',
@@ -55,61 +55,113 @@ class DiagnosisScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Row(
-                    children: [
-                      Text(
-                      ' Select diagnosis',
-                      style: Theme.of(context).textTheme.bodyText2,
-                    ),
-                      const SizedBox(width: 40,),
-                      DropdownButton2(
-                        hint: Text('Select here',
-                            style: Theme.of(context).textTheme.bodyText2),
-                        items: DoctorCubit.get(context)
-                            .items
-                            .map(
-                              (item) => DropdownMenuItem<String>(
-                                value: item,
-                                child: Text(
-                                  item,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ),
-                            )
-                            .toList(),
-                        value: DoctorCubit.get(context).selectedValue,
-                        onChanged: (index) {
-                          DoctorCubit.get(context).changeRadioIndex(index);
-                        },
-                        buttonHeight: 40,
-                        buttonWidth: 140,
-                        itemHeight: 40,
-                      ),
-                    ],
-                  ),
+                RadioListTile(
+                    title: const Text('covid19'),
+                    value: 1,
+                    groupValue: DoctorCubit.get(context).value,
+                    onChanged: (index) {
+                      DoctorCubit.get(context).changeRadio(index);
+                    }),
+                RadioListTile(
+                    title: const Text('Uninfected'),
+                    value: 2,
+                    groupValue: DoctorCubit.get(context).value,
+                    onChanged: (index) {
+                      DoctorCubit.get(context).changeRadio(index);
+                    }),
+                RadioListTile(
+                    title: const Text('Pneumonia'),
+                    value: 3,
+                    groupValue: DoctorCubit.get(context).value,
+                    onChanged: (index) {
+                      DoctorCubit.get(context).changeRadio(index);
+                    }),
+                // Padding(
+                //   padding: const EdgeInsets.all(15.0),
+                //   child: Row(
+                //     children: [
+                //       Text(
+                //         ' Select diagnosis',
+                //         style: Theme.of(context).textTheme.bodyText2,
+                //       ),
+                //       const SizedBox(
+                //         width: 40,
+                //       ),
+                //       DropdownButton2(
+                //         hint: Text('Select here',
+                //             style: Theme.of(context).textTheme.bodyText2),
+                //         items: DoctorCubit.get(context)
+                //             .items
+                //             .map(
+                //               (item) => DropdownMenuItem<String>(
+                //                 value: item,
+                //                 child: Text(
+                //                   item,
+                //                   style: const TextStyle(
+                //                     fontSize: 14,
+                //                   ),
+                //                 ),
+                //               ),
+                //             )
+                //             .toList(),
+                //         value: DoctorCubit.get(context).selectedValue,
+                //         onChanged: (index) {
+                //           DoctorCubit.get(context).changeRadioIndex(index);
+                //         },
+                //         buttonHeight: 40,
+                //         buttonWidth: 140,
+                //         itemHeight: 40,
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                const SizedBox(
+                  height: 15,
                 ),
-                const SizedBox(height: 15,),
                 Center(
                   child: defultMaterialButton(
-                      function: (){
-                        defaultFlutterToast(msg: 'Diagnosis done successfully', background: Colors.grey);
-                        NavigateAndRemove(context, const DoctorHomeLayoutScreen());
-                      },// هنا هيروح فين بالظبط
-                      text: 'Send' ,
-                    background: Colors.grey.withOpacity(.4),
-                    width: MediaQuery.of(context).size.width*.4
-                  ),
+                      function: () {
+                        defaultFlutterToast(
+                            msg: 'Diagnosis done successfully',
+                            background: Colors.grey);
+                        NavigateAndRemove(
+                            context, const DoctorHomeLayoutScreen());
+                      }, // هنا هيروح فين بالظبط
+                      text: 'Send',
+                      background: Colors.grey.withOpacity(.4),
+                      width: MediaQuery.of(context).size.width * .4),
                 ),
               ],
             ),
           ),
         );
-  },
-),
-);
+      },
+    );
   }
+
+  Widget buildRadioButton({context}) => Column(
+        children: [
+          RadioListTile(
+              title: const Text('covid19'),
+              value: 1,
+              groupValue: DoctorCubit.get(context).value,
+              onChanged: (index) {
+                DoctorCubit.get(context).changeRadio(index);
+              }),
+          RadioListTile(
+              title: const Text('covid19'),
+              value: 2,
+              groupValue: DoctorCubit.get(context).value,
+              onChanged: (index) {
+                DoctorCubit.get(context).changeRadio(index);
+              }),
+          RadioListTile(
+              title: const Text('covid19'),
+              value: 3,
+              groupValue: DoctorCubit.get(context).value,
+              onChanged: (index) {
+                DoctorCubit.get(context).changeRadio(index);
+              }),
+        ],
+      );
 }

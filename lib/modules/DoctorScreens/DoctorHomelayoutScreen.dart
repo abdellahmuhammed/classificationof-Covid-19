@@ -20,17 +20,17 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<DoctorCubit, DoctorState>(
-        listener: ((context, state) {}),
+        listener: (context, state) {},
         builder: (context, state) {
           var cubit= DoctorCubit.get(context);
           return Scaffold(
             appBar: AppBar(),
             drawer: ConditionalBuilder(
-              condition: state is ! DoctorLoadingState,
+              condition: PatientCubit.get(context).getPatientDataModel != null,
               builder: (BuildContext context)=> defultDrawer(
                 context,
-                cubit.getInfectedUser.data[0].doctor,
-                cubit.getInfectedUser.data[0].doctorId,
+                '${PatientCubit.get(context).getPatientDataModel.data[0].username}',
+                PatientCubit.get(context).getPatientDataModel.data[0].phoneNum,
                 DoctorProfileScreen(),
               ),
               fallback: (BuildContext context)=> const Center(
@@ -51,7 +51,7 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
               onPressed: () {
                 PatientCubit.get(context).getUserProfile();
               },
-              child: Icon(Icons.add)
+              child: const Icon(Icons.add)
             ),
           );
         });
@@ -197,4 +197,5 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
           ),
         ),
       );
+
 }

@@ -1,8 +1,11 @@
 // ignore_for_file: must_be_immutable, file_names
 
+import 'package:conditional_builder/conditional_builder.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_state.dart';
+import 'package:finalproject/modules/PatientScreens/cubit/Patient_cubit.dart';
+import 'package:finalproject/modules/PatientScreens/cubit/Patient_state.dart';
 import 'package:finalproject/shared/component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,37 +29,41 @@ class DoctorProfileScreen extends StatelessWidget {
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
-            body: Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15, top: 30),
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: MediaQuery.of(context).size.height * .16,
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
+            body:ConditionalBuilder(
+              condition: state is ! DoctorLoadingState && PatientCubit.get(context).getPatientDataModel != null,
+              builder: (BuildContext context) => Padding(
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 30),
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: MediaQuery.of(context).size.height * .16,
+                        width: double.infinity,
+                        decoration: const BoxDecoration(
                           // ct scan image
-                          image: DecorationImage(
-                              image: NetworkImage(
-                                  'https://student.valuxapps.com/storage/uploads/banners/1619472351ITAM5.3bb51c97376281.5ec3ca8c1e8c5.jpg'),
-                              fit: BoxFit.cover)),
-                    ),
-                    const SizedBox(
-                      height: 100,
-                    ),
-                    Text(
-                      'Personal Information',
-                      style: Theme.of(context).textTheme.bodyText1,
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    buildPersonalInformation(context),
-                  ],
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                    'https://student.valuxapps.com/storage/uploads/banners/1619472351ITAM5.3bb51c97376281.5ec3ca8c1e8c5.jpg'),
+                                fit: BoxFit.cover)),
+                      ),
+                      const SizedBox(
+                        height: 100,
+                      ),
+                      Text(
+                        'Personal Information',
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      buildPersonalInformation(context),
+                    ],
+                  ),
                 ),
               ),
+              fallback: (BuildContext context) => Container(),
             ),
           ),
         );
@@ -83,7 +90,7 @@ class DoctorProfileScreen extends StatelessWidget {
                   validate: null,
                   enabled: false,
                   type: null,
-                  label: 'Dr',
+                  label: PatientCubit.get(context).getPatientDataModel.data[0].username,
                 ),
               ),
             ],
@@ -107,7 +114,8 @@ class DoctorProfileScreen extends StatelessWidget {
                     validate: null,
                     enabled: false,
                     type: null,
-                    label: 'email'),
+                    label: PatientCubit.get(context).getPatientDataModel.data[0].email
+                ),
               ),
             ],
           ),
@@ -130,7 +138,8 @@ class DoctorProfileScreen extends StatelessWidget {
                     validate: null,
                     enabled: false,
                     type: null,
-                    label: 'phone'),
+                    label: '${PatientCubit.get(context).getPatientDataModel.data[0].phoneNum}'
+                ),
               ),
             ],
           ),
@@ -153,7 +162,8 @@ class DoctorProfileScreen extends StatelessWidget {
                     validate: null,
                     enabled: false,
                     type: null,
-                    label: 'National ID'),
+                    label: '${PatientCubit.get(context).getPatientDataModel.data[0].ssn}'
+                ),
               ),
             ],
           ),
@@ -176,7 +186,7 @@ class DoctorProfileScreen extends StatelessWidget {
                     validate: null,
                     enabled: false,
                     type: null,
-                    label: 'address'),
+                    label: 'oct'),
               ),
             ],
           ),

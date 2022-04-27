@@ -408,7 +408,7 @@ Widget defultDrawer(context,
               ),
               defaultTextButtonDrawer(
                   onPressed: () {
-                    CatchHelper.removeUserData(key: 'userid').then((value) {
+                    CatchHelper.removeUserData(key: 'check').then((value) {
                       CatchHelper.removeUserData(key: 'RolId');
                       CatchHelper.removeUserData(key: 'token');
 
