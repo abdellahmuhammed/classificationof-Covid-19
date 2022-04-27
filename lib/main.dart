@@ -122,7 +122,7 @@ class MyApp extends StatelessWidget {
                   ) {
                 final bool connected = connectivity != ConnectivityResult.none;
                 if (connected) {
-                  return  DiagnosisScreen();
+                  return  startWidget;
                 } else {
                   return noInternetBuilder(context);
                 }

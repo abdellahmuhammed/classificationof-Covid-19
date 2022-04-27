@@ -16,7 +16,7 @@ class DiagnosisScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<DoctorCubit, DoctorState>(
       listener: (context, state) {
-        // TODO: implement listener
+
       },
       builder: (context, state) {
         return SafeArea(

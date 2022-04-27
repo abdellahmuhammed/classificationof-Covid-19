@@ -1,16 +1,13 @@
 // ignore_for_file: file_names, unnecessary_string_interpolations
 
 import 'package:conditional_builder/conditional_builder.dart';
-import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
+import 'package:finalproject/modules/DoctorScreens/DiagnosisScreen/DiagnosisScreen.dart';
 import 'package:finalproject/modules/DoctorScreens/DoctorProfileScreen/DoctorProfileScreen.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_state.dart';
-import 'package:finalproject/modules/DoctorScreens/patient%20details/patient%20details.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_cubit.dart';
-import 'package:finalproject/modules/Screens/LoginScreen/Login_Screen.dart';
+import 'package:finalproject/modules/PatientScreens/cubit/Patient_state.dart';
 import 'package:finalproject/shared/component.dart';
-import 'package:finalproject/shared/local/catchhelper.dart';
-import 'package:finalproject/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -59,7 +56,7 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
 
   Widget buildHomeScreen({context, index }) => InkWell(
         onTap: () {
-          NavigateTo(context, PatientDetails());
+          NavigateTo(context, DiagnosisScreen());
         },
         child: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -103,99 +100,4 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
           ),
         ),
       );
-
-  Widget buildDrawer({context}) => SizedBox(
-        width: 220,
-        child: Drawer(
-          child: Column(
-            children: [
-              Container(
-                height: MediaQuery.of(context).size.height * .28,
-                width: double.infinity,
-                color: countainerColor,
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.only(top: 40, start: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const CircleAvatar(
-                            radius: 40.0,
-                            child:
-                                Image(image: AssetImage('assets/images/R.png')),
-                          ),
-                          IconButton(
-                              onPressed: () {
-                                DarkModeCubit.get(context).changeAppMode();
-                              },
-                              icon: const Icon(Icons.dark_mode)),
-                        ],
-                      ),
-                      const Spacer(),
-                      const Text('Classification of Covid_19'),
-                      const Text('01111111111111'),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 15.0,
-              ),
-              defaultTextButtonDrawer(
-                  onPressed: () {
-                    NavigateTo(context, DoctorProfileScreen());
-                  },
-                  icon: Icons.person,
-                  text: 'Profile'),
-              const SizedBox(
-                height: 10,
-              ),
-              TextButton(
-                onPressed: () {},
-                child: Row(
-                  children: const [
-                    Icon(Icons.language),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Text('Language'),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              TextButton(
-                onPressed: () {},
-                child: Row(
-                  children: const [
-                    Icon(Icons.phone),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Text('Connect With us'),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              defaultTextButtonDrawer(
-                  onPressed: () {
-                    CatchHelper.removeUserData(key: 'userid').then((value) {
-                      if (value) {
-                        NavigateAndRemove(context, LoginScreen());
-                      }
-                    });
-                  },
-                  icon: Icons.logout,
-                  text: 'Logout'),
-            ],
-          ),
-        ),
-      );
-
 }
