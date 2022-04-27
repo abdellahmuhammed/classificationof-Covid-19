@@ -49,7 +49,7 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
-                PatientCubit.get(context).getUserProfile();
+                DoctorCubit.get(context).getPatientData();
               },
               child: Icon(Icons.add)
             ),

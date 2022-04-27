@@ -12,3 +12,5 @@ class DoctorErrorState extends DoctorState{
 
   DoctorErrorState(this.Error);
 }
+class PatientLoadingState extends DoctorState{}
+class PatientSuccessState extends DoctorState{}
