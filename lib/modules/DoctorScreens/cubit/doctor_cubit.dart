@@ -1,8 +1,11 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:dio/dio.dart';
 import 'package:finalproject/models/GetPatientData/GetPatientDataModel.dart';
 import 'package:finalproject/models/infectedData/infectedModel.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_state.dart';
 import 'package:finalproject/shared/Constant.dart';
+import 'package:finalproject/shared/local/catchhelper.dart';
 import 'package:finalproject/shared/remote/DioApi.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,7 +26,7 @@ class DoctorCubit extends Cubit<DoctorState> {
         .then((value) {
       getInfectedUser = InfectedModel.fromJson(value.data);
       for (int i = 0; i < getInfectedUser.data.length; i++) {
-        PatinetId.add(getInfectedUser.data[i].patientId);
+        PatinetId.add(getInfectedUser.data[i].ctScans[0].infectedId);
       }
       printFullText('$PatinetId');
       printFullText('${getInfectedUser.data[0].patientId}');
@@ -68,6 +71,24 @@ class DoctorCubit extends Cubit<DoctorState> {
   void changeRadoIndex(index) {
     value = index;
     emit(ChangeRadioState());
+  }
+  var check=CatchHelper.getData(key: 'check');
+  
+  void addVoting(){
+    DioApi.PostData(url: 'api/voting_for_infection', data: FormData.fromMap({
+      'action':'add',
+      'infected_id':1,//حاول تحطها اندكس في البارميتر
+      'diagnose':'covid19',
+      'doctor_id':check
+
+
+
+    })).then((value){
+
+      print('send successfully:${value.data['success']}');
+    });
+    
+    
   }
 
 

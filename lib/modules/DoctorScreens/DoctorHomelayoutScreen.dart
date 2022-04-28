@@ -6,7 +6,6 @@ import 'package:finalproject/modules/DoctorScreens/DoctorProfileScreen/DoctorPro
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_state.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_cubit.dart';
-import 'package:finalproject/modules/PatientScreens/cubit/Patient_state.dart';
 import 'package:finalproject/shared/component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,7 +45,7 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
-                DoctorCubit.get(context).getPatientData();
+                DoctorCubit.get(context).addVoting();
               },
               child: const Icon(Icons.add)
             ),
