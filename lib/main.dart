@@ -1,7 +1,9 @@
+import 'package:date_format/date_format.dart';
 import 'package:finalproject/MyBlocObserver.dart';
 import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/DiagnosisScreen/DiagnosisScreen.dart';
 import 'package:finalproject/modules/DoctorScreens/DoctorHomelayoutScreen.dart';
+import 'package:finalproject/modules/DoctorScreens/anyhabd/detils.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_cubit.dart';
 import 'package:finalproject/modules/ParamedicScreen/cubit/paramedic_cubit.dart';
 import 'package:finalproject/modules/ParamedicScreen/paramedicHomeLayout.dart';
@@ -45,7 +47,7 @@ void main() async {
         widget =  const RadiologistHomeLayoutScreen();
       }
       if(rolId== 3){
-        widget =  const DoctorHomeLayoutScreen();
+        widget =  DoctorHomeLayoutScreen();
       }
       if(rolId== 4){
         widget =   PatientHomeLayoutScreen();

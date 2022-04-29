@@ -3,6 +3,7 @@
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:finalproject/modules/DoctorScreens/DiagnosisScreen/DiagnosisScreen.dart';
 import 'package:finalproject/modules/DoctorScreens/DoctorProfileScreen/DoctorProfileScreen.dart';
+import 'package:finalproject/modules/DoctorScreens/anyhabd/detils.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_state.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_cubit.dart';

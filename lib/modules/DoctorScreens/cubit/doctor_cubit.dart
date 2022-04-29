@@ -72,26 +72,55 @@ class DoctorCubit extends Cubit<DoctorState> {
     value = index;
     emit(ChangeRadioState());
   }
+
+  void changeRado(index) {
+    value = index;
+    emit(ChangeRadioBState());
+  }
+
+  void changeRadoBotton(index) {
+    value = index;
+    emit(ChangeRadioIState());
+  }
+
   var check=CatchHelper.getData(key: 'check');
-  
+  var radioValue=CatchHelper.getData(key: 'value');
+  var Rvalue;
+
+  dynamic radio (radioValue){
+
+    if (radioValue == 1){
+      Rvalue = 'covid19' ;
+    }
+    else if (radioValue == 2){
+      Rvalue = 'Uninfected' ;
+    }
+   else
+    {
+      Rvalue = 'Pneumonia' ;
+    }
+
+
+  }
+
   void addVoting(){
+    emit(AddVotingLoadingState());
     DioApi.PostData(url: 'api/voting_for_infection', data: FormData.fromMap({
       'action':'add',
       'infected_id':1,//حاول تحطها اندكس في البارميتر
-      'diagnose':'covid19',
-      'doctor_id':check
-
-
-
+      'diagnose':radio(radioValue),
+      'doctor_id':check,
     })).then((value){
-
+      print(radioValue);
       print('send successfully:${value.data['success']}');
+      emit(AddVotingSuccessState());
+    }).catchError((onError){
+          print('error happened when add voting ${onError.toString()}');
+      emit(AddVotingErrorState(onError));
     });
     
     
   }
-
-
 
 
 

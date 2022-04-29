@@ -34,10 +34,17 @@ class LoginScreen extends StatelessWidget {
                 printFullText('token saving successfully'),
                 printFullText('token is ${state.userLoginModel.token}'),
               });
+              CatchHelper.saveData(
+                  key: 'RolId', value: state.userLoginModel.roleId).then((value) => {
+                RolId = state.userLoginModel.roleId,
+                printFullText('RolId  saving successfully'),
+                printFullText('RolId is ${state.userLoginModel.roleId}'),
+              });
+
               // saving user id
               CatchHelper.saveData(
-                      key: 'userid', value: state.userLoginModel.userId).then((value)
-              {
+                      key: 'userid', value: state.userLoginModel.userId,
+              ).then((value) {
                 printFullText('UsrId  saving successfully');
                 printFullText('userId is ${state.userLoginModel.userId}');
                 //userid = state.userLoginModel.userId;
@@ -45,7 +52,7 @@ class LoginScreen extends StatelessWidget {
                   if (state.userLoginModel.roleId == 2) {
                     NavigateAndRemove(context, const RadiologistHomeLayoutScreen());
                   } else if (state.userLoginModel.roleId == 3) {
-                    NavigateAndRemove(context, const DoctorHomeLayoutScreen());
+                    NavigateAndRemove(context,  DoctorHomeLayoutScreen());
                   } else if (state.userLoginModel.roleId == 4) {
                     NavigateAndRemove(context,  PatientHomeLayoutScreen());
                   } else if (state.userLoginModel.roleId == 5) {
@@ -56,12 +63,6 @@ class LoginScreen extends StatelessWidget {
                     msg: 'Login successfully', background: Colors.greenAccent);
               });
               // saving Rol Id
-              CatchHelper.saveData(
-                  key: 'RolId', value: state.userLoginModel.roleId).then((value) => {
-                    RolId = state.userLoginModel.roleId,
-              printFullText('RolId  saving successfully'),
-                  printFullText('RolId is ${state.userLoginModel.roleId}'),
-              });
 
             }
             else
