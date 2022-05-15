@@ -11,29 +11,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class DiagnosisScreen extends StatelessWidget {
   DiagnosisScreen({Key key}) : super(key: key);
 
-  var userNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<DoctorCubit, DoctorState>(
-      listener: (context, state) {
-
-      },
+      listener: (context, state) {},
       builder: (context, state) {
-
         return SafeArea(
           child: Scaffold(
             body: ConditionalBuilder(
-              condition: state is  ! DoctorLoadingState,
+              condition: state is! DoctorLoadingState,
               builder: (BuildContext context) => Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.network(
-                    'https://student.valuxapps.com/storage/uploads/banners/1619472351ITAM5.3bb51c97376281.5ec3ca8c1e8c5.jpg',
-                    height: MediaQuery.of(context).size.height * .5,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
                   RadioListTile(
                       title: const Text('covid19'),
                       value: 'covid19',
@@ -61,8 +51,10 @@ class DiagnosisScreen extends StatelessWidget {
                   Center(
                     child: defultMaterialButton(
                         function: () {
-
-                          CatchHelper.saveData(key: 'value', value: DoctorCubit.get(context).value).then((value) {
+                          CatchHelper.saveData(
+                                  key: 'value',
+                                  value: DoctorCubit.get(context).value)
+                              .then((value) {
                             DoctorCubit.get(context).addVoting();
 
                             defaultFlutterToast(
@@ -77,9 +69,10 @@ class DiagnosisScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              fallback: (BuildContext context) => const Center(child: CircularProgressIndicator(),),
+              fallback: (BuildContext context) => const Center(
+                child: CircularProgressIndicator(),
+              ),
             ),
-
           ),
         );
       },

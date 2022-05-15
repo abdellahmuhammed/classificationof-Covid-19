@@ -36,6 +36,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  bottom_inset_observer:
+    dependency: transitive
+    description:
+      name: bottom_inset_observer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
+  bottom_sheet:
+    dependency: "direct main"
+    description:
+      name: bottom_sheet
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
   carousel_slider:
     dependency: "direct main"
     description:
@@ -155,6 +169,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.4"
+  drop_down_list:
+    dependency: "direct main"
+    description:
+      name: drop_down_list
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.2"
   dropdown_button2:
     dependency: "direct main"
     description:
@@ -317,6 +338,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
+  mk_drop_down_menu:
+    dependency: "direct main"
+    description:
+      name: mk_drop_down_menu
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   nested:
     dependency: transitive
     description:
@@ -625,4 +653,4 @@ packages:
     version: "5.3.1"
 sdks:
   dart: ">=2.15.0 <3.0.0"
-  flutter: ">=2.8.0"
+  flutter: ">=2.10.0"

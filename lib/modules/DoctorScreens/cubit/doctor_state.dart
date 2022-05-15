@@ -4,6 +4,7 @@ import 'package:finalproject/models/infectedData/infectedModel.dart';
 abstract class DoctorState {}
 
 class DoctorInitial extends DoctorState {}
+class RadioState extends DoctorState {}
 
 class ChangeRadioState extends DoctorState {}
 class ChangeRadioIState extends DoctorState {}

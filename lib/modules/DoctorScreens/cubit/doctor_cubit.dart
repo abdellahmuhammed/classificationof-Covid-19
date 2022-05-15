@@ -154,6 +154,56 @@ class DoctorCubit extends Cubit<DoctorState> {
     
   }
 
+void bbb (value){
+  selectedValue = value as String;
+  emit(RadioState());
+}
+
+  final List<String> items = [
+    'Item1',
+    'Item2',
+    'Item3',
+    'Item4',
+  ];
+  String selectedValue;
+
+/*
+*
+*                                DropdownButtonHideUnderline(
+                                child: DropdownButton2(
+                                hint: Text(
+                                'Voting',
+                                style: TextStyle(
+                                fontSize: 30,
+                                color: Theme
+                                    .of(context)
+                                    .hintColor,
+                                ),
+                                ),
+                                items: DoctorCubit.get(context).items
+                                    .map((item) =>
+                                DropdownMenuItem<String>(
+                                value: item,
+                                child: Text(
+                                item,
+                                style: const TextStyle(
+                                fontSize: 14,
+                                ),
+                                ),
+                                ))
+                                    .toList(),
+                                value: DoctorCubit.get(context).selectedValue,
+                          onChanged: (value) {
+                          DoctorCubit.get(context).bbb(value);
+                          },
+                          buttonHeight: 40,
+                          buttonWidth: 140,
+                          itemHeight: 40,
+                          ),
+                          ),
+
+* */
+
 
 
 }
