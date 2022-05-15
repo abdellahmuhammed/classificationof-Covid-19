@@ -46,7 +46,7 @@ dependencies:
   fluttertoast: ^8.0.9
   dialog: ^0.8.0
   carousel_slider: ^4.0.0
-
+  indexed_list_view: ^2.0.2
 
 
 

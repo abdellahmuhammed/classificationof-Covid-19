@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:conditional_builder/conditional_builder.dart';
-import 'package:finalproject/modules/DoctorScreens/DoctorHomelayoutScreen.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_state.dart';
 import 'package:finalproject/shared/component.dart';
@@ -37,21 +36,21 @@ class DiagnosisScreen extends StatelessWidget {
                   ),
                   RadioListTile(
                       title: const Text('covid19'),
-                      value: 1,
+                      value: 'covid19',
                       groupValue: DoctorCubit.get(context).value,
                       onChanged: (index) {
                         DoctorCubit.get(context).changeRadoIndex(index);
                       }),
                   RadioListTile(
-                      title: const Text('Uninfected'),
-                      value: 2,
+                      title: const Text('none'),
+                      value: 'none',
                       groupValue: DoctorCubit.get(context).value,
                       onChanged: (index) {
                         DoctorCubit.get(context).changeRadoIndex(index);
                       }),
                   RadioListTile(
                       title: const Text('Pneumonia'),
-                      value: 3,
+                      value: 'pneumonia',
                       groupValue: DoctorCubit.get(context).value,
                       onChanged: (index) {
                         DoctorCubit.get(context).changeRadoIndex(index);
@@ -62,8 +61,10 @@ class DiagnosisScreen extends StatelessWidget {
                   Center(
                     child: defultMaterialButton(
                         function: () {
+
                           CatchHelper.saveData(key: 'value', value: DoctorCubit.get(context).value).then((value) {
                             DoctorCubit.get(context).addVoting();
+
                             defaultFlutterToast(
                               msg: 'Success',
                               background: Colors.red,
@@ -78,6 +79,7 @@ class DiagnosisScreen extends StatelessWidget {
               ),
               fallback: (BuildContext context) => const Center(child: CircularProgressIndicator(),),
             ),
+
           ),
         );
       },

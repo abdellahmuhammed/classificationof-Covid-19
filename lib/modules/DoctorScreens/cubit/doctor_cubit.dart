@@ -66,12 +66,14 @@ class DoctorCubit extends Cubit<DoctorState> {
     }
   }
 
-  int value;
+ String value;
 
-  void changeRadoIndex(index) {
-    value = index;
+ Future  changeRadoIndex(index)async {
+     value = index;
     emit(ChangeRadioState());
+
   }
+
 
   void changeRado(index) {
     value = index;
@@ -102,13 +104,43 @@ class DoctorCubit extends Cubit<DoctorState> {
 
 
   }
+  List<dynamic>pa=[];
+
+  void tooMany(index){
+    DioApi.PostData(
+        url: 'api/infected',
+        data: FormData.fromMap({'action': 'fetch', 'voting_required': '1'}),
+        token: token)
+        .then((value) {
+      getInfectedUser = InfectedModel.fromJson(value.data);
+      for (int i = 0; i < getInfectedUser.data.length; i++) {
+        pa.add(getInfectedUser.data[i].ctScans[0].infectedId);
+
+      }
+
+        DioApi.PostData(url: 'api/voting_for_infection', data: FormData.fromMap({
+          'action':'add',
+          'infected_id':pa[index],//حاول تحطها اندكس في البارميتر
+          'diagnose':'covid19',
+          'doctor_id':check
+        })).then((value) {
+          emit(voteIsSuccess(getInfectedUser));
+          print(value.data['success']);
+        });
+
+
+
+    });
+
+
+  }
 
   void addVoting(){
     emit(AddVotingLoadingState());
     DioApi.PostData(url: 'api/voting_for_infection', data: FormData.fromMap({
       'action':'add',
-      'infected_id':1,//حاول تحطها اندكس في البارميتر
-      'diagnose':radio(radioValue),
+      'infected_id':11,//حاول تحطها اندكس في البارميتر
+      'diagnose':value,
       'doctor_id':check,
     })).then((value){
       print(radioValue);

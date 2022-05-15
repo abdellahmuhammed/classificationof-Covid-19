@@ -10,5 +10,6 @@ void printFullText(String text) {
 }
 var userid;
 var RolId;
+var Indexed;
  String token ='';
 

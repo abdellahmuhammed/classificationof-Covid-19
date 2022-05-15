@@ -1,4 +1,6 @@
 
+import 'package:finalproject/models/infectedData/infectedModel.dart';
+
 abstract class DoctorState {}
 
 class DoctorInitial extends DoctorState {}
@@ -24,6 +26,11 @@ class AddVotingErrorState extends DoctorState{
   final Error;
 
   AddVotingErrorState(this.Error);
+}
+class voteIsSuccess extends DoctorState{
+  final InfectedModel infectedModel;
+
+  voteIsSuccess(this.infectedModel);
 }
 
 
