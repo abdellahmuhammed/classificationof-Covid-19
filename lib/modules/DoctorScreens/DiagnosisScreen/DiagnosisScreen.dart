@@ -48,25 +48,7 @@ class DiagnosisScreen extends StatelessWidget {
                   const SizedBox(
                     height: 15,
                   ),
-                  Center(
-                    child: defultMaterialButton(
-                        function: () {
-                          CatchHelper.saveData(
-                                  key: 'value',
-                                  value: DoctorCubit.get(context).value)
-                              .then((value) {
-                            DoctorCubit.get(context).addVoting();
 
-                            defaultFlutterToast(
-                              msg: 'Success',
-                              background: Colors.red,
-                            );
-                          });
-                        }, // هنا هيروح فين بالظبط
-                        text: 'Send',
-                        background: Colors.grey.withOpacity(.4),
-                        width: MediaQuery.of(context).size.width * .4),
-                  ),
                 ],
               ),
               fallback: (BuildContext context) => const Center(

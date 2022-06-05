@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, avoid_print, prefer_typing_uninitialized_variables
 
 import 'package:dio/dio.dart';
 import 'package:finalproject/models/GetPatientData/GetPatientDataModel.dart';
@@ -32,7 +32,7 @@ class DoctorCubit extends Cubit<DoctorState> {
       printFullText('${getInfectedUser.data[0].patientId}');
       emit(DoctorSuccessState());
     }).catchError((onError) {
-      printFullText('Error happednd on ${onError.toString()}');
+      printFullText('Error happened on ${onError.toString()}');
       emit(DoctorErrorState(onError.toString()));
     });
   }
@@ -69,41 +69,20 @@ class DoctorCubit extends Cubit<DoctorState> {
  String value;
 
  Future  changeRadoIndex(index)async {
+   emit(ChangeRadioState());
      value = index;
-    emit(ChangeRadioState());
+
 
   }
 
 
-  void changeRado(index) {
-    value = index;
-    emit(ChangeRadioBState());
-  }
 
-  void changeRadoBotton(index) {
-    value = index;
-    emit(ChangeRadioIState());
-  }
 
   var check=CatchHelper.getData(key: 'check');
   var radioValue=CatchHelper.getData(key: 'value');
-  var Rvalue;
-
-  dynamic radio (radioValue){
-
-    if (radioValue == 1){
-      Rvalue = 'covid19' ;
-    }
-    else if (radioValue == 2){
-      Rvalue = 'Uninfected' ;
-    }
-   else
-    {
-      Rvalue = 'Pneumonia' ;
-    }
 
 
-  }
+
   List<dynamic>pa=[];
 
   void tooMany(index){

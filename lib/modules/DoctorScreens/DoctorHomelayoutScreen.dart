@@ -20,6 +20,7 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
   bool isBottomSheetShown = false;
 
 
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<DoctorCubit, DoctorState>(
@@ -158,24 +159,26 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
                                               Image.asset('assets/images/1.png' , height: MediaQuery.of(context).size.width*.3),
                                             ],
                                           ), separatorBuilder: (BuildContext context, int index) => MyDivider(),
-                                          itemCount:20,
+                                          itemCount:DoctorCubit.get(context).getInfectedUser.data[index].ctScans[0].numOfImgs,
 
                                         ),
                                       );
+
                                     },
                                     text: 'text' ,
                                     background: Colors.grey.shade200,
-                                width: MediaQuery.of(context).size.width*.2
+                                width: MediaQuery.of(context).size.width*.2,
+                                  radius: 50
+
                                 ),
+
                                 //voting
                                 MKDropDownMenu(
                                   headerBuilder: (bool menuIsShowing) {
                                     return Container(
                                       height: 40,
                                       alignment: Alignment.center,
-                                      decoration: const BoxDecoration(
-                                        color: Colors.grey,
-                                      ),
+
                                       child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
@@ -186,6 +189,9 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
                                                   ? Colors.blue
                                                   : Colors.black,
                                               fontSize: 25,
+
+
+
                                             ),
                                           ),
                                           Icon(
@@ -201,77 +207,85 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
                                     );
                                   },
                                   menuBuilder: () {
-                                    return Container(
-                                      color: Colors.green,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          RadioListTile(
-                                              title: const Text('covid19'),
-                                              value: 'covid19',
-                                              groupValue:
-                                                  DoctorCubit.get(context)
-                                                      .value,
-                                              onChanged: (index) {
-                                                DoctorCubit.get(context)
-                                                    .changeRadoIndex(index);
-                                              }),
-                                          RadioListTile(
-                                              title: const Text('none'),
-                                              value: 'none',
-                                              groupValue:
-                                                  DoctorCubit.get(context)
-                                                      .value,
-                                              onChanged: (index) {
-                                                DoctorCubit.get(context)
-                                                    .changeRadoIndex(index);
-                                              }),
-                                          RadioListTile(
-                                              title: const Text('Pneumonia'),
-                                              value: 'pneumonia',
-                                              groupValue:
-                                                  DoctorCubit.get(context)
-                                                      .value,
-                                              onChanged: (index) {
-                                                DoctorCubit.get(context)
-                                                    .changeRadoIndex(index);
-                                              }),
-                                          const SizedBox(
-                                            height: 15,
-                                          ),
-                                          Center(
-                                            child: defultMaterialButton(
-                                                function: () {
-                                                  CatchHelper.saveData(
-                                                          key: 'value',
-                                                          value:
-                                                              DoctorCubit.get(
-                                                                      context)
-                                                                  .value)
-                                                      .then((value) {
-                                                    DoctorCubit.get(context)
-                                                        .addVoting();
 
-                                                    defaultFlutterToast(
-                                                      msg: 'Success',
-                                                      background: Colors.red,
-                                                    );
-                                                  });
-                                                }, // هنا هيروح فين بالظبط
-                                                text: 'Send',
-                                                background: Colors.grey
-                                                    .withOpacity(.4),
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    .4),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      content: Container(
+                                        color: Colors.green,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+
+                                            RadioListTile(
+                                                title:  const Text('covid19'),
+                                                value: 'covid19',
+                                                groupValue:
+                                                DoctorCubit.get(context)
+                                                    .value,
+                                                onChanged: (index1) {
+                                                  DoctorCubit.get(context)
+                                                      .changeRadoIndex(index1);
+                                                }),
+                                            RadioListTile(
+                                                title: const Text('none'),
+                                                value: 'none',
+
+                                                groupValue:
+                                                DoctorCubit.get(context)
+                                                    .value,
+                                                onChanged: (index2) {
+                                                  DoctorCubit.get(context)
+                                                      .changeRadoIndex(index2);
+                                                }),
+                                            RadioListTile(
+                                                title: const Text('Pneumonia'),
+                                                value: 'pneumonia',
+                                                groupValue:
+                                                DoctorCubit.get(context)
+                                                    .value,
+                                                onChanged: (index3) {
+                                                  DoctorCubit.get(context)
+                                                      .changeRadoIndex(index3);
+                                                }),
+                                            const SizedBox(
+                                              height: 15,
+                                            ),
+                                            Center(
+                                              child: defultMaterialButton(
+                                                  function: () {
+                                                    CatchHelper.saveData(
+                                                        key: 'value',
+                                                        value:
+                                                        DoctorCubit.get(
+                                                            context)
+                                                            .value)
+                                                        .then((value) {
+                                                      DoctorCubit.get(context)
+                                                          .addVoting();
+
+                                                      defaultFlutterToast(
+                                                        msg: 'Success',
+                                                        background: Colors.red,
+                                                      );
+                                                    });
+                                                  }, // هنا هيروح فين بالظبط
+                                                  text: 'Send',
+                                                  background: Colors.grey
+                                                      .withOpacity(.4),
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                      .4),
+                                            ),
+                                          ],
+                                        ),
+                                      ) ,
                                     );
+
                                   },
                                 ),
+
+
                               ],
                             ),
                           );
@@ -292,7 +306,7 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
         ),
       );
 
-  Widget Buton({context, index}) => Column(
+  Widget X({context, index}) => Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
