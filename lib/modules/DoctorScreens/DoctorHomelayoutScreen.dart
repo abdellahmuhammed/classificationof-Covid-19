@@ -173,18 +173,21 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
                                 child: defultMaterialButton(
                                     function: () {
                                       CatchHelper.saveData(
-                                              key: 'value',
-                                              value: DoctorCubit.get(context).value).then((value) {
-                                        DoctorCubit.get(context).addVoting();
+                                          key: 'value', value: DoctorCubit.get(context).value)
+                                          .then((value) {DoctorCubit.get(context).addVoting();
                                         defaultFlutterToast(
                                           msg: 'Success',
-                                          background: Colors.greenAccent,
+                                          background: Colors.red,
                                         );
                                       });
-                                    }, //
+                                    }, // هنا هيروح فين بالظبط
                                     text: 'Send',
-                                    background: Colors.grey.withOpacity(.3),
-                                    width: MediaQuery.of(context).size.width * .4),
+                                    background:
+                                    Colors.grey.withOpacity(.4),
+                                    width: MediaQuery.of(context)
+                                        .size
+                                        .width *
+                                        .4),
                               ),
                             ],
                           ),
