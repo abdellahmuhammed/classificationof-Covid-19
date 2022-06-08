@@ -2,7 +2,6 @@
 
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
-import 'package:finalproject/modules/PatientScreens/PatientProfile/PatientProfile.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_cubit.dart';
 import 'package:finalproject/modules/Screens/LoginScreen/Login_Screen.dart';
 import 'package:finalproject/shared/local/catchhelper.dart';
@@ -10,6 +9,7 @@ import 'package:finalproject/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 Widget BuilderItem(article, context) => InkWell(
@@ -354,7 +354,7 @@ Widget defultDrawer(context,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset('assets/images/R.png', height: 150,),
+              Image.asset('assets/images/R.png', height: 91,),
               const SizedBox(
                 height: 15.0,
               ),
@@ -372,21 +372,6 @@ Widget defultDrawer(context,
                   },
                   icon: Icons.person,
                   text: 'Profile'
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              TextButton(
-                onPressed: () {},
-                child: Row(
-                  children: const [
-                    Icon(Icons.language),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Text('Language'),
-                  ],
-                ),
               ),
               const SizedBox(
                 height: 10,
@@ -425,5 +410,17 @@ Widget defultDrawer(context,
         ),
       ),
     );
+void _launchURL(String _url) async {
+  if (!await launch(_url)) throw 'Could not launch $_url';
+}
 
+Widget defaultLaunchRrl ( {
+  @required IconData icon,
+  @required String Url,
+})=>IconButton(
+  icon:  Icon(icon),
+  onPressed: (){
+    _launchURL(Url);
+  },
+);
 

@@ -160,7 +160,7 @@ class LoginScreen extends StatelessWidget {
                           width: double.infinity,
                           background: Colors.grey.withOpacity(.4),
                           function: () {
-                            if (formKey.currentState.validate()) {
+                            if (formKey.currentState.validate()){
                               UserLoginCubit.get(context).userLogin(
                                   email: emailController.text,
                                   password: passwordController.text);

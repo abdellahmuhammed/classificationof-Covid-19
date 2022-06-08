@@ -1,3 +1,4 @@
+import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_cubit.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_cubit.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_state.dart';
@@ -15,7 +16,16 @@ class ParamedicHomeLayoutScreen extends StatelessWidget {
       },
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            actions: [
+              IconButton(
+                onPressed: () {
+                  DarkModeCubit.get(context).changeAppMode();
+                },
+                icon: const Icon(Icons.dark_mode),
+              ),
+            ],
+          ),
           body: Center(
             child: Column(
               children: [

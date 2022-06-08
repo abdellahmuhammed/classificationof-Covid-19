@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable, file_names
 
 import 'package:conditional_builder/conditional_builder.dart';
+import 'package:finalproject/modules/PatientScreens/UserEmergency/UserEmergency.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_cubit.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_state.dart';
 import 'package:finalproject/shared/component.dart';
@@ -38,9 +39,19 @@ class PatientProfileScreen extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      Text(
-                        'Personal Information',
-                        style: Theme.of(context).textTheme.bodyText1,
+                      Row(
+                        children: [
+                          Text(
+                            'Personal Information',
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
+                          const Spacer(),
+                          Text(
+                            'Edit',
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
+                          defaultLaunchRrl(icon: Icons.edit, Url: 'https://t.me/+201126017421')
+                        ],
                       ),
                       const SizedBox(
                         height: 30,
@@ -48,6 +59,12 @@ class PatientProfileScreen extends StatelessWidget {
                       buildPersonalInformation(context),
                       const SizedBox(
                         height: 30,
+                      ),
+                      TextButton(
+                          onPressed: (){
+                            NavigateTo(context, UserEmergencyScreen());
+                          },
+                          child: Text('User Emergency Contact')
                       ),
                       const SizedBox(height: 15,),
                     ],

@@ -1,4 +1,5 @@
 import 'package:conditional_builder/conditional_builder.dart';
+import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
 import 'package:finalproject/modules/PatientScreens/PatientProfile/PatientProfile.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_cubit.dart';
 import 'package:finalproject/modules/RadiologistScreen/cubit/radiologist_cubit.dart';
@@ -21,7 +22,14 @@ class RadiologistHomeLayoutScreen extends StatelessWidget {
       },
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar( actions: [
+            IconButton(
+              onPressed: () {
+                DarkModeCubit.get(context).changeAppMode();
+              },
+              icon: const Icon(Icons.dark_mode),
+            ),
+          ],),
           drawer: ConditionalBuilder(
             condition: true,
             builder: (BuildContext context)=> defultDrawer(

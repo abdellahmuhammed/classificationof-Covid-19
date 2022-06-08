@@ -55,8 +55,9 @@ ThemeData lightTheme = ThemeData(
   ),
 );
 ThemeData darkTheme = ThemeData(
+  backgroundColor: Colors.black26,
   primarySwatch: deepOrange,
-  drawerTheme: const DrawerThemeData(backgroundColor: Colors.black),
+  drawerTheme: const DrawerThemeData(backgroundColor: Colors.black26),
   secondaryHeaderColor: Colors.white,
   textTheme: const TextTheme(
     bodyText1: TextStyle(

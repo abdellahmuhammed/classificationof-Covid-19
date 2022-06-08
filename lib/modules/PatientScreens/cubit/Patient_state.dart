@@ -26,4 +26,7 @@ class UpdateDataUserStateError extends PatientStates{
   UpdateDataUserStateError(this.onError);
 }
 
-
+//user_emergency_contact
+class LoadingUserEmergencyContactDataState extends PatientStates{}
+class GetUserEmergencyContactDataStateSuccess extends PatientStates{}
+class GetUserEmergencyContactDataStateError extends PatientStates{}

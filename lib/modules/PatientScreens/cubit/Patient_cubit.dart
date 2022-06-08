@@ -78,4 +78,24 @@ var check=CatchHelper.getData(key: 'check');
   //   });
   // }
 
+
+  void UserEmergencyContact( ) {
+    emit(LoadingUserEmergencyContactDataState());
+    DioApi.PostData(
+      url: 'api/user_emergency_contact',
+      data: FormData.fromMap({
+        'action': 'add',
+        'user_id':check,
+      }),
+    ).then((value) {
+      emit(GetUserEmergencyContactDataStateSuccess());
+    }).catchError((onError)
+    {
+      // ابقي شوف الموديل هنا
+
+      printFullText('Happened Error when get data ${ onError.toString()}');
+      emit(GetUserEmergencyContactDataStateError());
+    });
+  }
+
 }
