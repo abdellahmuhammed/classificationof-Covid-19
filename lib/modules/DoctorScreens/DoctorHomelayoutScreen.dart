@@ -1,9 +1,9 @@
 // ignore_for_file: file_names, unnecessary_string_interpolations, must_be_immutable, void_checks, missing_return
 import 'dart:math' as math;
-
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:custom_full_image_screen/custom_full_image_screen.dart';
 import 'package:expansion_widget/expansion_widget.dart';
+import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/DiagnosisScreen/DiagnosisScreen.dart';
 import 'package:finalproject/modules/DoctorScreens/DoctorProfileScreen/DoctorProfileScreen.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_cubit.dart';
@@ -11,17 +11,14 @@ import 'package:finalproject/modules/DoctorScreens/cubit/doctor_state.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_cubit.dart';
 import 'package:finalproject/shared/component.dart';
 import 'package:finalproject/shared/local/catchhelper.dart';
-import 'package:finalproject/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mk_drop_down_menu/mk_drop_down_menu.dart';
 
 class DoctorHomeLayoutScreen extends StatelessWidget {
   DoctorHomeLayoutScreen({Key key}) : super(key: key);
   int controller;
   var scaffoldKey = GlobalKey<ScaffoldState>();
   bool isBottomSheetShown = false;
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<DoctorCubit, DoctorState>(
@@ -29,7 +26,16 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             key: scaffoldKey,
-            appBar: AppBar(),
+            appBar: AppBar(
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    DarkModeCubit.get(context).changeAppMode();
+                  },
+                  icon: const Icon(Icons.dark_mode),
+                ),
+              ],
+            ),
             drawer: ConditionalBuilder(
               condition: PatientCubit.get(context).getPatientDataModel != null,
               builder: (BuildContext context) => defultDrawer(
@@ -137,9 +143,10 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
                                   )
                                 ],
                               ),
-                            ));
+                            ),
+                        );
                       },
-                      content: Container(
+                      content: SizedBox(
                           width: double.infinity,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
