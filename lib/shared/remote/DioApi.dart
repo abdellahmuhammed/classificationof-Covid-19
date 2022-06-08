@@ -5,57 +5,40 @@ import 'package:dio/dio.dart';
 import 'package:finalproject/shared/Constant.dart';
 import 'package:flutter/cupertino.dart';
 
-class DioApi{
+class DioApi {
+  static Dio _dio;
 
- static Dio _dio;
-
-
-  static init(){
+  static init() {
     _dio = Dio(
       BaseOptions(
         baseUrl: baseUrl,
-        receiveDataWhenStatusError:  true,
+        receiveDataWhenStatusError: true,
       ),
     );
   }
 
-
-static Future<Response> PostData( {
-  @ required String url ,
-  @ required FormData data ,
-  String token,
-
-})async{
-  _dio.options.headers={
-    'token': token ?? '' ,
-  };
-   return await _dio.post(
-     url,
-     data: data,
-
-
-
-
-   );
-  }
-
-
-
-static Future<Response> getData(
+  static Future<Response> PostData({
     @required String url,
-     Map<String , dynamic> query,
- String token,
-
- )async{
-    _dio.options.headers={
-      'token': token ?? '' ,
+    @required FormData data,
+    String token,
+  }) async {
+    _dio.options.headers = {
+      'token': token ?? '',
     };
-   return _dio.get(
-       url,
-       queryParameters: query
-   );
+    return await _dio.post(
+      url,
+      data: data,
+    );
   }
 
-
-
+  static Future<Response> getData(
+    @required String url,
+    Map<String, dynamic> query,
+    String token,
+  ) async {
+    _dio.options.headers = {
+      'token': token ?? '',
+    };
+    return _dio.get(url, queryParameters: query);
+  }
 }
