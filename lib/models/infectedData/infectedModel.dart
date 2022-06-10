@@ -29,9 +29,10 @@ class Data {
   int patientId;
   String infectionDate;
   int doctorId;
-  String status;
+  dynamic status;
   String doctor;
-  String patient;
+  dynamic patient;
+  int patientAge;
   List<CtScans> ctScans;
   List<String> ctScansUrls;
 
@@ -43,6 +44,7 @@ class Data {
         this.status,
         this.doctor,
         this.patient,
+        this.patientAge,
         this.ctScans,
         this.ctScansUrls});
 
@@ -54,6 +56,7 @@ class Data {
     status = json['status'];
     doctor = json['doctor'];
     patient = json['patient'];
+    patientAge = json['patient_age'];
     if (json['ct_scans'] != null) {
       ctScans = <CtScans>[];
       json['ct_scans'].forEach((v) {
@@ -72,6 +75,7 @@ class Data {
     data['status'] = this.status;
     data['doctor'] = this.doctor;
     data['patient'] = this.patient;
+    data['patient_age'] = this.patientAge;
     if (this.ctScans != null) {
       data['ct_scans'] = this.ctScans.map((v) => v.toJson()).toList();
     }

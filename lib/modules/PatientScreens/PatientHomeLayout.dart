@@ -15,7 +15,7 @@ import 'package:polygon_clipper/polygon_clipper.dart';
 
 class PatientHomeLayoutScreen extends StatelessWidget {
   PatientHomeLayoutScreen({Key key}) : super(key: key);
-  List<dynamic> patientList = [];
+
 
   @override
   Widget build(BuildContext context) {
@@ -45,33 +45,22 @@ class PatientHomeLayoutScreen extends StatelessWidget {
               child: CircularProgressIndicator(),
             ),
           ),
-          // body: Center(
-          //   child: ClipPolygon(
-          //     sides: 6,
-          //     borderRadius: 5.0,
-          //     // Default 0.0 degrees
-          //     rotate: 90.0,
-          //     // Default 0.0 degrees
-          //     boxShadows: [
-          //       PolygonBoxShadow(color: Colors.black, elevation: 1.0),
-          //       PolygonBoxShadow(color: Colors.grey, elevation: 5.0)
-          //     ],
-          //     child: Container(
-          //       color: Colors.blueGrey ,
-          //       child: Column(
-          //         children: [
-          //           Text('kkkk ' , style: TextStyle(color: Colors.white),)
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          // ),
-          floatingActionButton: FloatingActionButton(
-            child: const Icon(Icons.add),
-            onPressed: () {
-              PatientCubit.get(context).getUserProfile();
-            },
+          body: Center(
+            child: Container(
+              color: Colors.grey ,
+              width: MediaQuery.of(context).size.width*.7,
+              height: MediaQuery.of(context).size.height*.5,
+             //child: Center(child: Text('${PatientCubit.get(context).getStatueOfUser()}')),
+            ),
           ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: (){
+              PatientCubit.get(context).getStatueOfUser();
+            }
+            ,
+
+          ),
+
         );
       },
     );

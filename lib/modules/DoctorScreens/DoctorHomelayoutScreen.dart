@@ -67,14 +67,14 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
             ),
             floatingActionButton: FloatingActionButton(
                 onPressed: () {
-                  NavigateTo(context, DiagnosisScreen());
+                  DoctorCubit.get(context).CheckPatient(2);
                 },
                 child: const Icon(Icons.add)),
           );
         });
   }
 
-  Widget buildHomeScreen({context, index}) => Padding(
+  Widget buildHomeScreen({context, index,}) => Padding(
         padding: const EdgeInsets.all(10.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,7 +154,7 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
                               RadioListTile(
                                   title: const Text('covid19'),
                                   value: 'covid19',
-                                  groupValue: DoctorCubit.get(context).value,
+                                  groupValue: DoctorCubit.get(context).value1,
                                   onChanged: (index1) {
                                     DoctorCubit.get(context)
                                         .changeRadoIndex(index1);
@@ -162,7 +162,7 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
                               RadioListTile(
                                 title: const Text('none'),
                                 value: 'none',
-                                groupValue: DoctorCubit.get(context).value,
+                                groupValue: DoctorCubit.get(context).value1,
                                 onChanged: (index2) {
                                   DoctorCubit.get(context)
                                       .changeRadoIndex(index2);
@@ -171,7 +171,7 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
                               RadioListTile(
                                   title: const Text('Pneumonia'),
                                   value: 'pneumonia',
-                                  groupValue: DoctorCubit.get(context).value,
+                                  groupValue: DoctorCubit.get(context).value1,
                                   onChanged: (index3) {
                                     DoctorCubit.get(context)
                                         .changeRadoIndex(index3);
@@ -180,8 +180,9 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
                                 child: defultMaterialButton(
                                     function: () {
                                       CatchHelper.saveData(
-                                          key: 'value', value: DoctorCubit.get(context).value)
-                                          .then((value) {DoctorCubit.get(context).addVoting();
+                                          key: 'value', value: DoctorCubit.get(context).value1)
+                                          .then((value) {DoctorCubit.get(context).tooMany(index);
+
                                         defaultFlutterToast(
                                           msg: 'Success',
                                           background: Colors.red,
@@ -395,34 +396,34 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
         ),
       );
 
-  Widget X({context, index}) => Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              RadioListTile(
-                  title: const Text('covid19'),
-                  value: 'covid19',
-                  groupValue: DoctorCubit.get(context).value,
-                  onChanged: (index) {
-                    DoctorCubit.get(context).changeRadoIndex(index);
-                  }),
-              RadioListTile(
-                  title: const Text('none'),
-                  value: 'none',
-                  groupValue: DoctorCubit.get(context).value,
-                  onChanged: (index) {
-                    DoctorCubit.get(context).changeRadoIndex(index);
-                  }),
-              RadioListTile(
-                  title: const Text('Pneumonia'),
-                  value: 'pneumonia',
-                  groupValue: DoctorCubit.get(context).value,
-                  onChanged: (index) {
-                    DoctorCubit.get(context).changeRadoIndex(index);
-                  }),
-            ],
-          )
-        ],
-      );
+  // Widget X({context, index}) => Column(
+  //       children: [
+  //         Row(
+  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //           children: [
+  //             RadioListTile(
+  //                 title: const Text('covid19'),
+  //                 value: 'covid19',
+  //                 groupValue: DoctorCubit.get(context).value1,
+  //                 onChanged: (index) {
+  //                   DoctorCubit.get(context).changeRadoIndex(index);
+  //                 }),
+  //             RadioListTile(
+  //                 title: const Text('none'),
+  //                 value: 'none',
+  //                 groupValue: DoctorCubit.get(context).value1,
+  //                 onChanged: (index) {
+  //                   DoctorCubit.get(context).changeRadoIndex(index);
+  //                 }),
+  //             RadioListTile(
+  //                 title: const Text('Pneumonia'),
+  //                 value: 'pneumonia',
+  //                 groupValue: DoctorCubit.get(context).value1,
+  //                 onChanged: (index) {
+  //                   DoctorCubit.get(context).changeRadoIndex(index);
+  //                 }),
+  //           ],
+  //         )
+  //       ],
+  //     );
 }

@@ -2,6 +2,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:finalproject/models/GetPatientData/GetPatientDataModel.dart';
+import 'package:finalproject/models/infectedData/ModelCheck.dart';
 import 'package:finalproject/models/infectedData/infectedModel.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_state.dart';
 import 'package:finalproject/shared/Constant.dart';
@@ -61,16 +62,16 @@ class DoctorCubit extends Cubit<DoctorState> {
 
         emit(PatientSuccessState());
       }).catchError((onError) {
-        print('error happend on ${onError.toString()}');
+        print('error happened on ${onError.toString()}');
       });
     }
   }
 
- String value;
+ String value1;
 
  Future  changeRadoIndex(index)async {
+     value1 = index;
    emit(ChangeRadioState());
-     value = index;
 
 
   }
@@ -100,7 +101,7 @@ class DoctorCubit extends Cubit<DoctorState> {
         DioApi.PostData(url: 'api/voting_for_infection', data: FormData.fromMap({
           'action':'add',
           'infected_id':pa[index],//حاول تحطها اندكس في البارميتر
-          'diagnose':'covid19',
+          'diagnose':value1,
           'doctor_id':check
         })).then((value) {
           emit(voteIsSuccess(getInfectedUser));
@@ -114,37 +115,64 @@ class DoctorCubit extends Cubit<DoctorState> {
 
   }
 
-  void addVoting(){
-    emit(AddVotingLoadingState());
-    DioApi.PostData(url: 'api/voting_for_infection', data: FormData.fromMap({
-      'action':'add',
-      'infected_id':11,//حاول تحطها اندكس في البارميتر
-      'diagnose':value,
-      'doctor_id':check,
-    })).then((value){
-      print(radioValue);
-      print('send successfully:${value.data['success']}');
-      emit(AddVotingSuccessState());
-    }).catchError((onError){
-          print('error happened when add voting ${onError.toString()}');
-      emit(AddVotingErrorState(onError));
-    });
-    
-    
-  }
+  // void addVoting(){
+  //   emit(AddVotingLoadingState());
+  //   DioApi.PostData(url: 'api/voting_for_infection', data: FormData.fromMap({
+  //     'action':'add',
+  //     'infected_id':11,//حاول تحطها اندكس في البارميتر
+  //     'diagnose':value,
+  //     'doctor_id':check,
+  //   })).then((value){
+  //     print(radioValue);
+  //     print('send successfully:${value.data['success']}');
+  //     emit(AddVotingSuccessState());
+  //   }).catchError((onError){
+  //         print('error happened when add voting ${onError.toString()}');
+  //     emit(AddVotingErrorState(onError));
+  //   });
+  //
+  //
+  // }
+  List<int>RX=[];
+  CheckVotingModel CheckVotes;
+void CheckPatient(index){
+  DioApi.PostData(
+      url: 'api/infected',
+      data: FormData.fromMap({'action': 'fetch', 'voting_required': '1'}),
+      token: token)
+      .then((value) {
+    getInfectedUser = InfectedModel.fromJson(value.data);
+    for (int i = 0; i < getInfectedUser.data.length; i++) {
+      RX.add(getInfectedUser.data[i].ctScans[0].infectedId);
 
-void bbb (value){
-  selectedValue = value as String;
-  emit(RadioState());
+    }
+
+    DioApi.PostData(url: 'api/voting_for_infection', data: FormData.fromMap({
+      'action':'fetch',
+      'infected_id':RX[index],//حاول تحطها اندكس في البارميتر
+
+      'doctor_id':check
+    })).then((value) {
+      CheckVotes=CheckVotingModel.fromJson(value.data);
+      if(CheckVotes.success==true){
+        print(CheckVotes.success);
+        emit(CheckSuccessState());
+      }else{
+        print(CheckVotes.success);
+        emit(CheckErrorState());
+      }
+    });
+
+
+
+  });
+
+
+}
 }
 
-  final List<String> items = [
-    'Item1',
-    'Item2',
-    'Item3',
-    'Item4',
-  ];
-  String selectedValue;
+
+    
 
 /*
 *
@@ -185,4 +213,4 @@ void bbb (value){
 
 
 
-}
+

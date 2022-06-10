@@ -94,7 +94,7 @@ class PatientDetails extends StatelessWidget {
             ),
             floatingActionButton: FloatingActionButton.extended(
               onPressed: () {
-                NavigateTo(context,  DiagnosisScreen());
+                //NavigateTo(context,  DiagnosisScreen());
               },
               label: const Text('diagnose the Patient'),
               icon: const Icon(Icons.send),

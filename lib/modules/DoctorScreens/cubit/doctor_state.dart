@@ -33,5 +33,9 @@ class voteIsSuccess extends DoctorState{
 
   voteIsSuccess(this.infectedModel);
 }
+class CheckLoadingState extends DoctorState{}
+class CheckSuccessState extends DoctorState{}
+class CheckErrorState extends DoctorState{}
+
 
 

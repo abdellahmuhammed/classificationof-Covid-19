@@ -30,3 +30,10 @@ class UpdateDataUserStateError extends PatientStates{
 class LoadingUserEmergencyContactDataState extends PatientStates{}
 class GetUserEmergencyContactDataStateSuccess extends PatientStates{}
 class GetUserEmergencyContactDataStateError extends PatientStates{}
+
+//Infected Data
+class LoadingInfectedDataState extends PatientStates{}
+class GetInfectedDataSuccessState extends PatientStates{}
+class GetInfectedDataErrorState extends PatientStates{}
+
+

@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, prefer_typing_uninitialized_variables
+// ignore_for_file: non_constant_identifier_names, prefer_typing_uninitialized_variables, avoid_print
 
 import 'package:dio/dio.dart';
 import 'package:finalproject/models/GetPatientData/GetPatientDataModel.dart';
@@ -7,6 +7,7 @@ import 'package:finalproject/shared/Constant.dart';
 import 'package:finalproject/shared/local/catchhelper.dart';
 import 'package:finalproject/shared/remote/DioApi.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../models/infectedData/infectedModel.dart';
 import '../../../shared/Constant.dart';
 
 class PatientCubit extends Cubit<PatientStates> {
@@ -95,6 +96,25 @@ var check=CatchHelper.getData(key: 'check');
 
       printFullText('Happened Error when get data ${ onError.toString()}');
       emit(GetUserEmergencyContactDataStateError());
+    });
+  }
+  InfectedModel InfModel;
+  void getStatueOfUser(){
+    emit(LoadingInfectedDataState());
+    DioApi.PostData(url: 'api/infected', data: FormData.fromMap({
+      'action':'fetch',
+      'patient_id':check,
+
+
+
+    })).then((value) {
+      InfModel=InfectedModel.fromJson(value.data);
+      printFullText('Statue is ${InfModel.data[InfModel.data.length-1].status}');
+      emit(GetInfectedDataSuccessState());
+    }).catchError((onError){
+      print('Error happened ${onError.toString()}');
+      emit(GetInfectedDataErrorState());
+
     });
   }
 
