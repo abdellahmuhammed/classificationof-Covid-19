@@ -144,7 +144,6 @@ Widget defultTextFormFiled(
       keyboardType: type,
       cursorColor: cursorColor,
       onTap: onTap,
-      enableInteractiveSelection: false,
       onChanged: onchange,
       style: Theme.of(context).textTheme.bodyText2,
       decoration: InputDecoration(
