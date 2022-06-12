@@ -60,12 +60,12 @@ class PatientProfileScreen extends StatelessWidget {
                       const SizedBox(
                         height: 30,
                       ),
-                      TextButton(
-                          onPressed: (){
-                            NavigateTo(context, UserEmergencyScreen());
-                          },
-                          child: Text('User Emergency Contact')
-                      ),
+                      // TextButton(
+                      //     onPressed: (){
+                      //       NavigateTo(context, UserEmergencyScreen());
+                      //     },
+                      //     child: Text('User Emergency Contact')
+                      // ),
                       const SizedBox(height: 15,),
                     ],
                   ),

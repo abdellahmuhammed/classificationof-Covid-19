@@ -1,11 +1,14 @@
 // ignore_for_file: non_constant_identifier_names, prefer_typing_uninitialized_variables, avoid_print
 
 import 'package:dio/dio.dart';
+import 'package:finalproject/layout/Statistics/StatisticsHomeScreen.dart';
 import 'package:finalproject/models/GetPatientData/GetPatientDataModel.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_state.dart';
+import 'package:finalproject/modules/PatientScreens/patientStetus/patientStetues.dart';
 import 'package:finalproject/shared/Constant.dart';
 import 'package:finalproject/shared/local/catchhelper.dart';
 import 'package:finalproject/shared/remote/DioApi.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../models/infectedData/infectedModel.dart';
 import '../../../shared/Constant.dart';
@@ -14,6 +17,16 @@ class PatientCubit extends Cubit<PatientStates> {
   PatientCubit() : super(PatientInitial());
 
   static PatientCubit get(context) => BlocProvider.of(context);
+
+
+  List <Widget> PatientBottomNavBarList= [
+    const Center(child: Text('data')),
+    const StatisticsHomeScreen(),
+    patientStetues()  //DoctorHomeLayoutScreen(),
+  ];
+
+
+
 
 var check=CatchHelper.getData(key: 'check');
 // to get data

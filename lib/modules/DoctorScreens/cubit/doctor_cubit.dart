@@ -1,19 +1,61 @@
 // ignore_for_file: non_constant_identifier_names, avoid_print, prefer_typing_uninitialized_variables
 
 import 'package:dio/dio.dart';
+import 'package:finalproject/layout/Statistics/StatisticsHomeScreen.dart';
 import 'package:finalproject/models/GetPatientData/GetPatientDataModel.dart';
 import 'package:finalproject/models/infectedData/ModelCheck.dart';
 import 'package:finalproject/models/infectedData/infectedModel.dart';
+import 'package:finalproject/modules/DoctorScreens/DiagnosisScreen/DiagnosisScreen.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_state.dart';
 import 'package:finalproject/shared/Constant.dart';
 import 'package:finalproject/shared/local/catchhelper.dart';
 import 'package:finalproject/shared/remote/DioApi.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DoctorCubit extends Cubit<DoctorState> {
   DoctorCubit() : super(DoctorInitial());
 
   static DoctorCubit get(context) => BlocProvider.of(context);
+
+
+  List <Widget> DocBottomNavBarList= [
+    const Center(child: Text('data')),
+    const StatisticsHomeScreen(),
+     DiagnosisScreen(),  //DoctorHomeLayoutScreen(),
+
+  ];
+
+  GetPatientDataModel getPatientDataModel;
+
+  void getUserProfile( ) {
+    emit(LoadingGetDoctorDataState());
+    DioApi.PostData(
+      url: 'api/users',
+      data: FormData.fromMap({
+        'action': 'fetch',
+        'api_section': 'users',
+        'user_id':check,
+      }),
+      token: token,
+    ).then((value) {
+      getPatientDataModel = GetPatientDataModel.fromJson(value.data);
+      printFullText(' data successfully ');
+
+      // for(int i=0;i<getPatientDataModel.data.length;i++){
+      //   var id =getPatientDataModel.data[i].username;
+      //   Id=[id];
+      // print(Id);
+      // printFullText(' Phone num is ${getPatientDataModel.data[0].phoneNum}');
+      // }
+
+      emit(GetDoctorDataStateSuccess());
+    }).catchError(( onError) {
+      printFullText('Happened Error when get data ${ onError.toString()}');
+      emit(GetDoctorDataStateError());
+
+    });
+  }
 
   List<dynamic> PatinetId = [];
   InfectedModel getInfectedUser;

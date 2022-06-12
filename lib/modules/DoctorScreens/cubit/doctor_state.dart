@@ -28,14 +28,19 @@ class AddVotingErrorState extends DoctorState{
 
   AddVotingErrorState(this.Error);
 }
+
 class voteIsSuccess extends DoctorState{
   final InfectedModel infectedModel;
 
   voteIsSuccess(this.infectedModel);
 }
+
+
 class CheckLoadingState extends DoctorState{}
 class CheckSuccessState extends DoctorState{}
 class CheckErrorState extends DoctorState{}
 
 
-
+class LoadingGetDoctorDataState extends DoctorState{}
+class GetDoctorDataStateSuccess extends DoctorState{}
+class GetDoctorDataStateError extends DoctorState{}

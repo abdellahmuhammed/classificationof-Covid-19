@@ -53,7 +53,8 @@ dependencies:
   expansion_widget: ^0.0.3
   custom_full_image_screen: ^0.0.4
   url_launcher: ^6.0.20
-  polygon_clipper: ^1.0.2
+  material_dialogs: ^1.1.1
+  custom_bottom_navigation_bar: ^0.0.1
 
 
 
@@ -90,7 +91,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - assets/images/
+    - assets/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -396,7 +396,6 @@ Widget defultDrawer(context,
                     CatchHelper.removeUserData(key: 'check').then((value) {
                       CatchHelper.removeUserData(key: 'RolId');
                       CatchHelper.removeUserData(key: 'token');
-
                       if (value) {
                         NavigateAndRemove(context, LoginScreen());
                       }
@@ -423,4 +422,58 @@ Widget defaultLaunchRrl ( {
     _launchURL(Url);
   },
 );
+
+class BuildContainerOfStatistics extends StatelessWidget {
+  final Color containerColor;
+  final Color textColor;
+  final String title;
+  final String count;
+  final double fontSize;
+  final dynamic fontWeight;
+
+  const BuildContainerOfStatistics(
+      {Key key,
+        this.containerColor,
+        this.textColor,
+        this.title,
+        this.count,
+        this.fontSize,
+        this.fontWeight})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(15),
+      decoration: BoxDecoration(
+        color: containerColor,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              title,
+              style: TextStyle(
+                color: textColor,
+                fontSize: fontSize,
+                fontWeight: fontWeight,
+              ),
+            ),
+          ),
+          Text(
+            count,
+            style: TextStyle(
+              color: textColor,
+              fontSize: fontSize,
+              fontWeight: fontWeight,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
 
