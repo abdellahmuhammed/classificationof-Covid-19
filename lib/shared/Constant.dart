@@ -2,7 +2,7 @@
 
 import 'package:finalproject/models/infectedData/infectedModel.dart';
 
-String baseUrl = 'https://csi-covid19.000webhostapp.com/api/';
+String baseUrl = 'https://co-cvoid-19.me/api/';
 
 void printFullText(String text) {
   final pattern = RegExp('.{1,800}'); // 800 is the size of each chunk

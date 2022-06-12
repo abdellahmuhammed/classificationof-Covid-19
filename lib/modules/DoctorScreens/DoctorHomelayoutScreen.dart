@@ -4,7 +4,6 @@ import 'package:conditional_builder/conditional_builder.dart';
 import 'package:custom_full_image_screen/custom_full_image_screen.dart';
 import 'package:expansion_widget/expansion_widget.dart';
 import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
-import 'package:finalproject/modules/DoctorScreens/DiagnosisScreen/DiagnosisScreen.dart';
 import 'package:finalproject/modules/DoctorScreens/DoctorProfileScreen/DoctorProfileScreen.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_state.dart';
@@ -81,7 +80,7 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
           children: [
             ImageNetworkFullscreen(
               imageUrl:
-                  'https://csi-covid19.000webhostapp.com/uploads/ct_scans/41_20220425_1.dcm.png' ??
+                  'https://co-cvoid-19.me/uploads/ct_scans/4_20220611_1.dcm.png' ??
                       const CircularProgressIndicator(),
               imageBorderRadius: 20,
               imageWidth: MediaQuery.of(context).size.width * .5,
