@@ -1,4 +1,5 @@
 import 'package:finalproject/MyBlocObserver.dart';
+import 'package:finalproject/layout/HomeLayoutScreen.dart';
 import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
 import 'package:finalproject/layout/cubit/home%20cuibt/covid_home_layou_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/DoctorHomelayoutScreen.dart';
@@ -103,9 +104,8 @@ class MyApp extends StatelessWidget {
               DarkModeCubit()..changeAppMode(formShared: false),
         ),
         BlocProvider(
-          create: (context) => CovidHomeLayouCubit()
-            ..getDataOfWorld()
-            ..getDataOfEgypt(),
+          create: (context) =>
+              CovidHomeLayouCubit()..getStaticsOfWorld()
         ),
       ],
       child: BlocConsumer<DarkModeCubit, DarkModeStates>(

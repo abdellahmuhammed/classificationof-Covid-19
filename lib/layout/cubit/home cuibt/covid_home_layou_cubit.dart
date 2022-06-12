@@ -15,25 +15,27 @@ class CovidHomeLayouCubit extends Cubit<CovidHomeLayouState> {
 
   // bottom nav bar for patient
 
-  List <Widget> BottomNavBarList= [
+  List <Widget> BottomNavBarList=
+  [
    const Center(child: Text('data')),
     const StatisticsHomeScreen(),
    const Center(child: Text('data')),  //DoctorHomeLayoutScreen(),
   ];
 
-  CovidStatics covidStaticsWorld;
+CovidStatics covidStaticsOfWorld;
 
-  void getDataOfWorld() {
+  void getStaticsOfWorld() {
     emit(LoadingGetDataOfWorldState());
-    CovidWebService.getData('v3/covid-19/all', {}).then((value) {
-      covidStaticsWorld = CovidStatics.fromJson(value.data);
-      // printFullText(value.data.toString());
-      //printFullText(covidStaticsWorld.active.toString());
-      emit(GetDataOfWorldSuccessState());
-    }).catchError((onError) {
-      printFullText(
-          'error happened when get Data Of World ${onError.toString()}');
-      emit(GetDataOfWorldErrorState(onError));
+    CovidWebService.getData('v3/covid-19/all/').then((value) {
+      covidStaticsOfWorld = CovidStatics.fromJson(value.data);
+      printFullText(value.data);
+      printFullText(covidStaticsOfWorld.country);
+      printFullText(covidStaticsOfWorld.country);
+      printFullText(value.data);
+      emit(GetDataOfCountriesSuccessState());
+    }).catchError((onError){
+      printFullText('error happened when get statistics of word ');
+      emit(GetDataOfCountriesErrorState(onError));
     });
   }
 
@@ -41,8 +43,10 @@ class CovidHomeLayouCubit extends Cubit<CovidHomeLayouState> {
 
   void getDataOfEgypt() {
     emit(LoadingGetDataOfCountriesState());
-    CovidWebService.getData('v3/covid-19/countries/egy', {}).then((value) {
+
+    CovidWebService.getData('v3/covid-19/countries/egy').then((value) {
       covidStaticsOfEgypt = CovidStatics.fromJson(value.data);
+
       printFullText(covidStaticsOfEgypt.country);
       printFullText(covidStaticsOfEgypt.countryInfo.flag);
 

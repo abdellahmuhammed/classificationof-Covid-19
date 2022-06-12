@@ -8,20 +8,12 @@ class InfectedModel {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data.add(new Data.fromJson(v));
+        data.add( Data.fromJson(v));
       });
     }
     success = json['success'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.data != null) {
-      data['data'] = this.data.map((v) => v.toJson()).toList();
-    }
-    data['success'] = this.success;
-    return data;
-  }
 }
 
 class Data {
@@ -66,22 +58,6 @@ class Data {
     ctScansUrls = json['ct_scans_urls'].cast<String>();
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['ID'] = this.iD;
-    data['patient_id'] = this.patientId;
-    data['infection_date'] = this.infectionDate;
-    data['doctor_id'] = this.doctorId;
-    data['status'] = this.status;
-    data['doctor'] = this.doctor;
-    data['patient'] = this.patient;
-    data['patient_age'] = this.patientAge;
-    if (this.ctScans != null) {
-      data['ct_scans'] = this.ctScans.map((v) => v.toJson()).toList();
-    }
-    data['ct_scans_urls'] = this.ctScansUrls;
-    return data;
-  }
 }
 
 class CtScans {
@@ -99,12 +75,4 @@ class CtScans {
     numOfImgs = json['num_of_imgs'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['ID'] = this.iD;
-    data['infected_id'] = this.infectedId;
-    data['date'] = this.date;
-    data['num_of_imgs'] = this.numOfImgs;
-    return data;
-  }
 }

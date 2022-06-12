@@ -25,14 +25,31 @@ class patientStetues extends StatelessWidget {
           body:ConditionalBuilder(
             condition: PatientCubit.get(context).InfModel !=null,
             builder:(context)=>BuildResult(context,PatientCubit.get(context).InfModel) ,
-            fallback: (context)=>Center(child: CircularProgressIndicator()),
+            fallback: (context)=>const Center(child: const CircularProgressIndicator()),
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: (){
-              PatientCubit.get(context).getStatueOfUser();
-            },
+          floatingActionButton: Container(
+            width: MediaQuery.of(context).size.width*.6,
+            height: MediaQuery.of(context).size.height*.06,
+            child: FloatingActionButton(
+              isExtended:true,
+              child:  Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                    children:  [
+                      const Icon(Icons.dangerous),
+                      const SizedBox(width: 15,),
+                      Text('dangerous condition' , style: Theme.of(context).textTheme.bodyText1,  ),
+                    ],
+                  ),
+              ),
+
+              onPressed: (){
+
+              },
+            ),
           ),
-          floatingActionButtonLocation:FloatingActionButtonLocation.centerDocked ,
+          floatingActionButtonLocation:FloatingActionButtonLocation.miniCenterDocked,
+
 
         );
       },

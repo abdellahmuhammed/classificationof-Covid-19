@@ -78,7 +78,7 @@ class StatisticsHomeScreen extends StatelessWidget {
                 ),
                 CovidHomeLayouCubit
                     .get(context)
-                    .covidStaticsWorld == null
+                    .covidStaticsOfWorld == null
                     ? const Center(child: CircularProgressIndicator())
                     : const StatisticsOfWorld(),
                 const SizedBox(height: 15,),
@@ -86,6 +86,11 @@ class StatisticsHomeScreen extends StatelessWidget {
               ],
             ),
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: (){
+            CovidHomeLayouCubit.get(context).getStaticsOfWorld();
+          },
         ),
       ),
     );

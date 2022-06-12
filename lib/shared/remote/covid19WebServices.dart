@@ -15,8 +15,7 @@ class CovidWebService {
 
   static Future<Response> getData(
     @required String url,
-    Map<String, dynamic> query,
   ) async {
-    return await _dio.get(url, queryParameters: query);
+    return await _dio.get(url);
   }
 }

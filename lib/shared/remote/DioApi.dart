@@ -42,3 +42,5 @@ class DioApi {
     return _dio.get(url, queryParameters: query);
   }
 }
+
+
