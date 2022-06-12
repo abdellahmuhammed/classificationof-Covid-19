@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, unnecessary_string_interpolations, must_be_immutable, void_checks, missing_return
+// ignore_for_file: file_names, unnecessary_string_interpolations, must_be_immutable, void_checks, missing_return, prefer_const_constructors_in_immutables, prefer_const_constructors
 import 'dart:math' as math;
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:custom_full_image_screen/custom_full_image_screen.dart';

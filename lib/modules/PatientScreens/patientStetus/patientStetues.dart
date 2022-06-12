@@ -1,14 +1,12 @@
-// ignore_for_file: unrelated_type_equality_checks, prefer_const_constructors_in_immutables, camel_case_types
+// ignore_for_file: unrelated_type_equality_checks, prefer_const_constructors_in_immutables, camel_case_types, unnecessary_const, sized_box_for_whitespace, non_constant_identifier_names, prefer_const_constructors
 
 import 'package:conditional_builder/conditional_builder.dart';
-import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
 import 'package:finalproject/models/infectedData/infectedModel.dart';
-import 'package:finalproject/modules/PatientScreens/PatientProfile/PatientProfile.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_cubit.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_state.dart';
-import 'package:finalproject/shared/component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:show_up_animation/show_up_animation.dart';
 
 class patientStetues extends StatelessWidget {
   patientStetues({Key key}) : super(key: key);
@@ -28,8 +26,8 @@ class patientStetues extends StatelessWidget {
             fallback: (context)=>const Center(child: const CircularProgressIndicator()),
           ),
           floatingActionButton: Container(
-            width: MediaQuery.of(context).size.width*.6,
-            height: MediaQuery.of(context).size.height*.06,
+            width: MediaQuery.of(context).size.width*.7,
+            height: MediaQuery.of(context).size.height*.09,
             child: FloatingActionButton(
               isExtended:true,
               child:  Padding(
@@ -58,13 +56,30 @@ class patientStetues extends StatelessWidget {
   Widget BuildResult(BuildContext context,InfectedModel model){
     return Center(
       child: Container(
-        color: Colors.grey ,
+        //color: Colors.grey ,
         width: MediaQuery.of(context).size.width*.7,
         height: MediaQuery.of(context).size.height*.5,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30)
+        ),
         child: ClipRRect(
             borderRadius: BorderRadius.circular(300),
             clipBehavior: Clip.hardEdge,
-            child: Center(child: Text('The Result is   ${model.data[PatientCubit.get(context).InfModel.data.length-1].status}'))),
+            child: ShowUpAnimation(
+              delayStart: Duration(seconds: 1),
+              animationDuration: Duration(seconds: 1),
+              curve: Curves.bounceIn,
+              direction: Direction.vertical,
+              offset: 0.5,
+              child: Center(child: Text(
+                  'The Result is   ${model.data[PatientCubit.get(context).InfModel.data.length-1].status}',
+                      style:Theme.of(context).textTheme.bodyText1,
+
+
+              )))),
+
+
+
       ),
     );
   }

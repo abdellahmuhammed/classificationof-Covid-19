@@ -56,6 +56,7 @@ dependencies:
   polygon_clipper: ^1.0.2
   material_dialogs: ^1.1.1
   custom_bottom_navigation_bar: ^0.0.1
+  show_up_animation: ^1.0.2
 
 
 
