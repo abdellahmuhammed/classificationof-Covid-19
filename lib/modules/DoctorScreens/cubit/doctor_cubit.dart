@@ -57,6 +57,37 @@ class DoctorCubit extends Cubit<DoctorState> {
     });
   }
 
+  GetPatientDataModel Test;
+
+  void getUserProfileTest( ) {
+    emit(LoadingGetDoctorDataState());
+    DioApi.PostData(
+      url: 'api/users',
+      data: FormData.fromMap({
+        'action': 'fetch',
+        'api_section': 'users',
+
+      }),
+      token: token,
+    ).then((value) {
+      Test = GetPatientDataModel.fromJson(value.data);
+      printFullText(' data successfully ');
+
+      // for(int i=0;i<getPatientDataModel.data.length;i++){
+      //   var id =getPatientDataModel.data[i].username;
+      //   Id=[id];
+      // print(Id);
+      // printFullText(' Phone num is ${getPatientDataModel.data[0].phoneNum}');
+      // }
+
+      emit(GetDoctorDataStateSuccess());
+    }).catchError(( onError) {
+      printFullText('Happened Error when get data ${ onError.toString()}');
+      emit(GetDoctorDataStateError());
+
+    });
+  }
+
   List<dynamic> PatinetId = [];
   InfectedModel getInfectedUser;
 
@@ -175,6 +206,11 @@ class DoctorCubit extends Cubit<DoctorState> {
   //
   //
   // }
+
+
+
+
+
   List<int>RX=[];
   CheckVotingModel CheckVotes;
 void CheckPatient(index){
@@ -211,6 +247,8 @@ void CheckPatient(index){
 
 
 }
+
+
 }
 
 

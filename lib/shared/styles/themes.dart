@@ -56,6 +56,7 @@ ThemeData lightTheme = ThemeData(
 );
 ThemeData darkTheme = ThemeData(
   backgroundColor: Colors.black26,
+  cardTheme:const CardTheme(color: Colors.white10,) ,
   primarySwatch: deepOrange,
   drawerTheme: const DrawerThemeData(backgroundColor: Colors.black26),
   secondaryHeaderColor: Colors.white,

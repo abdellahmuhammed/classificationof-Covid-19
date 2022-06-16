@@ -89,7 +89,7 @@ class MyApp extends StatelessWidget {
               ..getUserProfile()
             //..getUserProfile()a,
             ),
-        BlocProvider(create: (context) => DoctorCubit()..getLessPro()..getUserProfile()
+        BlocProvider(create: (context) => DoctorCubit()..getLessPro()..getUserProfile()..getUserProfileTest()
             //..getUserProfile(),
             ),
         BlocProvider(create: (context) => RadiologistCubit()

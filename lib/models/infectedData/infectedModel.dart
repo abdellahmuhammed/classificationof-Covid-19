@@ -1,4 +1,4 @@
-class InfectedModel {
+ class  InfectedModel {
   List<Data> data;
   bool success;
 

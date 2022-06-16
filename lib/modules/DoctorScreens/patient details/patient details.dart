@@ -1,10 +1,9 @@
-// ignore_for_file: must_be_immutable, file_names
+// ignore_for_file: must_be_immutable, file_names, non_constant_identifier_names
 
 
 import 'package:conditional_builder/conditional_builder.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:finalproject/models/GetPatientData/GetPatientDataModel.dart';
 import 'package:finalproject/modules/DoctorScreens/CTScanScreen/CTScanScreen.dart';
-import 'package:finalproject/modules/DoctorScreens/DiagnosisScreen/DiagnosisScreen.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_state.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_cubit.dart';
@@ -13,7 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PatientDetails extends StatelessWidget {
-  PatientDetails({Key key}) : super(key: key);
+  PatientDetails( {Key key, this.Mo,}) : super(key: key);
+  final Data Mo;
 
   var userNameController = TextEditingController();
   var emailController = TextEditingController();
@@ -29,6 +29,7 @@ class PatientDetails extends StatelessWidget {
     return BlocConsumer<DoctorCubit, DoctorState>(
       listener: (context, state) {},
       builder: (context, state) {
+
         var cubit = DoctorCubit.get(context);
         return SafeArea(
           child: Scaffold(
@@ -94,7 +95,7 @@ class PatientDetails extends StatelessWidget {
             ),
             floatingActionButton: FloatingActionButton.extended(
               onPressed: () {
-                //NavigateTo(context,  DiagnosisScreen());
+
               },
               label: const Text('diagnose the Patient'),
               icon: const Icon(Icons.send),
@@ -125,7 +126,7 @@ class PatientDetails extends StatelessWidget {
                     validate: null,
                     enabled: false,
                   type: null,
-                  label: DoctorCubit.get(context).getInfectedUser.data[0].patient,
+                  label:' ${Mo.username}',
                 ),
               ),
             ],
@@ -149,7 +150,7 @@ class PatientDetails extends StatelessWidget {
                       validate: null,
                     enabled: false,
                     type: null,
-                    label: '${DoctorCubit.get(context).getInfectedUser.data[0].patientId}',
+                    label: '${Mo.email}',
                 ),
               ),
             ],
@@ -174,7 +175,7 @@ class PatientDetails extends StatelessWidget {
                       validate: null,
                     enabled: false,
                     type: null,
-                    label: DoctorCubit.get(context).getInfectedUser.data[0].infectionDate,
+                    label: '${Mo.phoneNum}',
                 ),
               ),
             ],
@@ -198,7 +199,7 @@ class PatientDetails extends StatelessWidget {
                       validate: null,
                     enabled: false,
                     type: null,
-                    label: '${PatientCubit.get(context).getPatientDataModel.data[0].ssn}',
+                    label: '${Mo.ssn}',
                 ),
               ),
             ],
@@ -222,7 +223,7 @@ class PatientDetails extends StatelessWidget {
                       validate: null,
                     enabled: false,
                     type: null,
-                    label: '${PatientCubit.get(context).getPatientDataModel.data[0].ssn}'
+                    label: '${Mo.job}'
                 ),
               ),
             ],
@@ -246,7 +247,8 @@ class PatientDetails extends StatelessWidget {
                       validate: null,
                     enabled: false,
                     type: null,
-                    label: '${PatientCubit.get(context).getPatientDataModel.data[0].address}'
+                    // ignore: unnecessary_string_interpolations
+                    label: '${Mo.address}'
                 ),
               ),
             ],
@@ -270,7 +272,7 @@ class PatientDetails extends StatelessWidget {
                       validate: null,
                     enabled: false,
                     type: null,
-                    label: '${PatientCubit.get(context).getPatientDataModel.data[0].dob}'
+                    label: '${Mo.dob}'
                 ),
               ),
             ],
@@ -294,7 +296,7 @@ class PatientDetails extends StatelessWidget {
                       validate: null,
                     enabled: false,
                     type: null,
-                    label: PatientCubit.get(context).getPatientDataModel.data[0].gender
+                    label: '${Mo.gender}'
                 ),
               ),
             ],
