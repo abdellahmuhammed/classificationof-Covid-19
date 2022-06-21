@@ -128,7 +128,7 @@ class MyApp extends StatelessWidget {
               ) {
                 final bool connected = connectivity != ConnectivityResult.none;
                 if (connected) {
-                  return const StatisticsOfEgypt ();
+                  return startWidget;
                 } else {
                   return noInternetBuilder(context);
                 }

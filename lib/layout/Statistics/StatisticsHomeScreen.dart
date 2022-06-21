@@ -33,53 +33,7 @@ class StatisticsHomeScreen extends StatelessWidget {
             ),
             body: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: MediaQuery.of(context).size.height * .1,
-                      color: Colors.orange.withOpacity(.2),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          DataConstant.MyContainerString,
-                          style: Theme.of(context).textTheme.bodyLarge,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Statistics of World',
-                            style: Theme.of(context).textTheme.bodyText1,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              NavigateTo(context, const StatisticsOfEgypt());
-                            },
-                            child: Text(
-                              'Statistics of Egypt',
-                              style: Theme.of(context).textTheme.bodyText1,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    CovidHomeLayouCubit.get(context).covidStaticsOfWorld == null
-                        ? Container()
-                        : const StatisticsOfWorld(),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    const DetailsScreen()
-                  ],
-                ),
-              ),
+              child: buildStatisticsHomeScreen(context),
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: (){
@@ -91,4 +45,53 @@ class StatisticsHomeScreen extends StatelessWidget {
       },
     );
   }
+
+
+  Widget buildStatisticsHomeScreen (context)=> Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          height: MediaQuery.of(context).size.height * .1,
+          color: Colors.orange.withOpacity(.2),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              DataConstant.MyContainerString,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Statistics of World',
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+              InkWell(
+                onTap: () {
+                  NavigateTo(context, const StatisticsOfEgypt());
+                },
+                child: Text(
+                  'Statistics of Egypt',
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
+              ),
+            ],
+          ),
+        ),
+        CovidHomeLayouCubit.get(context).covidStaticsOfWorld == null
+            ? const Center(child:  CircularProgressIndicator())
+            : const StatisticsOfWorld(),
+        const SizedBox(
+          height: 15,
+        ),
+        const DetailsScreen()
+      ],
+    ),
+  );
 }

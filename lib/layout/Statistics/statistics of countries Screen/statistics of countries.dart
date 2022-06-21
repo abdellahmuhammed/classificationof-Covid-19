@@ -5,7 +5,6 @@ import 'package:finalproject/shared/component.dart';
 import 'package:finalproject/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 class StatisticsOfCountries extends StatelessWidget {
   const StatisticsOfCountries({Key key}) : super(key: key);
 

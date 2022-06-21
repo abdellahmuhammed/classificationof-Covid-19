@@ -25,13 +25,7 @@ class StatisticsOfEgypt extends StatelessWidget {
           ),
           body: ConditionalBuilder(
             condition: CovidHomeLayouCubit.get(context).covidStaticsOfEgypt != null,
-            builder: (BuildContext context) => SingleChildScrollView(
-              child: Column(
-                children: [
-                  buildStatisticsOfEgypt(context),
-                ],
-              ),
-            ),
+            builder: (BuildContext context) => buildStatisticsOfEgypt(context),
             fallback: (BuildContext context) => const Center(child: CircularProgressIndicator()),
           ),
         );
