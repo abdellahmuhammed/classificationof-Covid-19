@@ -1,4 +1,6 @@
 import 'package:finalproject/MyBlocObserver.dart';
+import 'package:finalproject/layout/Statistics/statistics%20of%20Egypt%20Screen/statistics%20of%20Egypt.dart';
+import 'package:finalproject/layout/Statistics/statistics%20of%20world%20Screen/statistics%20of%20world.dart';
 import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
 import 'package:finalproject/layout/cubit/home%20cuibt/covid_home_layou_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/DoctorHomelayoutScreen.dart';
@@ -46,7 +48,7 @@ void main() async {
         widget = const RadiologistHomeLayoutScreen();
       }
       if (rolId == 3) {
-        widget = DoctorHomeLayoutScreen();
+        widget = const DoctorHomeLayoutScreen();
       }
       if (rolId == 4) {
         widget = const PatientHomeLayoutScreen();
@@ -86,9 +88,12 @@ class MyApp extends StatelessWidget {
         BlocProvider(
             create: (context) => PatientCubit()
               ..getStatueOfUser()
+              ..getUserProfile()),
+        BlocProvider(
+            create: (context) => DoctorCubit()
+              ..getLessPro()
               ..getUserProfile()
-            ),
-        BlocProvider(create: (context) => DoctorCubit()..getLessPro()..getUserProfile()..getUserProfileTest()
+              ..getUserProfileTest()
             //..getUserProfile(),
             ),
         BlocProvider(create: (context) => RadiologistCubit()
@@ -102,9 +107,8 @@ class MyApp extends StatelessWidget {
               DarkModeCubit()..changeAppMode(formShared: false),
         ),
         BlocProvider(
-          create: (context) =>
-              CovidHomeLayouCubit()//..getStaticsOfWorld()
-        ),
+            create: (context) => CovidHomeLayouCubit() //..getStaticsOfWorld()..getDataOfEgypt()..getDataOfCountries()
+            ),
       ],
       child: BlocConsumer<DarkModeCubit, DarkModeStates>(
         listener: (context, state) {},
@@ -124,7 +128,7 @@ class MyApp extends StatelessWidget {
               ) {
                 final bool connected = connectivity != ConnectivityResult.none;
                 if (connected) {
-                  return startWidget;
+                  return const StatisticsOfEgypt ();
                 } else {
                   return noInternetBuilder(context);
                 }

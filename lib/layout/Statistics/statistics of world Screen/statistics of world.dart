@@ -14,76 +14,83 @@ class StatisticsOfWorld extends StatelessWidget {
         // TODO: implement listener
       },
       builder: (context, state) {
-        return  Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GridView(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, mainAxisSpacing: 1, crossAxisSpacing: 1),
-              children: <Widget>[
-                BuildContainerOfStatistics(
-                  title: 'Cases',
-                  count: CovidHomeLayouCubit.get(context).covidStaticsOfWorld.cases.toString(),
-                  containerColor: grey[350],
-                  textColor: Colors.black,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                ),
-                // BuildContainerOfStatistics(
-                //   title: 'TodayCases',
-                //   count: CovidHomeLayouCubit.get(context)
-                //       .covidStaticsOfWorld
-                //       .todayCases
-                //       .toString(),
-                //   containerColor: grey[350],
-                //   textColor: Colors.black,
-                //   fontSize: 23,
-                //   fontWeight: FontWeight.bold,
-                // ),
-                BuildContainerOfStatistics(
-                  title: 'Recovered',
-                  count: CovidHomeLayouCubit.get(context).covidStaticsOfWorld.recovered.toString(),
-                  containerColor: grey[350],
-                  textColor: Colors.black,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                ),
-                BuildContainerOfStatistics(
-                  title: 'Deaths',
-                  count: CovidHomeLayouCubit.get(context)
-                      .covidStaticsOfWorld
-                      .deaths
-                      .toString(),
-                  containerColor: grey[350],
-                  textColor: Colors.black,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                ),
-                // BuildContainerOfStatistics(
-                //   title: 'TodayDeaths',
-                //   count: CovidHomeLayouCubit.get(context)
-                //       .covidStatics
-                //       .todayDeaths
-                //       .toString(),
-                //   containerColor: grey[350],
-                //   textColor: Colors.black,
-                //   fontSize: 21,
-                //   fontWeight: FontWeight.bold,
-                // ),
-                BuildContainerOfStatistics(
-                  title: 'Active',
-                  count: CovidHomeLayouCubit.get(context)
-                      .covidStaticsOfWorld
-                      .active
-                      .toString(),
-                  containerColor: grey[350],
-                  textColor: Colors.black,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                ),
-              ],
-            ),);
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: GridView(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, mainAxisSpacing: 1, crossAxisSpacing: 1),
+            children: <Widget>[
+              BuildContainerOfStatistics(
+                title: 'Cases',
+                count: CovidHomeLayouCubit.get(context)
+                    .covidStaticsOfWorld
+                    .cases
+                    .toString(),
+                containerColor: grey[350],
+                textColor: Colors.black,
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
+              // BuildContainerOfStatistics(
+              //   title: 'TodayCases',
+              //   count: CovidHomeLayouCubit.get(context)
+              //       .covidStaticsOfWorld
+              //       .todayCases
+              //       .toString(),
+              //   containerColor: grey[350],
+              //   textColor: Colors.black,
+              //   fontSize: 23,
+              //   fontWeight: FontWeight.bold,
+              // ),
+              BuildContainerOfStatistics(
+                title: 'Recovered',
+                count: CovidHomeLayouCubit.get(context)
+                    .covidStaticsOfWorld
+                    .recovered
+                    .toString(),
+                containerColor: grey[350],
+                textColor: Colors.black,
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
+              BuildContainerOfStatistics(
+                title: 'Deaths',
+                count: CovidHomeLayouCubit.get(context)
+                    .covidStaticsOfWorld
+                    .deaths
+                    .toString(),
+                containerColor: grey[350],
+                textColor: Colors.black,
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
+              // BuildContainerOfStatistics(
+              //   title: 'TodayDeaths',
+              //   count: CovidHomeLayouCubit.get(context)
+              //       .covidStatics
+              //       .todayDeaths
+              //       .toString(),
+              //   containerColor: grey[350],
+              //   textColor: Colors.black,
+              //   fontSize: 21,
+              //   fontWeight: FontWeight.bold,
+              // ),
+              BuildContainerOfStatistics(
+                title: 'Active',
+                count: CovidHomeLayouCubit.get(context)
+                    .covidStaticsOfWorld
+                    .active
+                    .toString(),
+                containerColor: grey[350],
+                textColor: Colors.black,
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
+            ],
+          ),
+        );
       },
     );
   }

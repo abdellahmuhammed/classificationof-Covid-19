@@ -198,8 +198,8 @@ Widget defultAppBar() => AppBar(
     );
 
 Widget defultImage({
-  double ContainerHeight = 300,
-  double ContainerWidth = 400,
+  double ContainerHeight ,
+  double ContainerWidth ,
   double radius = 20,
   @required ImageProvider Image,
   BoxFit fit = BoxFit.cover,

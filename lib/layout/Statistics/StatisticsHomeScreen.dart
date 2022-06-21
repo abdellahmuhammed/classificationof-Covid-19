@@ -14,87 +14,81 @@ class StatisticsHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<CovidHomeLayouCubit, CovidHomeLayouState>(
-  listener: (context, state) {
-    // TODO: implement listener
-  },
-  builder: (context, state) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Scaffold(
-        appBar: AppBar(
-          systemOverlayStyle:
-          SystemUiOverlayStyle(statusBarColor: Colors.blueGrey[50]),
-          title:  Text('Statistics ' , style: Theme.of(context).textTheme.bodyText1,),
-          centerTitle: true,
-          backgroundColor: Colors.grey,
-        ),
-        body: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height * .1,
-                  color: Colors.orange.withOpacity(.2),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      DataConstant.MyContainerString,
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .bodyLarge,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Statistics of World',
-                        style: Theme
-                            .of(context)
-                            .textTheme
-                            .bodyText1,
-                      ),
-                      InkWell(
-                        onTap: (){
-                          NavigateTo(context, const StatisticsOfEgypt());
-                        },
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Scaffold(
+            appBar: AppBar(
+              systemOverlayStyle:
+                  SystemUiOverlayStyle(statusBarColor: Colors.blueGrey[50]),
+              title: Text(
+                'Statistics ',
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+              centerTitle: true,
+              backgroundColor: Colors.grey,
+            ),
+            body: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: MediaQuery.of(context).size.height * .1,
+                      color: Colors.orange.withOpacity(.2),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          'Statistics of Egypt',
-                          style: Theme
-                              .of(context)
-                              .textTheme
-                              .bodyText1,
+                          DataConstant.MyContainerString,
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Statistics of World',
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              NavigateTo(context, const StatisticsOfEgypt());
+                            },
+                            child: Text(
+                              'Statistics of Egypt',
+                              style: Theme.of(context).textTheme.bodyText1,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    CovidHomeLayouCubit.get(context).covidStaticsOfWorld == null
+                        ? Container()
+                        : const StatisticsOfWorld(),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    const DetailsScreen()
+                  ],
                 ),
-                CovidHomeLayouCubit
-                    .get(context)
-                    .covidStaticsOfWorld == null
-                    ? Container()
-                    : const StatisticsOfWorld(),
-                const SizedBox(height: 15,),
-                const DetailsScreen()
-              ],
+              ),
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: (){
+                CovidHomeLayouCubit.get(context).getStaticsOfWorld();
+              },
             ),
           ),
-        ),
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed: (){
-        //     CovidHomeLayouCubit.get(context).getStaticsOfWorld();
-        //   },
-        // ),
-      ),
+        );
+      },
     );
-  },
-);
   }
 }

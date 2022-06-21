@@ -1,5 +1,8 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:finalproject/layout/Statistics/StatisticsHomeScreen.dart';
 import 'package:finalproject/models/covidStatictsmodel/CovidStatisticsModel.dart';
+import 'package:finalproject/models/getDataOfCountriesModel/getDataOfCountriesModel.dart';
 import 'package:finalproject/shared/Constant.dart';
 import 'package:finalproject/shared/remote/covid19WebServices.dart';
 import 'package:flutter/material.dart';
@@ -23,10 +26,9 @@ class CovidHomeLayouCubit extends Cubit<CovidHomeLayouState> {
   ];
 
 CovidStatics covidStaticsOfWorld;
-
   void getStaticsOfWorld() {
     emit(LoadingGetDataOfWorldState());
-    CovidWebService.getData('v3/covid-19/all/').then((value) {
+    CovidWebService.getData('v3/covid-19/historical/all').then((value) {
       covidStaticsOfWorld = CovidStatics.fromJson(value.data);
       printFullText(value.data);
       printFullText(covidStaticsOfWorld.country);
@@ -40,21 +42,35 @@ CovidStatics covidStaticsOfWorld;
   }
 
   CovidStatics covidStaticsOfEgypt;
-
   void getDataOfEgypt() {
-    emit(LoadingGetDataOfCountriesState());
-
+    emit(GetDataOfEgypt());
     CovidWebService.getData('v3/covid-19/countries/egy').then((value) {
       covidStaticsOfEgypt = CovidStatics.fromJson(value.data);
-
       printFullText(covidStaticsOfEgypt.country);
       printFullText(covidStaticsOfEgypt.countryInfo.flag);
-
-      emit(GetDataOfCountriesSuccessState());
+      emit(GetDataOfEgyptSuccessState());
     }).catchError((onError) {
+      printFullText(
+          'error happened when get Data Of Egypt ${onError.toString()}');
+      emit(GetDataOfEgyptErrorState(onError));
+    });
+  }
+
+  GetDataOfCountriesModel getDataOfCountriesModel;
+  void getDataOfCountries(){
+    emit(LoadingGetDataOfCountriesState());
+    CovidWebService.getData('v3/covid-19/countries/')
+        .then((value){
+      getDataOfCountriesModel = GetDataOfCountriesModel.fromJson(value.data);
+      print(getDataOfCountriesModel);
+      emit(GetDataOfCountriesSuccessState());
+    })
+        .catchError((onError){
       printFullText(
           'error happened when get Data Of Countries ${onError.toString()}');
       emit(GetDataOfCountriesErrorState(onError));
     });
   }
+
+
 }
