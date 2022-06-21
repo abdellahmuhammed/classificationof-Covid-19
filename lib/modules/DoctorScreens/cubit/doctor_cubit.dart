@@ -26,7 +26,7 @@ class DoctorCubit extends Cubit<DoctorState> {
 
   ];
 
-  GetPatientDataModel getPatientDataModel;
+  GetPatientDataModel getDoctorDataModel;
 
   void getUserProfile( ) {
     emit(LoadingGetDoctorDataState());
@@ -39,7 +39,7 @@ class DoctorCubit extends Cubit<DoctorState> {
       }),
       token: token,
     ).then((value) {
-      getPatientDataModel = GetPatientDataModel.fromJson(value.data);
+      getDoctorDataModel = GetPatientDataModel.fromJson(value.data);
       printFullText(' data successfully ');
 
       // for(int i=0;i<getPatientDataModel.data.length;i++){

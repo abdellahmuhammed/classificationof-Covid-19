@@ -16,7 +16,7 @@ class PatientHomeLayoutScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     final PageController _pageController = PageController();
-    return BlocConsumer<CovidHomeLayouCubit, CovidHomeLayouState>(
+    return BlocConsumer<PatientCubit, PatientStates>(
       listener: (context, state) {
         // TODO: implement listener
       },
@@ -33,17 +33,15 @@ class PatientHomeLayoutScreen extends StatelessWidget{
             ],
           ),
           drawer: ConditionalBuilder(
-            condition: state is! LoadingGetPatientDataState,
+            condition: PatientCubit.get(context).getPatientDataModel != null,
             builder: (BuildContext context) => defultDrawer(
               context,
               PatientCubit.get(context).getPatientDataModel.data[0].username,
               PatientCubit.get(context).getPatientDataModel.data[0].phoneNum,
               PatientProfileScreen(),
             ),
-            fallback: (BuildContext context) => const Center(
-              child: CircularProgressIndicator(),
+            fallback: (BuildContext context) =>  Container(),
             ),
-          ),
           bottomNavigationBar: CustomBottomNavigationBar(
             items: [
               CustomBottomNavigationBarItem(

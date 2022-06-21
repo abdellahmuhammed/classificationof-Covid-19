@@ -7,6 +7,7 @@ import 'package:finalproject/modules/DoctorScreens/DoctorProfileScreen/DoctorPro
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_state.dart';
 import 'package:finalproject/modules/DoctorScreens/patient%20details/patient%20details.dart';
+import 'package:finalproject/modules/PatientScreens/cubit/Patient_cubit.dart';
 import 'package:finalproject/shared/component.dart';
 import 'package:finalproject/shared/local/catchhelper.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +31,9 @@ class DiagnosisScreen extends StatelessWidget {
           builder: (context, state) {
             return Scaffold(
               body: ConditionalBuilder(
-                condition: state is! DoctorLoadingState,
+                condition: DoctorCubit.get(context).getDoctorDataModel != null && PatientCubit.get(context).getPatientDataModel != null,
                 builder: (BuildContext context) => ListView.builder(
+                  physics: BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
                     return ListTile(
                       subtitle: buildHomeScreen(

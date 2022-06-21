@@ -38,8 +38,8 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
               ],
             ),
             drawer: ConditionalBuilder(
-              condition: state is ! LoadingGetDoctorDataState,
-              builder: (BuildContext context) => defultDrawer(context, DoctorCubit.get(context).getPatientDataModel.data[0].username, DoctorCubit.get(context).getPatientDataModel.data[0].phoneNum, DoctorProfileScreen() ,),
+              condition: DoctorCubit.get(context).getDoctorDataModel != null ,
+              builder: (BuildContext context) => defultDrawer(context, DoctorCubit.get(context).getDoctorDataModel.data[0].username, DoctorCubit.get(context).getDoctorDataModel.data[0].phoneNum, DoctorProfileScreen() ,),
               fallback: (BuildContext context) => const Center(
                 child: CircularProgressIndicator(),
               ),
