@@ -87,7 +87,6 @@ class MyApp extends StatelessWidget {
             create: (context) => PatientCubit()
               ..getStatueOfUser()
               ..getUserProfile()
-            //..getUserProfile()a,
             ),
         BlocProvider(create: (context) => DoctorCubit()..getLessPro()..getUserProfile()..getUserProfileTest()
             //..getUserProfile(),
@@ -104,7 +103,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) =>
-              CovidHomeLayouCubit()..getStaticsOfWorld()
+              CovidHomeLayouCubit()//..getStaticsOfWorld()
         ),
       ],
       child: BlocConsumer<DarkModeCubit, DarkModeStates>(

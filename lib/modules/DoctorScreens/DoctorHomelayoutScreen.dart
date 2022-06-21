@@ -18,10 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DoctorHomeLayoutScreen extends StatelessWidget {
-  DoctorHomeLayoutScreen({Key key}) : super(key: key);
-  int controller;
-  var scaffoldKey = GlobalKey<ScaffoldState>();
-  bool isBottomSheetShown = false;
+  const DoctorHomeLayoutScreen({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final PageController _pageController = PageController();
@@ -30,7 +27,6 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           return Scaffold(
-            key: scaffoldKey,
             appBar: AppBar(
               actions: [
                 IconButton(
@@ -42,7 +38,7 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
               ],
             ),
             drawer: ConditionalBuilder(
-              condition: PatientCubit.get(context).getPatientDataModel != null ,
+              condition: state is ! LoadingGetDoctorDataState,
               builder: (BuildContext context) => defultDrawer(context, DoctorCubit.get(context).getPatientDataModel.data[0].username, DoctorCubit.get(context).getPatientDataModel.data[0].phoneNum, DoctorProfileScreen() ,),
               fallback: (BuildContext context) => const Center(
                 child: CircularProgressIndicator(),

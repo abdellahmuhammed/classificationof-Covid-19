@@ -14,7 +14,9 @@ class patientStetues extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<PatientCubit, PatientStates>(
+    return BlocProvider(
+  create: (context) => PatientCubit()..getStatueOfUser()..getUserProfile(),
+  child: BlocConsumer<PatientCubit, PatientStates>(
       listener: (context, state) {
       },
       builder: (context, state) {
@@ -23,7 +25,7 @@ class patientStetues extends StatelessWidget {
           body:ConditionalBuilder(
             condition: PatientCubit.get(context).InfModel !=null,
             builder:(context)=>BuildResult(context,PatientCubit.get(context).InfModel) ,
-            fallback: (context)=>const Center(child: const CircularProgressIndicator()),
+            fallback: (context)=> Center(child:  Container()),
           ),
           floatingActionButton: Container(
             width: MediaQuery.of(context).size.width*.7,
@@ -51,7 +53,8 @@ class patientStetues extends StatelessWidget {
 
         );
       },
-    );
+    ),
+);
   }
   Widget BuildResult(BuildContext context,InfectedModel model){
     return Center(

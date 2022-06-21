@@ -92,7 +92,7 @@ class StatisticsOfEgypt extends StatelessWidget {
           ),
         ),
       ),
-      fallback: (BuildContext context) => const Center( child: CircularProgressIndicator(),),
+      fallback: (BuildContext context) => CircularProgressIndicator(),
       
     );
   },
