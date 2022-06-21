@@ -92,7 +92,7 @@ class MyApp extends StatelessWidget {
             //..getUserProfile(),
             ),
         BlocProvider(create: (context) => RadiologistCubit()
-            //..getUserProfile(),
+            //..getUserProfile(), sd
             ),
         BlocProvider(create: (context) => ParamedicCubit()
             //..getUserProfile(),
