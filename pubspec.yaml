@@ -57,6 +57,7 @@ dependencies:
   material_dialogs: ^1.1.1
   custom_bottom_navigation_bar: ^0.0.1
   show_up_animation: ^1.0.2
+  http: ^0.13.0
 
 
 

@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names, prefer_typing_uninitialized_variables, avoid_print
 
 import 'package:dio/dio.dart';
-import 'package:finalproject/layout/Statistics/StatisticsHomeScreen.dart';
+import 'package:finalproject/layout/Statistics/statistics%20of%20world%20Screen/statistics%20of%20world.dart';
 import 'package:finalproject/models/GetPatientData/GetPatientDataModel.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_state.dart';
 import 'package:finalproject/modules/PatientScreens/patientStetus/patientStetues.dart';
@@ -21,7 +21,7 @@ class PatientCubit extends Cubit<PatientStates> {
 
   List <Widget> PatientBottomNavBarList= [
     const Center(child: Text('data')),
-    const StatisticsHomeScreen(),
+    const StatisticsOfWorld(),
     patientStetues()  //DoctorHomeLayoutScreen(),
   ];
 

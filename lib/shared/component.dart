@@ -476,3 +476,50 @@ class BuildContainerOfStatistics extends StatelessWidget {
   }
 }
 
+class BuildContainerOfStatistic extends StatelessWidget {
+
+  final Color panelColor;
+  final Color textColor;
+  final String title;
+  final String count;
+
+  const BuildContainerOfStatistic({Key key, this.panelColor, this.textColor, this.title, this.count}) : super(key: key);@override
+
+
+  Widget build(BuildContext context) {
+    double width = MediaQuery
+        .of(context)
+        .size
+        .width;
+    return Container(
+      margin: const EdgeInsets.all(10),
+      height: 80,
+      width: width / 2,
+      decoration: BoxDecoration(
+          color: panelColor,
+          borderRadius: BorderRadius.circular(15)
+
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center ,
+        children: <Widget>[
+          Text(title,
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+                color: textColor
+            ),
+          ),
+          Text(count,
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+                color: textColor
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+

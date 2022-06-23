@@ -3,7 +3,6 @@ import 'package:conditional_builder/conditional_builder.dart';
 import 'package:custom_bottom_navigation_bar/custom_bottom_navigation_bar.dart';
 import 'package:custom_bottom_navigation_bar/custom_bottom_navigation_bar_item.dart';
 import 'package:finalproject/layout/cubit/DarkMode/dark_mode_cubit.dart';
-import 'package:finalproject/layout/cubit/home%20cuibt/covid_home_layou_cubit.dart';
 import 'package:finalproject/modules/PatientScreens/PatientProfile/PatientProfile.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_cubit.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_state.dart';
@@ -23,6 +22,8 @@ class PatientHomeLayoutScreen extends StatelessWidget{
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
+              centerTitle: true,
+              title: const Text('COVID-19 Panel'),
             actions: [
               IconButton(
                 onPressed: () {
