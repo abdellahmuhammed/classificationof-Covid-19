@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types
 
+import 'package:finalproject/layout/Statistics/MostAffected/MostAffected.dart';
 import 'package:finalproject/layout/Statistics/statistics%20of%20countries%20Screen/statistics%20of%20countries.dart';
 import 'package:finalproject/layout/cubit/home%20cuibt/covid_home_layou_cubit.dart';
 import 'package:finalproject/layout/detilsScreen/detilsScreen.dart';
@@ -27,7 +28,7 @@ class StatisticsOfWorld extends StatelessWidget {
                   height: 100,
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10),
-                  color: Colors.grey[50],
+                  color: Colors.orange[100],
                   child: Text(
                     'Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less.',
                     style: Theme.of(context).textTheme.bodyText1,
@@ -62,17 +63,17 @@ class StatisticsOfWorld extends StatelessWidget {
                   ),
                 ),
                 CovidHomeLayouCubit.get(context).covidForAllModel == null ? const CircularProgressIndicator() : buildGridView(context: context),
-                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Text(
-                    'Most affected Countries',
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
-                ),
+                //  Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 10),
+                //   child: Text(
+                //     'Most affected Countries',
+                //     style: Theme.of(context).textTheme.bodyText1,
+                //   ),
+                // ),
                 const SizedBox(
                   height: 10,
                 ),
-                const MostAffectedPanel(),
+                // CovidHomeLayouCubit.get(context).getDataOfCountriesList ==null ? Container(): const MostAffected(),
                 const SizedBox(
                   height: 10,
                 ),

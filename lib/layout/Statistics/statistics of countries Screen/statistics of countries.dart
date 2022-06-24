@@ -16,7 +16,7 @@ class StatisticsOfCountries extends StatelessWidget {
             title: const Text('Countries Status'),
           ),
           body: ConditionalBuilder(
-            condition: true,
+            condition: CovidHomeLayouCubit.get(context).getDataOfCountriesList != null,
             builder: (BuildContext context) => buildStatisticsOfCountries(context),
             fallback: (BuildContext context) => const Center(
               child: CircularProgressIndicator(),
@@ -43,23 +43,26 @@ class StatisticsOfCountries extends StatelessWidget {
                   blurRadius: 10)
             ]),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 1),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                       Text(
-                        '${CovidHomeLayouCubit.get(context).getDataOfCountriesList[index]['country']}' ,
-                        // countriesData[index]['country'],
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
                       Image.network(
                         '${CovidHomeLayouCubit.get(context).getDataOfCountriesList[index]['countryInfo']['flag']}' ,
                         // countriesData[index]['countryInfo']['flag'],
                         height: 50,
                         width: 60,
-                      )
+                      ),
+                      Text(
+                        '${CovidHomeLayouCubit.get(context).getDataOfCountriesList[index]['country']}' ,
+                        // countriesData[index]['country'],
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+
                     ],
                   ),
                 ),
@@ -99,5 +102,6 @@ class StatisticsOfCountries extends StatelessWidget {
             ),
           ),
         );
-      });
+      },
+  );
 }
