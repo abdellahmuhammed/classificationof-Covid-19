@@ -20,7 +20,6 @@ class PatientCubit extends Cubit<PatientStates> {
 
 
   List <Widget> PatientBottomNavBarList= [
-    const Center(child: Text('data')),
     const StatisticsOfWorld(),
     patientStetues()  //DoctorHomeLayoutScreen(),
   ];

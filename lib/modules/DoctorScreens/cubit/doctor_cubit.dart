@@ -20,7 +20,6 @@ class DoctorCubit extends Cubit<DoctorState> {
 
 
   List <Widget> DocBottomNavBarList= [
-    const Center(child: Text('data')),
      StatisticsOfWorld(),
      DiagnosisScreen(),  //DoctorHomeLayoutScreen(),
 
@@ -188,24 +187,24 @@ class DoctorCubit extends Cubit<DoctorState> {
 
   }
 
-  // void addVoting(){
-  //   emit(AddVotingLoadingState());
-  //   DioApi.PostData(url: 'api/voting_for_infection', data: FormData.fromMap({
-  //     'action':'add',
-  //     'infected_id':11,//حاول تحطها اندكس في البارميتر
-  //     'diagnose':value,
-  //     'doctor_id':check,
-  //   })).then((value){
-  //     print(radioValue);
-  //     print('send successfully:${value.data['success']}');
-  //     emit(AddVotingSuccessState());
-  //   }).catchError((onError){
-  //         print('error happened when add voting ${onError.toString()}');
-  //     emit(AddVotingErrorState(onError));
-  //   });
-  //
-  //
-  // }
+  void addVoting(){
+    emit(AddVotingLoadingState());
+    DioApi.PostData(url: 'api/voting_for_infection', data: FormData.fromMap({
+      'action':'add',
+      'infected_id':11,//حاول تحطها اندكس في البارميتر
+      'diagnose':value1,
+      'doctor_id':check,
+    })).then((value){
+      print(radioValue);
+      print('send successfully:${value.data['success']}');
+      emit(AddVotingSuccessState());
+    }).catchError((onError){
+          print('error happened when add voting ${onError.toString()}');
+      emit(AddVotingErrorState(onError));
+    });
+
+
+  }
 
 
 

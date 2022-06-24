@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
 class CovidWebService {
   static Dio _dio;
@@ -14,7 +13,7 @@ class CovidWebService {
   }
 
   static Future<Response> getData(
-    @required String url,
+     dynamic url,
   ) async {
     return await _dio.get(url);
   }

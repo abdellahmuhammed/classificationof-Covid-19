@@ -22,11 +22,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_offline/flutter_offline.dart';
 
+import 'shared/remote/covid19WebServices.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   DioApi.init();
+  CovidWebService.initCovid();
   await CatchHelper.init();
   bool onBoarding = CatchHelper.getData(key: 'OnBoarding');
   bool isDarkShow = CatchHelper.getData(key: 'isDarkShow');
@@ -107,7 +110,7 @@ class MyApp extends StatelessWidget {
               DarkModeCubit()..changeAppMode(formShared: false),
         ),
         BlocProvider(
-            create: (context) => CovidHomeLayouCubit() //..getStaticsOfWorld()..getDataOfEgypt()..getDataOfCountries()
+            create: (context) => CovidHomeLayouCubit() ..getStaticsOfWorld() ..getStaticsOfCountries() //..getStaticsOfWorld()..getDataOfEgypt()..getDataOfCountries()
             ),
       ],
       child: BlocConsumer<DarkModeCubit, DarkModeStates>(

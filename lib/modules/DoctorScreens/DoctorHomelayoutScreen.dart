@@ -47,10 +47,6 @@ class DoctorHomeLayoutScreen extends StatelessWidget {
             bottomNavigationBar: CustomBottomNavigationBar(
               items: [
                 CustomBottomNavigationBarItem(
-                  icon: Icons.auto_stories,
-                  title: "overview",
-                ),
-                CustomBottomNavigationBarItem(
                   icon: Icons.baby_changing_station,
                   title: "Statistics",
                 ),

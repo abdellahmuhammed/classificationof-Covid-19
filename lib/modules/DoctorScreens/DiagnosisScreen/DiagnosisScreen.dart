@@ -3,7 +3,6 @@ import 'dart:math' as math;
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:custom_full_image_screen/custom_full_image_screen.dart';
 import 'package:expansion_widget/expansion_widget.dart';
-import 'package:finalproject/modules/DoctorScreens/DoctorProfileScreen/DoctorProfileScreen.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_state.dart';
 import 'package:finalproject/modules/DoctorScreens/patient%20details/patient%20details.dart';

@@ -2,6 +2,7 @@
 
 import 'package:finalproject/layout/Statistics/statistics%20of%20world%20Screen/statistics%20of%20world.dart';
 import 'package:finalproject/models/CovidForAllModel/CovidForAllModel.dart';
+import 'package:finalproject/models/getDataOfCountriesModel/getDataOfCountriesModel.dart';
 import 'package:finalproject/shared/Constant.dart';
 import 'package:finalproject/shared/remote/covid19WebServices.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,6 @@ class CovidHomeLayouCubit extends Cubit<CovidHomeLayouState> {
 
   List <Widget> BottomNavBarList=
   [
-   const Center(child: Text('data')),
     const StatisticsOfWorld(),
    const Center(child: Text('data')),  //DoctorHomeLayoutScreen(),
   ];
@@ -73,17 +73,39 @@ class CovidHomeLayouCubit extends Cubit<CovidHomeLayouState> {
 
 
   CovidForAllModel covidForAllModel ;
-List <dynamic> list = [];
   void getStaticsOfWorld(){
     emit(LoadingGetDataOfWorldState());
     CovidWebService.getData('v3/covid-19/all').then((value){
-      // covidForAllModel = CovidForAllModel.fromJson(value.data);
-      // printFullText('${covidForAllModel.cases}');
-      list = value.data;
-      print(list);
+      covidForAllModel = CovidForAllModel.fromJson(value.data);
+      printFullText('${covidForAllModel.cases}');
+      printFullText('${covidForAllModel.todayCases}');
+      emit(GetDataOfWorldSuccessState());
     }).catchError((error){
       printFullText('error happened when get Data of world ${error.toString()}');
       emit(GetDataOfWorldErrorState(error));
     });
   }
+
+
+  GetDataOfCountriesModel getDataOfCountriesModel;
+
+  List<dynamic> getDataOfCountriesList =[];
+
+  void getStaticsOfCountries(){
+    emit(LoadingGetDataOfCountriesState());
+    CovidWebService.getData('v3/covid-19/countries/').then((value){
+     // getDataOfCountriesModel = GetDataOfCountriesModel.fromJson(value.data);
+      getDataOfCountriesList = value.data;
+
+      // printFullText('${getDataOfCountriesModel.cases}');
+      // printFullText('${getDataOfCountriesModel.countryInfo.flag}');
+      // printFullText('${getDataOfCountriesModel.todayCases}');
+      // printFullText('${getDataOfCountriesModel.country}');
+      emit(GetDataOfCountriesSuccessState());
+    }).catchError((error){
+      printFullText('error happened when get Data of Countries ${error.toString()}');
+      emit(GetDataOfCountriesErrorState(error));
+    });
+  }
+
 }

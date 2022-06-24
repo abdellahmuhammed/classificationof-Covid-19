@@ -7,16 +7,42 @@ class CovidForAllModel {
   int recovered;
   int todayRecovered;
   int active;
+  int critical;
+  int casesPerOneMillion;
+  double deathsPerOneMillion;
+  int tests;
+  double testsPerOneMillion;
+  int population;
+  int oneCasePerPeople;
+  int oneDeathPerPeople;
+  int oneTestPerPeople;
+  double activePerOneMillion;
+  double recoveredPerOneMillion;
+  double criticalPerOneMillion;
+  int affectedCountries;
 
   CovidForAllModel(
       {this.updated,
-      this.cases,
-      this.todayCases,
-      this.deaths,
-      this.todayDeaths,
-      this.recovered,
-      this.todayRecovered,
-      this.active});
+        this.cases,
+        this.todayCases,
+        this.deaths,
+        this.todayDeaths,
+        this.recovered,
+        this.todayRecovered,
+        this.active,
+        this.critical,
+        this.casesPerOneMillion,
+        this.deathsPerOneMillion,
+        this.tests,
+        this.testsPerOneMillion,
+        this.population,
+        this.oneCasePerPeople,
+        this.oneDeathPerPeople,
+        this.oneTestPerPeople,
+        this.activePerOneMillion,
+        this.recoveredPerOneMillion,
+        this.criticalPerOneMillion,
+        this.affectedCountries});
 
   CovidForAllModel.fromJson(Map<String, dynamic> json) {
     updated = json['updated'];
@@ -27,6 +53,19 @@ class CovidForAllModel {
     recovered = json['recovered'];
     todayRecovered = json['todayRecovered'];
     active = json['active'];
+    critical = json['critical'];
+    casesPerOneMillion = json['casesPerOneMillion'];
+    deathsPerOneMillion = json['deathsPerOneMillion'];
+    tests = json['tests'];
+    testsPerOneMillion = json['testsPerOneMillion'];
+    population = json['population'];
+    oneCasePerPeople = json['oneCasePerPeople'];
+    oneDeathPerPeople = json['oneDeathPerPeople'];
+    oneTestPerPeople = json['oneTestPerPeople'];
+    activePerOneMillion = json['activePerOneMillion'];
+    recoveredPerOneMillion = json['recoveredPerOneMillion'];
+    criticalPerOneMillion = json['criticalPerOneMillion'];
+    affectedCountries = json['affectedCountries'];
   }
 
   Map<String, dynamic> toJson() {
@@ -39,6 +78,19 @@ class CovidForAllModel {
     data['recovered'] = this.recovered;
     data['todayRecovered'] = this.todayRecovered;
     data['active'] = this.active;
+    data['critical'] = this.critical;
+    data['casesPerOneMillion'] = this.casesPerOneMillion;
+    data['deathsPerOneMillion'] = this.deathsPerOneMillion;
+    data['tests'] = this.tests;
+    data['testsPerOneMillion'] = this.testsPerOneMillion;
+    data['population'] = this.population;
+    data['oneCasePerPeople'] = this.oneCasePerPeople;
+    data['oneDeathPerPeople'] = this.oneDeathPerPeople;
+    data['oneTestPerPeople'] = this.oneTestPerPeople;
+    data['activePerOneMillion'] = this.activePerOneMillion;
+    data['recoveredPerOneMillion'] = this.recoveredPerOneMillion;
+    data['criticalPerOneMillion'] = this.criticalPerOneMillion;
+    data['affectedCountries'] = this.affectedCountries;
     return data;
   }
 }
