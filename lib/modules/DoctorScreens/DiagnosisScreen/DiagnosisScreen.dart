@@ -5,7 +5,7 @@ import 'package:custom_full_image_screen/custom_full_image_screen.dart';
 import 'package:expansion_widget/expansion_widget.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_state.dart';
-import 'package:finalproject/modules/DoctorScreens/patient%20details/patient%20details.dart';
+import 'package:finalproject/modules/DoctorScreens/voting/voting.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_cubit.dart';
 import 'package:finalproject/shared/component.dart';
 import 'package:finalproject/shared/local/catchhelper.dart';
@@ -14,6 +14,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_dialogs/material_dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
+
+
 
 class DiagnosisScreen extends StatelessWidget {
   DiagnosisScreen({Key key}) : super(key: key);
@@ -42,8 +44,8 @@ class DiagnosisScreen extends StatelessWidget {
                       onTap: () {
                         NavigateTo(
                             context,
-                            PatientDetails(
-                              Mo: DoctorCubit.get(context).Test.data[index],
+                            votingScreen(
+                               A7a: DoctorCubit.get(context).getInfectedUser.data[index],
                             ));
                       },
                     );
@@ -55,6 +57,7 @@ class DiagnosisScreen extends StatelessWidget {
                   child: Center(child: CircularProgressIndicator()),
                 ),
               ),
+
             );
           }),
     );
@@ -96,136 +99,146 @@ class DiagnosisScreen extends StatelessWidget {
                       height: 10,
                     ),
                     Text(
+                      'Age: ${DoctorCubit.get(context).getInfectedUser.data[index].patientAge}',
+                      style: Theme.of(context).textTheme.bodyText2,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
                       '${DoctorCubit.get(context).getInfectedUser.data[index].infectionDate}',
                       style: Theme.of(context).textTheme.bodyText2,
                     ),
                     const SizedBox(
                       height: 10,
                     ),
-                    ExpansionWidget(
-                      initiallyExpanded: false,
-                      titleBuilder: (double animationValue, _, bool isExpaned,
-                          toogleFunction) {
-                        return InkWell(
-                          onTap: () => toogleFunction(animated: true),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                    child: Text(
-                                  'voting ',
-                                  style: Theme.of(context).textTheme.bodyText1,
-                                )),
-                                Transform.rotate(
-                                  angle: math.pi * animationValue / 2,
-                                  // السهم بيلف يدررجة كام
-                                  child: const Icon(
-                                    Icons.arrow_right,
-                                    size: 40,
-                                    color: Colors.deepOrange,
-                                  ),
-                                  alignment: Alignment.center,
-                                )
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                      content: SizedBox(
-                        width: double.infinity,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            RadioListTile(
-                                title: Text(
-                                  'covid19',
-                                  style: Theme.of(context).textTheme.bodyText1,
-                                ),
-                                value: 'covid19',
-                                groupValue: DoctorCubit.get(context).value1,
-                                onChanged: (index1) {
-                                  DoctorCubit.get(context)
-                                      .changeRadoIndex(index1);
-                                }),
-                            RadioListTile(
-                              title: Text('none',
-                                  style: Theme.of(context).textTheme.bodyText1),
-                              value: 'none',
-                              groupValue: DoctorCubit.get(context).value1,
-                              onChanged: (index2) {
-                                DoctorCubit.get(context)
-                                    .changeRadoIndex(index2);
-                              },
-                            ),
-                            RadioListTile(
-                                title: Text('Pneumonia',
-                                    style:
-                                        Theme.of(context).textTheme.bodyText1),
-                                value: 'pneumonia',
-                                groupValue: DoctorCubit.get(context).value1,
-                                onChanged: (index3) {
-                                  DoctorCubit.get(context)
-                                      .changeRadoIndex(index3);
-                                }),
-                            Center(
-                              child: defultMaterialButton(
-                                  radius: 20,
-                                  function: () {
-                                    Dialogs.materialDialog(
-                                      msg: 'Are you sure to send voting',
-                                      title: "Send",
-                                      color: Colors.white,
-                                      context: context,
-                                      actions: [
-                                        IconsOutlineButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          text: 'No',
-                                          iconData: Icons.cancel_outlined,
-                                          textStyle:
-                                              TextStyle(color: Colors.grey),
-                                          iconColor: Colors.grey,
-                                        ),
-                                        IconsButton(
-                                          onPressed: () {
-                                            CatchHelper.saveData(
-                                                    key: 'value',
-                                                    value:
-                                                        DoctorCubit.get(context)
-                                                            .value1)
-                                                .then((value) {
-                                              DoctorCubit.get(context)
-                                                  .tooMany(index);
-                                              defaultFlutterToast(
-                                                msg: 'Send Successfully',
-                                                background: Colors.green,
-                                              );
-                                              Navigator.pop(context);
-                                            });
-                                          },
-                                          text: 'Yes',
-                                          iconData: Icons.send,
-                                          color: Colors.red,
-                                          textStyle:
-                                              TextStyle(color: Colors.white),
-                                          iconColor: Colors.white,
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                  // هنا هيروح فين بالظبط
-                                  text: 'Send',
-                                  background: Colors.grey.withOpacity(.4),
-                                  width:
-                                      MediaQuery.of(context).size.width * .4),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    TextButton(onPressed: (){
+                      NavigateTo(context, votingScreen());
+                    }, child: Text('For Voting',style: Theme.of(context).textTheme.bodyText1, ))
+                    // ExpansionWidget(
+                    //   initiallyExpanded: false,
+                    //   titleBuilder: (double animationValue, _, bool isExpaned,
+                    //       toogleFunction) {
+                    //     return InkWell(
+                    //       onTap: () => toogleFunction(animated: true),
+                    //       child: Padding(
+                    //         padding: const EdgeInsets.all(8),
+                    //         child: Row(
+                    //           crossAxisAlignment: CrossAxisAlignment.center,
+                    //           children: [
+                    //             Expanded(
+                    //                 child: Text(
+                    //               'voting ',
+                    //               style: Theme.of(context).textTheme.bodyText1,
+                    //             )),
+                    //             Transform.rotate(
+                    //               angle: math.pi * animationValue / 2,
+                    //               // السهم بيلف يدررجة كام
+                    //               child: const Icon(
+                    //                 Icons.arrow_right,
+                    //                 size: 40,
+                    //                 color: Colors.deepOrange,
+                    //               ),
+                    //               alignment: Alignment.center,
+                    //             )
+                    //           ],
+                    //         ),
+                    //       ),
+                    //     );
+                    //   },
+                    //   content: SizedBox(
+                    //     width: double.infinity,
+                    //     child: Column(
+                    //       crossAxisAlignment: CrossAxisAlignment.start,
+                    //       children: [
+                    //         RadioListTile(
+                    //             title: Text(
+                    //               'covid19',
+                    //               style: Theme.of(context).textTheme.bodyText1,
+                    //             ),
+                    //             value: 'covid19',
+                    //             groupValue: DoctorCubit.get(context).value1,
+                    //             onChanged: (index1) {
+                    //               DoctorCubit.get(context)
+                    //                   .changeRadoIndex(index1);
+                    //             }),
+                    //         RadioListTile(
+                    //           title: Text('none',
+                    //               style: Theme.of(context).textTheme.bodyText1),
+                    //           value: 'none',
+                    //           groupValue: DoctorCubit.get(context).value1,
+                    //           onChanged: (index2) {
+                    //             DoctorCubit.get(context)
+                    //                 .changeRadoIndex(index2);
+                    //           },
+                    //         ),
+                    //         RadioListTile(
+                    //             title: Text('Pneumonia',
+                    //                 style:
+                    //                     Theme.of(context).textTheme.bodyText1),
+                    //             value: 'pneumonia',
+                    //             groupValue: DoctorCubit.get(context).value1,
+                    //             onChanged: (index3) {
+                    //               DoctorCubit.get(context)
+                    //                   .changeRadoIndex(index3);
+                    //             }),
+                    //         Center(
+                    //           child: defultMaterialButton(
+                    //               radius: 20,
+                    //               function: () {
+                    //                 Dialogs.materialDialog(
+                    //                   msg: 'Are you sure to send voting',
+                    //                   title: "Send",
+                    //                   color: Colors.white,
+                    //                   context: context,
+                    //                   actions: [
+                    //                     IconsOutlineButton(
+                    //                       onPressed: () {
+                    //                         Navigator.pop(context);
+                    //                       },
+                    //                       text: 'No',
+                    //                       iconData: Icons.cancel_outlined,
+                    //                       textStyle:
+                    //                           TextStyle(color: Colors.grey),
+                    //                       iconColor: Colors.grey,
+                    //                     ),
+                    //                     IconsButton(
+                    //                       onPressed: () {
+                    //                         CatchHelper.saveData(
+                    //                                 key: 'value',
+                    //                                 value:
+                    //                                     DoctorCubit.get(context)
+                    //                                         .value1)
+                    //                             .then((value) {
+                    //                           DoctorCubit.get(context)
+                    //                               .tooMany(index);
+                    //                           defaultFlutterToast(
+                    //                             msg: 'Send Successfully',
+                    //                             background: Colors.green,
+                    //                           );
+                    //                           Navigator.pop(context);
+                    //                         });
+                    //                       },
+                    //                       text: 'Yes',
+                    //                       iconData: Icons.send,
+                    //                       color: Colors.red,
+                    //                       textStyle:
+                    //                           TextStyle(color: Colors.white),
+                    //                       iconColor: Colors.white,
+                    //                     ),
+                    //                   ],
+                    //                 );
+                    //               },
+                    //               // هنا هيروح فين بالظبط
+                    //               text: 'Send',
+                    //               background: Colors.grey.withOpacity(.4),
+                    //               width:
+                    //                   MediaQuery.of(context).size.width * .4),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
                     // MKDropDownMenu(
                     //   headerBuilder: (bool menuIsShowing) {
                     //     return Container(

@@ -97,7 +97,7 @@ class MyApp extends StatelessWidget {
               ..getLessPro()
               ..getUserProfile()
               ..getUserProfileTest()
-            //..getUserProfile(),
+
             ),
         BlocProvider(create: (context) => RadiologistCubit()
             //..getUserProfile(), sd

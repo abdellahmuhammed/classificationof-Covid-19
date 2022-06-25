@@ -1,5 +1,8 @@
-// ignore_for_file: missing_return, camel_case_types
+// ignore_for_file: missing_return, camel_case_types, prefer_const_constructors, non_constant_identifier_names
 
+import 'package:custom_full_image_screen/custom_full_image_screen.dart';
+import 'package:finalproject/models/infectedData/infectedModel.dart';
+import 'package:finalproject/modules/DoctorScreens/DiagnosisScreen/DiagnosisScreen.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_state.dart';
 import 'package:finalproject/shared/component.dart';
@@ -10,51 +13,72 @@ import 'package:material_dialogs/material_dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 
+
+
+
+
 class votingScreen extends StatelessWidget {
   const votingScreen({Key key, this.A7a}) : super(key: key);
-  final A7a;
+  final Data A7a;
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<DoctorCubit , DoctorState>(
       listener: (context , state){},
       builder:(context , state){
-        Scaffold(
+       return Scaffold(
           appBar: AppBar(),
           body:  Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              RadioListTile(
-                  title: Text(
-                    'covid19',
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
-                  value: 'covid19',
-                  groupValue: DoctorCubit.get(context).value1,
-                  onChanged: (index1) {
-                    DoctorCubit.get(context)
-                        .changeRadoIndex(index1);
-                  }),
-              RadioListTile(
-                title: Text('none',
-                    style: Theme.of(context).textTheme.bodyText1),
-                value: 'none',
-                groupValue: DoctorCubit.get(context).value1,
-                onChanged: (index2) {
-                  DoctorCubit.get(context)
-                      .changeRadoIndex(index2);
-                },
+              ImageNetworkFullscreen(
+                imageUrl:
+                'https://co-cvoid-19.me/uploads/ct_scans/11_20220612_1.dcm.png' ,
+                imageBorderRadius: 20,
+                imageWidth: MediaQuery.of(context).size.width * 6,
+                imageHeight: MediaQuery.of(context).size.height * .4,
               ),
-              RadioListTile(
-                  title: Text('Pneumonia',
-                      style:
-                      Theme.of(context).textTheme.bodyText1),
-                  value: 'pneumonia',
-                  groupValue: DoctorCubit.get(context).value1,
-                  onChanged: (index3) {
-                    DoctorCubit.get(context)
-                        .changeRadoIndex(index3);
-                  }),
+              const SizedBox(height: 30,),
+              Card(
+                elevation: 5,
+
+                child: Column(
+                  children: [
+                    RadioListTile(
+                        title: Text(
+                          'covid19',
+                          style: Theme.of(context).textTheme.bodyText1,
+                        ),
+                        value: 'covid19',
+                        groupValue: DoctorCubit.get(context).value1,
+                        onChanged: (index1) {
+                          DoctorCubit.get(context)
+                              .changeRadoIndex(index1);
+                        }),
+                    RadioListTile(
+                      title: Text('none',
+                          style: Theme.of(context).textTheme.bodyText1),
+                      value: 'none',
+                      groupValue: DoctorCubit.get(context).value1,
+                      onChanged: (index2) {
+                        DoctorCubit.get(context)
+                            .changeRadoIndex(index2);
+                      },
+                    ),
+                    RadioListTile(
+                        title: Text('Pneumonia',
+                            style:
+                            Theme.of(context).textTheme.bodyText1),
+                        value: 'pneumonia',
+                        groupValue: DoctorCubit.get(context).value1,
+                        onChanged: (index3) {
+                          DoctorCubit.get(context)
+                              .changeRadoIndex(index3);
+                        }),
+                  ],
+                ),
+              ),
+
               Center(
                 child: defultMaterialButton(
                     radius: 20,
@@ -83,12 +107,12 @@ class votingScreen extends StatelessWidget {
                                   DoctorCubit.get(context)
                                       .value1)
                                   .then((value) {
-                                DoctorCubit.get(context).addVoting();
+                                DoctorCubit.get(context).addVoting(infectedId:A7a.iD );
                                 defaultFlutterToast(
                                   msg: 'Send Successfully',
                                   background: Colors.green,
                                 );
-                                Navigator.pop(context);
+                                NavigateTo(context, DiagnosisScreen());
                               });
                             },
                             text: 'Yes',

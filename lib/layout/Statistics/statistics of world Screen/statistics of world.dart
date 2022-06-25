@@ -49,7 +49,7 @@ class StatisticsOfWorld extends StatelessWidget {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: primaryBlack,
+                            color: Colors.grey[300],
                           ),
                           padding: const EdgeInsets.all(10),
                           child:  Text(
@@ -62,17 +62,17 @@ class StatisticsOfWorld extends StatelessWidget {
                   ),
                 ),
                 CovidHomeLayouCubit.get(context).covidForAllModel == null ? const CircularProgressIndicator() : buildGridView(context: context),
-                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Text(
-                    'Most affected Countries',
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const MostAffectedPanel(),
+                //  Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 10),
+                //   child: Text(
+                //     'Most affected Countries',
+                //     style: Theme.of(context).textTheme.bodyText1,
+                //   ),
+                // ),
+                // const SizedBox(
+                //   height: 10,
+                // ),
+                // const MostAffectedPanel(),
                 const SizedBox(
                   height: 10,
                 ),

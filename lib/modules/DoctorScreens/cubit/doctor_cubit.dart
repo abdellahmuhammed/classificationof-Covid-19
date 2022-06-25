@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, avoid_print, prefer_typing_uninitialized_variables
+// ignore_for_file: non_constant_identifier_names, avoid_print, prefer_typing_uninitialized_variables, prefer_const_constructors
 
 import 'package:dio/dio.dart';
 import 'package:finalproject/layout/Statistics/statistics%20of%20world%20Screen/statistics%20of%20world.dart';
@@ -187,15 +187,19 @@ class DoctorCubit extends Cubit<DoctorState> {
 
   }
 
-  void addVoting(){
+
+  InfectedModel GetInfected;
+  void addVoting({infectedId}){
     emit(AddVotingLoadingState());
     DioApi.PostData(url: 'api/voting_for_infection', data: FormData.fromMap({
       'action':'add',
-      'infected_id':11,//حاول تحطها اندكس في البارميتر
+      'infected_id':infectedId,//حاول تحطها اندكس في البارميتر
       'diagnose':value1,
       'doctor_id':check,
     })).then((value){
-      print(radioValue);
+
+
+      print('done');
       print('send successfully:${value.data['success']}');
       emit(AddVotingSuccessState());
     }).catchError((onError){
@@ -205,7 +209,6 @@ class DoctorCubit extends Cubit<DoctorState> {
 
 
   }
-
 
 
 
@@ -246,7 +249,10 @@ void CheckPatient(index){
 
 
 }
+void getX(){
 
+
+}
 
 }
 
