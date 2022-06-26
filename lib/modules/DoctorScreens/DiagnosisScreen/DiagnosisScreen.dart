@@ -1,19 +1,13 @@
 // ignore_for_file: file_names, unnecessary_string_interpolations, must_be_immutable, void_checks, missing_return, prefer_const_constructors_in_immutables, prefer_const_constructors, avoid_print
-import 'dart:math' as math;
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:custom_full_image_screen/custom_full_image_screen.dart';
-import 'package:expansion_widget/expansion_widget.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_cubit.dart';
 import 'package:finalproject/modules/DoctorScreens/cubit/doctor_state.dart';
 import 'package:finalproject/modules/DoctorScreens/voting/voting.dart';
 import 'package:finalproject/modules/PatientScreens/cubit/Patient_cubit.dart';
 import 'package:finalproject/shared/component.dart';
-import 'package:finalproject/shared/local/catchhelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:material_dialogs/material_dialogs.dart';
-import 'package:material_dialogs/widgets/buttons/icon_button.dart';
-import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 
 
 

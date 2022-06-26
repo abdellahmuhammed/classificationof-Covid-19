@@ -13,10 +13,6 @@ import 'package:material_dialogs/material_dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 
-
-
-
-
 class votingScreen extends StatelessWidget {
   const votingScreen({Key key, this.A7a}) : super(key: key);
   final Data A7a;
@@ -78,7 +74,7 @@ class votingScreen extends StatelessWidget {
                   ],
                 ),
               ),
-
+              SizedBox(height: 20,),
               Center(
                 child: defultMaterialButton(
                     radius: 20,

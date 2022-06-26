@@ -215,7 +215,7 @@ class DoctorCubit extends Cubit<DoctorState> {
 
   List<int>RX=[];
   CheckVotingModel CheckVotes;
-void CheckPatient(index){
+void CheckPatient({index}){
   DioApi.PostData(
       url: 'api/infected',
       data: FormData.fromMap({'action': 'fetch', 'voting_required': '1'}),
@@ -246,10 +246,6 @@ void CheckPatient(index){
 
 
   });
-
-
-}
-void getX(){
 
 
 }
